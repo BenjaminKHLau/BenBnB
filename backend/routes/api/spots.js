@@ -5,6 +5,11 @@ const { User, Spot, Image } = require('../../db/models');
 // const user = require('../../db/models/user')
 const router = express.Router();
 
+
+router.post('/:spotId/images', requireAuth, async (req, res, next)=>{
+    // DO LATER
+})
+
 router.get('/:spotId', async (req, res, next) => {
     const id = req.params.spotId
     const idSpots = await Spot.findByPk(id)
@@ -30,7 +35,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 })
 
 
-
+//GET ALL SPOTS
 router.get('/', async (req, res, next) => {
     const allSpots = await Spot.findAll()
 
