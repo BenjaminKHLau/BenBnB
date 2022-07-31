@@ -31,11 +31,13 @@ module.exports = {
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE  //need to include default date?
+        type: Sequelize.DATE,  //need to include default date?
+        defaultValue: new Date()
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE    //need to include default date?
+        type: Sequelize.DATE,    //need to include default date?
+        defaultValue: new Date()
       }
     });
   },
