@@ -9,6 +9,11 @@ const router = express.Router();
 // backend/routes/api/users.js
 // ...
 
+
+// router.get('/session', requireAuth, async (req, res, next)=>{
+
+// })
+
 // Sign up
 router.post(
     '/',
