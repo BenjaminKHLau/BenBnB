@@ -2,8 +2,8 @@ const express = require('express')
 const { check } = require('express-validator')
 const { handleValidationErrors } = require('../../utils/validation')
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { User, Spot, Image, Review } = require('../../db/models');
-// const user = require('../../db/models/user')
+const { User, Spot, Image, Review, Booking } = require('../../db/models');
+const { Op } = require("sequelize");
 const router = express.Router();
 
 const validateSpot = [
@@ -38,6 +38,16 @@ const validateSpot = [
     handleValidationErrors
 ];
 
+const validateReview = [
+    check('review')
+    .exists({checkFalsy:true})
+    .withMessage("Review is required"),
+    check('stars')
+    .exists({checkFalsy:true})
+    .withMessage("Rating is required"),
+    handleValidationErrors
+];
+
 //POST IMAGE TO SPOT ID
 router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=>{
     // DO LATER
@@ -58,6 +68,64 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=
     })
     res.json(newImage)
 })
+
+//GET ALL REVIEWS BY A SPOT ID
+router.get('/:spotId/reviews', async(req, res, next) => {
+    const spotId = req.params.spotId
+    const invalidSpot = await Spot.findByPk(spotId)
+    const spotIdReviews = await Review.findAll({
+        where: {
+            spotId: spotId
+        }
+    })
+    if(!invalidSpot){
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    }
+    res.json(spotIdReviews)
+})
+
+//POST REVIEW FOR A SPOT BASED ON SPOT ID
+router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, next)=>{
+    const spotId = req.params.spotId
+    const spot = await Spot.findByPk(spotId)
+    if(!spot){
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    }
+    //CHECK FOR DUPLICATES TO SEE IF IT'S ALREADY REVIEWED
+    const duplicates = await Review.findAll({
+        where: {
+            [Op.and]: [
+                {userId: req.user.id},
+                {spotId},
+            ],
+        },
+    })
+    if(duplicates.length >= 1){
+        res.status(403)
+        res.json({
+            "message": "User already has a review for this spot",
+            "statusCode": 403
+          })
+    }
+
+    const newReview = await Review.create({
+        review: req.body.review,
+        stars: req.body.stars,
+        userId: req.user.id,
+        spotId: spotId,
+    })
+    res.status(201)
+    res.json(newReview)
+})
+
 
 //GET CURRENT USERS SPOTS
 router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
