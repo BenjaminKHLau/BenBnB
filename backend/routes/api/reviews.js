@@ -7,6 +7,17 @@ const { Op } = require("sequelize");
 // const review = require('../../db/models/review');
 const router = express.Router();
 
+const validateReview = [
+    check('review')
+    .exists({checkFalsy:true})
+    .withMessage("Review is required"),
+    check('stars')
+    .exists({checkFalsy:true})
+    .withMessage("Rating is required"),
+    handleValidationErrors
+];
+
+
 //ADD IMAGE TO REVIEW BASED ON REVIEW ID
 router.post('/:reviewId/images', restoreUser, requireAuth, async(req, res, next) => {
     const id = req.params.reviewId
@@ -39,6 +50,31 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async(req, res, next)
     res.json(imageReview)
 })
 
+
+    //EDIT A REVIEW
+    router.put('/:reviewId', validateReview, requireAuth, async (req, res, next)=> {
+        const id = req.params.reviewId
+        const review = await Review.findByPk(id)
+
+        if(!review){
+            res.status(404)
+            res.json({
+                "message": "Review couldn't be found",
+                "statusCode": 404
+              })
+        }
+
+        const updatedReview = await review.update({
+            review: req.body.review,
+            stars: req.body.stars,
+            updatedAt: new Date(),
+        })
+
+        res.json(updatedReview)
+        // res.json(review)
+    })
+
+
 //GET CURRENT USER REVIEWS
 router.get('/current', requireAuth, async (req, res, next) => {
     const id = req.user.id
@@ -51,6 +87,22 @@ router.get('/current', requireAuth, async (req, res, next) => {
     res.json(getCurrentReviews)
 })
 
+router.delete('/:reviewId', requireAuth, async (req, res, next) => {
+    const byebye = await Review.findByPk(req.params.reviewId)
+    if(!byebye){
+        res.status(404)
+        res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+          })
+    }
+
+    byebye.destroy()
+    res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+      })
+})
 
 
 module.exports = router
