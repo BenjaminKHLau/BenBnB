@@ -19,6 +19,9 @@ router.post(
     '/',
     async (req, res) => {
       const { firstName, lastName, email, password, username } = req.body;
+      if (!firstName || !lastName || !email || !password || !username){
+          // TESTING TESTING TESTING
+      }
       const user = await User.signup({ firstName, lastName, email, username, password });
   
       await setTokenCookie(res, user);

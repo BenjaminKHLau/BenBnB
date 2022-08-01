@@ -21,6 +21,8 @@ router.post("/test", (req, res) => {
 
 // Spots
 router.use("/spots", spotsRouter);
+
+
 // router.post('/test', function(req, res) {
 //     res.json({ requestBody: req.body });
 //   });
