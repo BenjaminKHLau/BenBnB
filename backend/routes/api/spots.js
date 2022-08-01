@@ -59,6 +59,18 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=
     res.json(newImage)
 })
 
+//GET CURRENT USERS SPOTS
+router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
+    const id = req.user.id
+    
+    const loggedInSpots = await Spot.findAll({
+        where: {
+            ownerId: id,
+        }
+    })
+    res.json(loggedInSpots)
+})
+
 //GET SPOT BY ID
 router.get('/:spotId', async (req, res, next) => {
     const id = req.params.spotId
@@ -118,17 +130,6 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
       })
 })
 
-//GET CURRENT USERS SPOTS
-router.get('/current', requireAuth, async (req, res, next) => {
-    const id = req.user.id
-    
-    const loggedInSpots = await Spot.findAll({
-        where: {
-            ownerId: id,
-        }
-    })
-    res.json(loggedInSpots)
-})
 
 
 //GET ALL SPOTS
