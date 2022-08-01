@@ -29,6 +29,7 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async(req, res, next)
             "statusCode": 404
           })
     }
+    //MAX IMAGES
     const allReviewImages = await Image.findAll({
         where: {
             spotId: reviewId.spotId

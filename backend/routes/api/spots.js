@@ -8,7 +8,7 @@ const router = express.Router();
 
 const validateSpot = [
     check('address')
-    .exists({ checkFalsy: true})
+    .exists({checkFalsy: true})
     .withMessage('Street address is required'),
     check('city')
     .exists({checkFalsy:true})
@@ -47,6 +47,89 @@ const validateReview = [
     .withMessage("Rating is required"),
     handleValidationErrors
 ];
+
+const validateBooking = [
+    check('startDate')
+    .exists({checkFalsy:true})
+    .isDate()
+    .notEmpty()
+    .withMessage("startDate cannot be empty. Cannot be greater than endDate. Format is YYYY-MM-DD"),
+    check('endDate')
+    .exists({checkFalsy:true})
+    .isDate()
+    .notEmpty()
+    .withMessage("endDate cannot be empty. Format is YYYY-MM-DD"),
+    handleValidationErrors
+]
+
+//GET ALL BOOKINGS BASED ON SPOT ID
+//UNFINISHED
+router.get('/:spotId/bookings', requireAuth, async(req,res,next)=>{
+    const spotId = req.params.spotId
+    const currentUser = req.user.id
+
+
+    // if ownerId === spotId.ownerId
+    const allBookings = await Booking.findAll({
+        where: {
+            spotId: spotId,
+        }
+    })
+
+    res.json(allBookings)
+})
+
+
+//CREATE A BOOKING FROM SPOT BASED ON SPOT ID
+//BOOKING CONFLICT
+router.post('/:spotId/bookings', validateBooking, requireAuth, async (req, res, next) => {
+    const spotId = req.params.spotId
+    const { startDate, endDate } = req.body
+    const findSpot = await Spot.findByPk(spotId)
+    if(!findSpot){
+        res.status(404)
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
+    }
+    const allCurrentBookings = await Booking.findAll({
+        where: {
+            spotId: spotId,
+            [Op.and]: [{
+            startDate: {
+                [Op.lte]: endDate,
+            },
+            }, {
+            endDate: {
+                [Op.gte]: startDate,
+            }
+            }],
+        }
+    });
+
+    if(allCurrentBookings.length){
+        res.status(403)
+        res.json({
+            "message": "Sorry, this spot is already booked for the specified dates",
+            "statusCode": 403,
+            "errors": {
+              "startDate": "Start date conflicts with an existing booking",
+              "endDate": "End date conflicts with an existing booking"
+            }
+        })
+    }
+
+    const newBooking = await Booking.create({
+        spotId,
+        startDate, 
+        endDate,
+        userId: req.user.id,
+    })
+    //if spot ownerId !== req.user.id THEN create a booking
+    res.json(newBooking)
+})
+
 
 //POST IMAGE TO SPOT ID
 router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=>{
