@@ -251,6 +251,13 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
 router.get('/:spotId', async (req, res, next) => {
     const id = req.params.spotId
     const idSpots = await Spot.findByPk(id, {
+        attributes: {
+            include: [
+                [sequelize.fn("COUNT", sequelize.col("review")), "numReviews"],
+                [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
+            ],
+
+        },
         include: [
             {
                 model: Image,
@@ -258,14 +265,12 @@ router.get('/:spotId', async (req, res, next) => {
             },
             {
                 model: User,
+                as: "Owner",
                 attributes: ['id', 'firstName', 'lastName']
             },
             {
                 model: Review,
-                attributes: [
-                    [sequelize.fn("COUNT", sequelize.col("review")), "numReviews"],
-                    [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
-                ],
+                attributes: []
             }
         ]
     })
