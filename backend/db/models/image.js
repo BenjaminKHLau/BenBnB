@@ -46,6 +46,20 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Image',
+    defaultScope: {           // INSERT SCOPES AFTER MODEL NAME
+      attributes: {
+        exclude: [
+          'createdAt', 'updatedAt'
+        ]
+      }
+    },
+    scopes: {
+      limitStuff: {
+        attributes:{
+          exclude: ["previewImage", "spotId", "userId"]
+        }
+      }
+    }
   });
   return Image;
 };

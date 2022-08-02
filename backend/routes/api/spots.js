@@ -137,6 +137,19 @@ router.post('/:spotId/bookings', validateBooking, requireAuth, async (req, res, 
     })
     //if spot ownerId !== req.user.id THEN create a booking
     res.json(newBooking)
+    // let createdAt = newBooking.createdAt.toISOString();
+    // let updatedAt = newBooking.createdAt.toISOString();
+    // createdAt = createdAt.slice(0, 10) + " " + createdAt.slice(11, 19);
+    // updatedAt = updatedAt.slice(0, 10) + " " + updatedAt.slice(11, 19);
+    // res.json({
+    //   id: newBooking.id,
+    //   spotId: newBooking.spotId,
+    //   userId: newBooking.userId,
+    //   startDate: newBooking.startDate,
+    //   endDate: newBooking.endDate,
+    //   createdAt,
+    //   updatedAt,
+    // });
 })
 
 

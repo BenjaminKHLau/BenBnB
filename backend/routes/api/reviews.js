@@ -45,13 +45,16 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async(req, res, next)
             "statusCode": 403
           })
     }
+
     const imageReview = await Image.create({
         url: req.body.url,
         spotId: reviewId.spotId,
-        userId: req.user.id
+        userId: req.user.id,
+        reviewId: id
     })
-
-    res.json(imageReview)
+    const currentImage = await Image.scope(["defaultScope", "limitStuff"]).findByPk(imageReview.id)
+    // res.json(imageReview)
+    res.json(currentImage)
 })
 
 
