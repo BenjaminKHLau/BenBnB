@@ -195,7 +195,7 @@ router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, ne
     if(!spot){
         const err = new Error("Spot couldn't be found")
         err.status = 404
-        err.errors = [`Spot with ID ${id} does not exist`]
+        err.errors = [`Spot with ID ${spotId} does not exist`]
         return next(err)
         // res.status(404)
         // res.json({
@@ -215,7 +215,7 @@ router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, ne
     if(duplicates.length >= 1){
         const err = new Error("User already has a review for this spot")
         err.status = 403
-        err.errors = [`Review for Spot ID ${id} already exists`]
+        err.errors = [`Review for Spot ID ${spotId} already exists`]
         return next(err)
         // res.status(403)
         // res.json({
