@@ -202,12 +202,12 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=
         userId: req.user.id,
         // reviewId: 
     })
-    res.json({
-        id: newImage.id,
-        imageableId: newImage.spotId,
-        url: newImage.url
-    })
-    // res.json(newImage)
+    // res.json({
+    //     id: newImage.id,
+    //     imageableId: newImage.spotId,
+    //     url: newImage.url
+    // })
+    res.json(newImage)
 })
 
 //GET ALL REVIEWS BY A SPOT ID
@@ -410,7 +410,27 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 //GET ALL SPOTS
 router.get('/', async (req, res, next) => {
     const allSpots = await Spot.findAll()
+    for (let spot of allSpots) {
+        const spotReviewData = await spot.getReviews({
+          attributes: [
+            [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
+          ],
+        });
     
+        const avgRating = spotReviewData[0].dataValues.avgStarRating;
+        spot.dataValues.avgRating = Number(avgRating).toFixed(1);
+        const previewImage = await Image.findOne({
+          where: {
+            [Op.and]: {
+              spotId: spot.id,
+              previewImage: true,
+            },
+          },
+        });
+        if (previewImage) {
+          spot.dataValues.previewImage = previewImage.dataValues.url;
+        }
+      }
     res.json(allSpots)
 })
 // const userid = User.id

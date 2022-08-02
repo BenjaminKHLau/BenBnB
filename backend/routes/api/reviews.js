@@ -94,8 +94,20 @@ router.get('/current', requireAuth, async (req, res, next) => {
     const getCurrentReviews = await Review.findAll({
         where: {
             userId: id,
+          },
+        });
+        for (let review of getCurrentReviews) {
+          const owner = await review.getUser({
+            attributes: ["id", "firstName", "lastName"],
+          });
+          const spot = await review.getSpot();
+          const images = await review.getImages({
+            attributes: ["id", "reviewId", "url"],
+          });
+          review.dataValues.User = owner.toJSON();
+          review.dataValues.Spot = spot.toJSON();
+          review.dataValues.Images = images;
         }
-    })
     res.json(getCurrentReviews)
 })
 
