@@ -5,6 +5,9 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
 const router = express.Router();
+//
+
+
 
 // backend/routes/api/users.js
 // ...
@@ -91,31 +94,39 @@ const validateSignup = [
 // ...
 
 // Sign up
-router.post('/', validateSignup, async (req, res) => {
+router.post('/', validateSignup, async (req, res, next) => {
       const { firstName, lastName, email, password, username } = req.body;
-      const user = await User.signup({ firstName, lastName, email, username, password });
-
-      // const uniqueEmail = await User.findOne({
-      //   where: {email}
-      // })
-      // if(uniqueEmail){
-      //   res.status(403)
-      //   res.json({
-      //     "message": "User already exists",
-      //     "statusCode": 403,
-      //     "errors": {
-      //       "email": "User with that email already exists"
-      //     }
-      //   })
-      // }
-
-      await setTokenCookie(res, user);
-  
+      
+      //CHECK TO SEE IF USER ALREADY EXISTS
+      const uniqueEmail = await User.findOne({
+        where: {email}
+      })
+      if(uniqueEmail){
+        const err = new Error('User already exists')
+        err.status = 403
+        err.errors = ["User with that email already exists"]
+        return next(err)
+      }
+      const uniqueUsername = await User.findOne({
+        where: {username}
+      })
+      if(uniqueUsername){
+        const err = new Error('Username already exists')
+        err.status = 403
+        err.errors = ["User with that username already exists"]
+        return next(err)
+      }
+      
+      //SIGN UP USER IF NOT
+      let user = await User.signup({ firstName, lastName, email, username, password });
+      const token = await setTokenCookie(res, user);
+      user = user.toJSON()
+      user.token = token
       return res.json({
         user,
       });
-    }
-  );
+}
+);
 
   
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require('express')
 const { check } = require('express-validator')
 const { handleValidationErrors } = require('../../utils/validation')
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
-const { User, Spot, Image, Review, Booking } = require('../../db/models');
+const { User, Spot, Image, Review, Booking, sequelize } = require('../../db/models');
 const { Op } = require("sequelize");
 const router = express.Router();
 
@@ -87,11 +87,15 @@ router.post('/:spotId/bookings', validateBooking, requireAuth, async (req, res, 
     const { startDate, endDate } = req.body
     const findSpot = await Spot.findByPk(spotId)
     if(!findSpot){
-        res.status(404)
-        res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-          })
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        err.errors = [`Spot with ID ${spotId} does not exist`]
+        return next(err)
+        // res.status(404)
+        // res.json({
+        //     "message": "Spot couldn't be found",
+        //     "statusCode": 404
+        //   })
     }
     const allCurrentBookings = await Booking.findAll({
         where: {
@@ -109,15 +113,20 @@ router.post('/:spotId/bookings', validateBooking, requireAuth, async (req, res, 
     });
 
     if(allCurrentBookings.length){
-        res.status(403)
-        res.json({
-            "message": "Sorry, this spot is already booked for the specified dates",
-            "statusCode": 403,
-            "errors": {
-              "startDate": "Start date conflicts with an existing booking",
-              "endDate": "End date conflicts with an existing booking"
-            }
-        })
+        const err = new Error("Sorry, this spot is already booked for the specified dates")
+        err.status = 403
+        err.errors = ["Start date conflicts with an existing booking",
+        "End date conflicts with an existing booking"]
+        return next(err)
+        // res.status(403)
+        // res.json({
+        //     "message": "Sorry, this spot is already booked for the specified dates",
+        //     "statusCode": 403,
+        //     "errors": {
+        //       "startDate": "Start date conflicts with an existing booking",
+        //       "endDate": "End date conflicts with an existing booking"
+        //     }
+        // })
     }
 
     const newBooking = await Booking.create({
@@ -136,11 +145,15 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=
     // DO LATER
     const checker = await Spot.findByPk(req.params.spotId)
     if(!checker){
-        res.status(404)
-        res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-          })
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        err.errors = [`Spot with ID ${id} does not exist`]
+        return next(err)
+        // res.status(404)
+        // res.json({
+        //     "message": "Spot couldn't be found",
+        //     "statusCode": 404
+        //   })
     }
 
     const newImage = await Image.create({
@@ -162,11 +175,15 @@ router.get('/:spotId/reviews', async(req, res, next) => {
         }
     })
     if(!invalidSpot){
-        res.status(404)
-        res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-          })
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        err.errors = [`Spot with ID ${id} does not exist`]
+        return next(err)
+        // res.status(404)
+        // res.json({
+        //     "message": "Spot couldn't be found",
+        //     "statusCode": 404
+        //   })
     }
     res.json(spotIdReviews)
 })
@@ -176,11 +193,15 @@ router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, ne
     const spotId = req.params.spotId
     const spot = await Spot.findByPk(spotId)
     if(!spot){
-        res.status(404)
-        res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-          })
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        err.errors = [`Spot with ID ${id} does not exist`]
+        return next(err)
+        // res.status(404)
+        // res.json({
+        //     "message": "Spot couldn't be found",
+        //     "statusCode": 404
+        //   })
     }
     //CHECK FOR DUPLICATES TO SEE IF IT'S ALREADY REVIEWED
     const duplicates = await Review.findAll({
@@ -192,11 +213,15 @@ router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, ne
         },
     })
     if(duplicates.length >= 1){
-        res.status(403)
-        res.json({
-            "message": "User already has a review for this spot",
-            "statusCode": 403
-          })
+        const err = new Error("User already has a review for this spot")
+        err.status = 403
+        err.errors = [`Review for Spot ID ${id} already exists`]
+        return next(err)
+        // res.status(403)
+        // res.json({
+        //     "message": "User already has a review for this spot",
+        //     "statusCode": 403
+        //   })
     }
 
     const newReview = await Review.create({
@@ -225,13 +250,35 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
 //GET SPOT BY ID
 router.get('/:spotId', async (req, res, next) => {
     const id = req.params.spotId
-    const idSpots = await Spot.findByPk(id)
+    const idSpots = await Spot.findByPk(id, {
+        include: [
+            {
+                model: Image,
+                attributes: ["id", "url"],
+            },
+            {
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            },
+            {
+                model: Review,
+                attributes: [
+                    [sequelize.fn("COUNT", sequelize.col("*")), "numReviews"],
+                    [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
+                ],
+            }
+        ]
+    })
     if(!idSpots){
-        res.status(404)
-        res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-        })
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        err.errors = [`Spot with ID ${id} does not exist`]
+        return next(err)
+        // res.status(404)
+        // res.json({
+        //     "message": "Spot couldn't be found",
+        //     "statusCode": 404
+        // })
     }
     res.json(idSpots)
 })
@@ -242,11 +289,15 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res, next) => {
     const id = req.params.spotId
     const idSpots = await Spot.findByPk(id)
     if(!idSpots){
-        res.status(404)
-        res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-          })
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        err.errors = [`Spot with ID ${id} does not exist`]
+        return next(err)
+        // res.status(404)
+        // res.json({
+        //     "message": "Spot couldn't be found",
+        //     "statusCode": 404
+        //   })
     }
     const newSpot = await idSpots.update({
         ownerId: req.user.id,
@@ -265,14 +316,19 @@ router.put('/:spotId', validateSpot, requireAuth, async (req, res, next) => {
     res.json(newSpot)
 })
 
+//DELETE SPOT BY ID
 router.delete('/:spotId', requireAuth, async (req, res, next) => {
     const deleteMe = await Spot.findByPk(req.params.spotId)
     if(!deleteMe){
-        res.status(404)
-        res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-          })
+        const err = new Error("Spot couldn't be found")
+        err.status = 404
+        err.errors = [`Spot with ID ${id} does not exist`]
+        return next(err)
+        // res.status(404)
+        // res.json({
+        //     "message": "Spot couldn't be found",
+        //     "statusCode": 404
+        //   })
     }
     deleteMe.destroy()
     res.json({

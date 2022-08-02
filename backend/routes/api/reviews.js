@@ -4,7 +4,6 @@ const { handleValidationErrors } = require('../../utils/validation')
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { User, Spot, Image, Review, Booking } = require('../../db/models');
 const { Op } = require("sequelize");
-// const review = require('../../db/models/review');
 const router = express.Router();
 
 const validateReview = [
@@ -23,11 +22,15 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async(req, res, next)
     const id = req.params.reviewId
     const reviewId = await Review.findByPk(id)
     if(!reviewId){
-        res.status(404)
-        res.json({
-            "message": "Review couldn't be found",
-            "statusCode": 404
-          })
+        const err = new Error("Review couldn't be found")
+        err.title = "No review found based on given review Id"
+        err.errors = ["No review found based on given review Id"]
+        return next(err)
+        // res.status(404)
+        // res.json({
+        //     "message": "Review couldn't be found",
+        //     "statusCode": 404
+        //   })
     }
     //MAX IMAGES
     const allReviewImages = await Image.findAll({
