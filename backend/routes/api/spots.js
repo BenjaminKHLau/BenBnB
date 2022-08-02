@@ -142,7 +142,7 @@ router.post('/:spotId/bookings', validateBooking, requireAuth, async (req, res, 
 
 //POST IMAGE TO SPOT ID
 router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=>{
-    // DO LATER
+    const id = req.params.spotId
     const checker = await Spot.findByPk(req.params.spotId)
     if(!checker){
         const err = new Error("Spot couldn't be found")
@@ -263,7 +263,7 @@ router.get('/:spotId', async (req, res, next) => {
             {
                 model: Review,
                 attributes: [
-                    [sequelize.fn("COUNT", sequelize.col("*")), "numReviews"],
+                    [sequelize.fn("COUNT", sequelize.col("review")), "numReviews"],
                     [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
                 ],
             }
