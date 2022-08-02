@@ -64,20 +64,46 @@ const validateBooking = [
 ]
 
 //GET ALL BOOKINGS BASED ON SPOT ID
-//UNFINISHED
+//UNFINISHED AAAAAAAAAAAAA//UNFINISHED AAAAAAAAAAAAA//UNFINISHED AAAAAAAAAAAAA//UNFINISHED AAAAAAAAAAAAA
 router.get('/:spotId/bookings', requireAuth, async(req,res,next)=>{
     const spotId = req.params.spotId
     const currentUser = req.user.id
+    const spotById = await Spot.findByPk(spotId)
 
+    if(!spotById){
+        const err = new Error("Spot couldn't be found")
+        err.title = "No spot with that ID exists"
+        err.status = 404
+        err.errors = [`Spot with ID ${spotId} does not exist`]
+        return next(err)
+    }
+    if(spotById.ownerId === currentUser){
+        const allBookings = await Booking.findAll({
+            include: {
+                model: User
+            },
+            where: {
+                spotId: spotId,
+            }
+        })
+        res.json(allBookings)
+    } else {
+        const noobBookings = await Booking.findAll({
+            attributes: [
+                "spotId", "startDate", "endDate"
+            ],
 
+            where: {
+                spotId: spotId,
+            }
+        })
+        res.json(noobBookings)
+    }
     // if ownerId === spotId.ownerId
-    const allBookings = await Booking.findAll({
-        where: {
-            spotId: spotId,
-        }
-    })
+    // if(allBookings.userId === currentUser){
 
-    res.json(allBookings)
+    // }
+
 })
 
 

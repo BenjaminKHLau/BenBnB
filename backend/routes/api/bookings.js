@@ -35,19 +35,11 @@ router.get('/current', restoreUser, requireAuth, async(req,res,next) => {
 
 //EDIT AN EXISTING BOOKING 
 router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) => {
-    const {startDate, endDate} = req.body
     const bookingId = req.params.bookingId
     const todaysDate = new Date()
-    // const today = todaysDate.slice(0, 10)
 
+    const goodLookingDate = `${todaysDate.toISOString().split("T")[0]} ${todaysDate.toLocaleTimeString()}`
     const currentBooking = await Booking.findByPk(bookingId)
-    if(currentBooking.endDate < todaysDate){
-        res.status(403)
-        res.json({
-            "message": "Past bookings can't be modified",
-            "statusCode": 403
-        })
-    }
     if(!currentBooking){
         res.status(404)
         res.json({
@@ -55,14 +47,39 @@ router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) =
             "statusCode": 404
         })
     }
-
+    
+    if(currentBooking.endDate < todaysDate){
+        res.status(403)
+        res.json({
+            "message": "Past bookings can't be modified",
+            "statusCode": 403
+        })
+    }
+    
+    const {startDate, endDate} = req.body
     currentBooking.update({
         startDate,
         endDate,
         updatedAt: new Date(),
     })
     currentBooking.save()
-    res.json(currentBooking)
+
+    // let updatedAt = currentBooking.createdAt.toISOString();
+    // createdAt = createdAt.slice(0, 10) + " " + createdAt.slice(11, 19);
+    // updatedAt = updatedAt.slice(0, 10) + " " + updatedAt.slice(11, 19);
+    
+    let createdAt = `${currentBooking.createdAt.toISOString().split("T")[0]} ${currentBooking.createdAt.toLocaleTimeString()}`
+    const startDateJSON = JSON.stringify(startDate).slice(1,11)
+    const endDateJSON = JSON.stringify(endDate).slice(1,11)
+    res.json({
+        id: currentBooking.id,
+        spotId: currentBooking.spotId,
+        userId: currentBooking.userId,
+        startDate: startDateJSON,
+        endDate: endDateJSON,
+        createdAt: createdAt,
+        updatedAt: goodLookingDate
+    })
 })
 
 
