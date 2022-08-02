@@ -15,7 +15,7 @@ module.exports = {
       previewImage: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: true,     // check if correct
+        defaultValue: true,     // check if correct //reset to true later
       },
       spotId: {
         type: Sequelize.INTEGER,
