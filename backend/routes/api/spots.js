@@ -222,7 +222,7 @@ router.get('/:spotId/reviews', async(req, res, next) => {
     if(!invalidSpot){
         const err = new Error("Spot couldn't be found")
         err.status = 404
-        err.errors = [`Spot with ID ${id} does not exist`]
+        err.errors = [`Spot with ID ${spotId} does not exist`]
         return next(err)
         // res.status(404)
         // res.json({
