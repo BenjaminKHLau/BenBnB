@@ -250,14 +250,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
 //GET SPOT BY ID
 router.get('/:spotId', async (req, res, next) => {
     const id = req.params.spotId
-    const idSpots = await Spot.findByPk(id, {
-        attributes: {
-            include: [
-                [sequelize.fn("COUNT", sequelize.col("review")), "numReviews"],
-                [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
-            ],
-
-        },
+    let idSpots = await Spot.findByPk(id, {
         include: [
             {
                 model: Image,
@@ -268,10 +261,10 @@ router.get('/:spotId', async (req, res, next) => {
                 as: "Owner",
                 attributes: ['id', 'firstName', 'lastName']
             },
-            {
-                model: Review,
-                attributes: []
-            }
+            // {
+            //     model: Review,
+            //     attributes: ['review']
+            // }
         ]
     })
     if(!idSpots){
@@ -285,7 +278,32 @@ router.get('/:spotId', async (req, res, next) => {
         //     "statusCode": 404
         // })
     }
-    res.json(idSpots)
+    
+    const counter = await Spot.findByPk(id, {
+        // include: [
+            // {
+                include: 
+                // [
+                    {
+                        model: Review,
+                        attributes: [
+                            // "numReviews", "avgStarRating"
+                        ]
+                    },
+                    // ],
+                    attributes: [
+                    [sequelize.fn("COUNT", sequelize.col("review")), "numReviews"],
+                    [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
+                    ],
+                    raw:true
+                    // },
+                    // ]
+    })
+
+    let idSpotsJSON = idSpots.toJSON()
+    idSpotsJSON.numReviews = counter.numReviews
+    idSpotsJSON.avgStarRating = counter.avgStarRating
+    res.json(idSpotsJSON)
 })
 
 //EDIT A SPOT BY ID
