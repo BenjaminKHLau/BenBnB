@@ -8,29 +8,29 @@ const router = express.Router();
 // backend/routes/api/session.js
 // ...
 
-// Log in
-router.post(
-    '/',
-    async (req, res, next) => {
-      const { credential, password } = req.body;
+// // Log in
+// router.post(
+//     '/',
+//     async (req, res, next) => {
+//       const { credential, password } = req.body;
   
-      const user = await User.login({ credential, password });
+//       const user = await User.login({ credential, password });
   
-      if (!user) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
-        return next(err);
-      }
+//       if (!user) {
+//         const err = new Error('Login failed');
+//         err.status = 401;
+//         err.title = 'Login failed';
+//         err.errors = ['The provided credentials were invalid.'];
+//         return next(err);
+//       }
   
-      await setTokenCookie(res, user);
+//       await setTokenCookie(res, user);
   
-      return res.json({
-        user
-      });
-    }
-  );
+//       return res.json({
+//         user
+//       });
+//     }
+//   );
 
   // backend/routes/api/session.js
 // ...
@@ -91,13 +91,10 @@ const validateLogin = [
 // ...
 
 // Log in
-router.post(
-    '/',
-    validateLogin,
-    async (req, res, next) => {
+router.post('/', validateLogin, async (req, res, next) => {
       const { credential, password } = req.body;
   
-      const user = await User.login({ credential, password });
+      let user = await User.login({ credential, password });
   
       if (!user) {
         const err = new Error('Login failed');
@@ -107,8 +104,11 @@ router.post(
         return next(err);
       }
   
-      await setTokenCookie(res, user);
-  
+      const token = await setTokenCookie(res, user);
+      // console.log(user)
+      user = user.toJSON()
+      user.token = token
+      // console.log(user)
       return res.json({
         user
       });

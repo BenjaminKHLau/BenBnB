@@ -1,11 +1,12 @@
 'use strict';
+const { Spot } = require('../models')
 const { Model, Validator } = require('sequelize');
 const bcrypt = require('bcryptjs')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     toSafeObject(){
-      const { id, username, email } = this;
-      return { id, username, email };
+      const { id, firstName, lastName, username, email } = this;
+      return { id, firstName, lastName, username, email };
     }
 
     validatePassword(password) {
@@ -31,9 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
 
-    static async signup({ username, email, password }) {
+    static async signup({ firstName, lastName, username, email, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
+        firstName,
+        lastName,
         username,
         email,
         hashedPassword
@@ -47,9 +50,39 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(
+        models.Spot, {
+          foreignKey: 'ownerId'
+        },
+      )
+       User.hasMany(
+        models.Booking, {
+          foreignKey: 'userId'
+        }
+       ),
+       User.hasMany(
+        models.Review, {
+          foreignKey: 'userId'
+        }
+       )
     }
+    
   }
   User.init({
+    firstName: {
+      type: DataTypes.STRING,
+      // allowNull: false,
+      validate: {
+        len: [2,30],
+      }
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      // allowNull: false,
+      validate: {
+        len: [2,30],
+      }
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
