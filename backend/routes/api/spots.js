@@ -4,6 +4,7 @@ const { handleValidationErrors } = require('../../utils/validation')
 const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth');
 const { User, Spot, Image, Review, Booking, sequelize } = require('../../db/models');
 const { Op } = require("sequelize");
+const image = require('../../db/models/image');
 const router = express.Router();
 
 const validateSpot = [
@@ -153,7 +154,7 @@ router.post('/:spotId/bookings', validateBooking, requireAuth, async (req, res, 
 })
 
 
-//POST IMAGE TO SPOT ID
+//POST IMAGE TO SPOT BASED ON SPOT ID
 router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=>{
     const id = req.params.spotId
     const checker = await Spot.findByPk(req.params.spotId)
@@ -175,7 +176,12 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=
         userId: req.user.id,
         // reviewId: 
     })
-    res.json(newImage)
+    res.json({
+        id: newImage.id,
+        imageableId: newImage.spotId,
+        url: newImage.url
+    })
+    // res.json(newImage)
 })
 
 //GET ALL REVIEWS BY A SPOT ID

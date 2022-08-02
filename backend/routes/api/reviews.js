@@ -52,9 +52,14 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async(req, res, next)
         userId: req.user.id,
         reviewId: id
     })
-    const currentImage = await Image.scope(["defaultScope", "limitStuff"]).findByPk(imageReview.id)
-    // res.json(imageReview)
-    res.json(currentImage)
+    // const currentImage = await Image.scope(["defaultScope", "limitStuff"]).findByPk(imageReview.id)
+    res.json({
+        id: imageReview.id,
+        imageableId: imageReview.spotId,
+        url: imageReview.url
+    })
+    res.json(imageReview)
+    // res.json(currentImage)
 })
 
 
