@@ -27,7 +27,11 @@ router.get('/current', restoreUser, requireAuth, async(req,res,next) => {
     const allBookings = await Booking.findAll({
         where: {
             userId: id
-        }
+        },
+        include: {
+            model: Spot,
+            attributes: ["id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "description", "price"]
+        },
     })
     res.json(allBookings)
 })
@@ -45,11 +49,11 @@ router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) =
         err.status = 404
         err.errors = [`Booking with ID ${req.params.bookingId} does not exist`]
         return next(err)
-        res.status(404)
-        res.json({
-            "message": "Booking couldn't be found",
-            "statusCode": 404
-        })
+        // res.status(404)
+        // res.json({
+        //     "message": "Booking couldn't be found",
+        //     "statusCode": 404
+        // })
     }
     
     if(currentBooking.endDate < todaysDate){
