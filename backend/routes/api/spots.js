@@ -247,13 +247,26 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=
 })
 
 //GET ALL REVIEWS BY A SPOT ID
+//UNFINISHED***********************************************
+//UNFINISHED***********************************************
 router.get('/:spotId/reviews', async(req, res, next) => {
     const spotId = req.params.spotId
     const invalidSpot = await Spot.findByPk(spotId)
     const spotIdReviews = await Review.findAll({
         where: {
             spotId: spotId
-        }
+        },
+        include: [
+            {
+                model: Image,
+                attributes: ["id", ["spotId", "imageableId"], "url"]
+            },
+            {
+                model: User,
+                attributes: ["id", "firstName", "lastName"]
+            }
+        ],
+
     })
     if(!invalidSpot){
         const err = new Error("Spot couldn't be found")

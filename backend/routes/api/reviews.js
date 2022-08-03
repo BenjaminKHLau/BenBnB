@@ -102,7 +102,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
           });
           const spot = await review.getSpot();
           const images = await review.getImages({
-            attributes: ["id", "reviewId", "url"],
+            attributes: ["id", ["reviewId", "imageableId"], "url"],
           });
           review.dataValues.User = owner.toJSON();
           review.dataValues.Spot = spot.toJSON();
@@ -111,6 +111,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
     res.json(getCurrentReviews)
 })
 
+
+//DELETE A REVIEW
 router.delete('/:reviewId', requireAuth, async (req, res, next) => {
     const byebye = await Review.findByPk(req.params.reviewId)
     if(!byebye){
