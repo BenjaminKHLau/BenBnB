@@ -66,12 +66,13 @@ const validateBooking = [
 const validateQuery = [
     check('page')
     .optional()
-    .isInt({min:1})
+    .isInt({min:0})
     .withMessage('Page must be greater than or equal to 0'),
     check('size')
     .optional()
-    .isInt({min:0})
-    .withMessage('Size must be greater than or equal to 0'),
+    .isInt({min:0, max:20})
+    // .default({Number: 20})
+    .withMessage('Size must be greater than or equal to 0 with a maximum of 20'),
     check('minLat')
     .optional()
     .isDecimal()
@@ -100,7 +101,6 @@ const validateQuery = [
 ];
 
 //GET ALL BOOKINGS BASED ON SPOT ID
-//UNFINISHED AAAAAAAAAAAAA//UNFINISHED AAAAAAAAAAAAA//UNFINISHED AAAAAAAAAAAAA//UNFINISHED AAAAAAAAAAAAA
 router.get('/:spotId/bookings', requireAuth, async(req,res,next)=>{
     const spotId = req.params.spotId
     const currentUser = req.user.id
@@ -447,7 +447,18 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 
 //GET ALL SPOTS
 router.get('/', validateQuery, async (req, res, next) => {
-    const allSpots = await Spot.findAll()
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+    let pagination = {}
+    page = parseInt(page);
+    size = parseInt(size);
+  
+    if (Number.isNaN(page)) page = 1;
+    if (Number.isNaN(size)) size = 20;
+    pagination.limit = size
+    pagination.offset = size * (page - 1)
+
+
+    const allSpots = await Spot.findAll({...pagination})
     for (let spot of allSpots) {
         const spotReviewData = await spot.getReviews({
           attributes: [
