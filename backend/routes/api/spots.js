@@ -202,12 +202,12 @@ router.post('/:spotId/images', restoreUser, requireAuth, async (req, res, next)=
         userId: req.user.id,
         // reviewId: 
     })
-    // res.json({
-    //     id: newImage.id,
-    //     imageableId: newImage.spotId,
-    //     url: newImage.url
-    // })
-    res.json(newImage)
+    res.json({
+        id: newImage.id,
+        imageableId: newImage.spotId,
+        url: newImage.url
+    })
+    // res.json(newImage)
 })
 
 //GET ALL REVIEWS BY A SPOT ID

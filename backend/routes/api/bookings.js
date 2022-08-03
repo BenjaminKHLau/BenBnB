@@ -101,6 +101,26 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
         err.errors = [`Spot with ID ${req.params.bookingId} does not exist`]
         return next(err)
     }
+
+    if(bookingDie.userId !== req.user.id){
+        const err = new Error("This is not your booking")
+        err.status = 403
+        err.errors = [`Spot with ID ${req.params.spotId} does not exist`]
+        return next(err)
+    }
+
+    const today = new Date()
+    if(today > bookingDie.startDate){
+        const err = new Error("Cannot delete Booking from the past")
+        err.status = 403
+        err.errors = [`Booking with ID ${req.params.bookingId} is in the past`]
+        return next(err)
+    }
+    bookingDie.destroy()
+    res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+      })
 })
 
 

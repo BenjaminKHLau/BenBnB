@@ -110,7 +110,12 @@ router.post('/', validateLogin, async (req, res, next) => {
       user.token = token
       // console.log(user)
       return res.json({
-        user
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        email: user.email,
+        token: user.token,
       });
     }
   );
