@@ -434,6 +434,12 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
         //     "statusCode": 404
         //   })
     }
+    if (deleteMe.ownerId !== req.user.id){
+        const err = new Error("This is not your spot")
+        err.status = 403
+        err.errors = [`Spot with ID ${req.params.spotId} is not yours`]
+        return next(err)
+    }
     deleteMe.destroy()
     res.json({
         "message": "Successfully deleted",
