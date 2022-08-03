@@ -335,7 +335,8 @@ router.get('/:spotId', async (req, res, next) => {
         include: [
             {
                 model: Image,
-                attributes: ["id", "url"],
+                // as: "imageableId",
+                attributes: ["id", ["spotId", "imageableId"], "url"],
             },
             {
                 model: User,
@@ -384,6 +385,7 @@ router.get('/:spotId', async (req, res, next) => {
     let idSpotsJSON = idSpots.toJSON()
     idSpotsJSON.numReviews = counter.numReviews
     idSpotsJSON.avgStarRating = counter.avgStarRating
+    // idSpotsJSON.imageableId = id
     res.json(idSpotsJSON)
 })
 
