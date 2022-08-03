@@ -448,7 +448,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 //GET ALL SPOTS
 router.get('/', validateQuery, async (req, res, next) => {
     let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
-    let pagination = {}
+    let pagination = {filter: []}
     page = parseInt(page);
     size = parseInt(size);
   
@@ -457,8 +457,21 @@ router.get('/', validateQuery, async (req, res, next) => {
     pagination.limit = size
     pagination.offset = size * (page - 1)
 
+    // let where = {}
+    if (minLat) pagination.filter.push({lat: {[Op.gte]: Number(minLat)}})
+    if (maxLat) pagination.filter.push({lat: {[Op.lte]: Number(maxLat)}})
+    if (minLng) pagination.filter.push({lng: {[Op.gte]: Number(minLng)}})
+    if (maxLng) pagination.filter.push({lng: {[Op.lte]: Number(maxLng)}})
+    if (minPrice) pagination.filter.push({price: {[Op.gte]: Number(minPrice)}})
+    if (maxPrice) pagination.filter.push({price: {[Op.lte]: Number(maxPrice)}})
 
-    const allSpots = await Spot.findAll({...pagination})
+    const allSpots = await Spot.findAll({
+        where: {
+            [Op.and]: pagination.filter
+        },
+        limit: pagination.limit,
+        offset: pagination.offset,
+    })
     for (let spot of allSpots) {
         const spotReviewData = await spot.getReviews({
           attributes: [
@@ -480,7 +493,11 @@ router.get('/', validateQuery, async (req, res, next) => {
           spot.dataValues.previewImage = previewImage.dataValues.url;
         }
       }
-    res.json(allSpots)
+    res.json({
+        page: page,
+        size: size,
+        allSpots,
+    })
 })
 // const userid = User.id
 
