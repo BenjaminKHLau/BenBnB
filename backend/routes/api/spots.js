@@ -390,7 +390,7 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
     if(!deleteMe){
         const err = new Error("Spot couldn't be found")
         err.status = 404
-        err.errors = [`Spot with ID ${id} does not exist`]
+        err.errors = [`Spot with ID ${req.params.spotId} does not exist`]
         return next(err)
         // res.status(404)
         // res.json({

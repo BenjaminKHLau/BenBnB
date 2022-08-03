@@ -41,6 +41,10 @@ router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) =
     const goodLookingDate = `${todaysDate.toISOString().split("T")[0]} ${todaysDate.toLocaleTimeString()}`
     const currentBooking = await Booking.findByPk(bookingId)
     if(!currentBooking){
+        const err = new Error("Booking couldn't be found")
+        err.status = 404
+        err.errors = [`Booking with ID ${req.params.bookingId} does not exist`]
+        return next(err)
         res.status(404)
         res.json({
             "message": "Booking couldn't be found",
@@ -49,11 +53,15 @@ router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) =
     }
     
     if(currentBooking.endDate < todaysDate){
-        res.status(403)
-        res.json({
-            "message": "Past bookings can't be modified",
-            "statusCode": 403
-        })
+        const err = new Error("Past bookings can't be modified")
+        err.status = 403
+        err.errors = [`Cannot modify Booking ID ${req.params.bookingId}`]
+        return next(err)
+        // res.status(403)
+        // res.json({
+        //     "message": "Past bookings can't be modified",
+        //     "statusCode": 403
+        // })
     }
     
     const {startDate, endDate} = req.body
@@ -81,6 +89,20 @@ router.put('/:bookingId', validateBooking, requireAuth, async (req, res, next) =
         updatedAt: goodLookingDate
     })
 })
+
+
+// DELETE AN EXISTING BOOKING
+router.delete('/:bookingId', requireAuth, async(req, res, next) => {
+    const bookingDie = await Booking.findByPk(req.params.bookingId)
+
+    if(!bookingDie){
+        const err = new Error("Booking couldn't be found")
+        err.status = 404
+        err.errors = [`Spot with ID ${req.params.bookingId} does not exist`]
+        return next(err)
+    }
+})
+
 
 
 module.exports = router;
