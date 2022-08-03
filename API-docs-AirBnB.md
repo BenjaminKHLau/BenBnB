@@ -2,14 +2,7 @@
 
 ## Database Schema Design
 
-<<<<<<< HEAD
-![benbnb](https://user-images.githubusercontent.com/20654267/182049607-262cd8b9-398c-4a09-acf2-bcaa9bd644f4.png)
-
-
-
-=======
 ![airbnb-database-schema](../assets/airbnb_dbdiagram.png)
->>>>>>> dev
 
 ## API Documentation
 
@@ -468,7 +461,8 @@ Create and return a new image for a spot specified by id.
 
     ```json
     {
-      "url": "image url"
+      "url": "image url",
+      "previewImage": false/true
     }
     ```
 
@@ -834,7 +828,8 @@ Create and return a new image for a review specified by id.
 
     ```json
     {
-      "url": "image url"
+      "url": "image url",
+      "previewImage": false/true
     }
     ```
 
@@ -1439,8 +1434,4 @@ Return spots filtered by query parameters.
         "maxPrice": "Minimum price must be greater than or equal to 0"
       }
     }
-<<<<<<< HEAD
     ```
-=======
-    ```
->>>>>>> dev

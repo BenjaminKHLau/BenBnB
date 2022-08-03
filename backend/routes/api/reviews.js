@@ -39,11 +39,16 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async(req, res, next)
         }
     })
     if(allReviewImages.length >= 10){
-        res.status(403)
-        res.json({
-            "message": "Maximum number of images for this resource was reached",
-            "statusCode": 403
-          })
+        const err = new Error("Maximum number of images for this resource was reached")
+        err.title = "Too many images"
+        err.errors = ["Maximum number of images for this resource was reached"]
+        err.status = 403
+        return next(err)
+        // res.status(403)
+        // res.json({
+        //     "message": "Maximum number of images for this resource was reached",
+        //     "statusCode": 403
+        //   })
     }
 
     const imageReview = await Image.create({
@@ -58,7 +63,7 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async(req, res, next)
         imageableId: imageReview.spotId,
         url: imageReview.url
     })
-    res.json(imageReview)
+    // res.json(imageReview)
     // res.json(currentImage)
 })
 
@@ -69,11 +74,15 @@ router.post('/:reviewId/images', restoreUser, requireAuth, async(req, res, next)
         const review = await Review.findByPk(id)
 
         if(!review){
-            res.status(404)
-            res.json({
-                "message": "Review couldn't be found",
-                "statusCode": 404
-              })
+            const err = new Error("Review couldn't be found")
+            err.status = 404
+            err.errors = [`Review with ID ${id} does not exist`]
+            return next(err)
+            // res.status(404)
+            // res.json({
+            //     "message": "Review couldn't be found",
+            //     "statusCode": 404
+            //   })
         }
 
         const updatedReview = await review.update({
@@ -116,11 +125,15 @@ router.get('/current', requireAuth, async (req, res, next) => {
 router.delete('/:reviewId', requireAuth, async (req, res, next) => {
     const byebye = await Review.findByPk(req.params.reviewId)
     if(!byebye){
-        res.status(404)
-        res.json({
-            "message": "Review couldn't be found",
-            "statusCode": 404
-          })
+        const err = new Error("Review couldn't be found")
+        err.status = 404
+        err.errors = [`Review with ID ${req.params.reviewId} does not exist`]
+        return next(err)
+        // res.status(404)
+        // res.json({
+        //     "message": "Review couldn't be found",
+        //     "statusCode": 404
+        //   })
     }
 
     byebye.destroy()
