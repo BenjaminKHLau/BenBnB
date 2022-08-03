@@ -63,6 +63,42 @@ const validateBooking = [
     handleValidationErrors
 ]
 
+const validateQuery = [
+    check('page')
+    .optional()
+    .isInt({min:1})
+    .withMessage('Page must be greater than or equal to 0'),
+    check('size')
+    .optional()
+    .isInt({min:0})
+    .withMessage('Size must be greater than or equal to 0'),
+    check('minLat')
+    .optional()
+    .isDecimal()
+    .withMessage('Maximum latitude is invalid'),
+    check('maxLat')
+    .optional()
+    .isDecimal()
+    .withMessage('Minimum latitude is invalid'),
+    check('minLng')
+    .optional()
+    .isDecimal()
+    .withMessage('Maximum longitude is invalid'),
+    check('maxLng')
+    .optional()
+    .isDecimal()
+    .withMessage('Minimum longitude is invalid'),
+    check('minPrice')
+    .optional()
+    .isFloat({min:0})
+    .withMessage('Maximum price must be greater than 0'),
+    check('maxPrice')
+    .optional()
+    .isFloat({min:0})
+    .withMessage('Minimum price must be greater than 0'),
+    handleValidationErrors
+];
+
 //GET ALL BOOKINGS BASED ON SPOT ID
 //UNFINISHED AAAAAAAAAAAAA//UNFINISHED AAAAAAAAAAAAA//UNFINISHED AAAAAAAAAAAAA//UNFINISHED AAAAAAAAAAAAA
 router.get('/:spotId/bookings', requireAuth, async(req,res,next)=>{
@@ -407,8 +443,10 @@ router.delete('/:spotId', requireAuth, async (req, res, next) => {
 
 
 
+
+
 //GET ALL SPOTS
-router.get('/', async (req, res, next) => {
+router.get('/', validateQuery, async (req, res, next) => {
     const allSpots = await Spot.findAll()
     for (let spot of allSpots) {
         const spotReviewData = await spot.getReviews({
