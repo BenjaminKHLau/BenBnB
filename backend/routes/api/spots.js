@@ -338,40 +338,47 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
         }
     })
 
+    const image = await Image.findOne({
+        where: {userId: req.user.id}
+    })
+    // console.log(image)
+    // const review = await Spot.findOne({
+        //     where: {
+            //         ownerId: id
+            //     },
+            //     include: {
+                //         model: Review,
+                //         // attributes:[]
+                //     },
+                // attributes: [
+                    //     [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]
+                    // ],
+                    // raw: true
+                    // })
+                    // console.log(review)
+                    
+    let arr = []
+    for (let spot of loggedInSpots){
+        // console.log(spot.toJSON().id)
         const review = await Review.findOne({
             where: {
-                userId: req.user.id
+                [Op.and]:[
+                {userId: req.user.id},
+                {spotId: spot.toJSON().id}
+                ]
             },
             attributes: [
                 [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]
             ],
             raw: true
         })
-    // console.log(review)
-        const image = await Image.findOne({
-            where: {userId: req.user.id}
-        })
-        // console.log(image)
-    // const review = await Spot.findOne({
-    //     where: {
-    //         ownerId: id
-    //     },
-    //     include: {
-    //         model: Review,
-    //         // attributes:[]
-    //     },
-        // attributes: [
-        //     [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]
-        // ],
-        // raw: true
-    // })
-    // console.log(review)
-    
-    let arr = []
-    for (let spot of loggedInSpots){
-        // console.log(spot.toJSON())
+        console.log(review)
         let spotJSON = spot.toJSON()
-        spotJSON.avgRating = review.avgStarRating
+        if(!review.avgStarRating){
+            spotJSON.avgRating = "This place has not been reviewed yet"
+        } else {
+            spotJSON.avgRating = review.avgStarRating
+        }
         spotJSON.previewImage = image.dataValues.url
         arr.push(spotJSON)
     }
