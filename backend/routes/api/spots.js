@@ -377,7 +377,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
         if(!review.avgStarRating){
             spotJSON.avgRating = "This place has not been reviewed yet"
         } else {
-            spotJSON.avgRating = review.avgStarRating
+            spotJSON.avgRating = Number(review.avgStarRating).toFixed(1)
         }
         spotJSON.previewImage = image.dataValues.url
         arr.push(spotJSON)
