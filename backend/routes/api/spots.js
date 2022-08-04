@@ -441,7 +441,11 @@ router.get('/:spotId', async (req, res, next) => {
 
     let idSpotsJSON = idSpots.toJSON()
     idSpotsJSON.numReviews = counter.numReviews
-    idSpotsJSON.avgStarRating = counter.avgStarRating
+    if(!counter.avgStarRating){
+        idSpotsJSON.avgStarRating = "This place does not have any ratings"
+    } else {
+        idSpotsJSON.avgStarRating = Number(counter.avgStarRating).toFixed(1)
+    }
     // idSpotsJSON.imageableId = id
     res.json(idSpotsJSON)
 })
