@@ -332,13 +332,50 @@ router.post('/:spotId/reviews', validateReview, requireAuth, async (req, res, ne
 //GET CURRENT USERS SPOTS
 router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
     const id = req.user.id
-    
     const loggedInSpots = await Spot.findAll({
         where: {
             ownerId: id,
         }
     })
-    res.json(loggedInSpots)
+
+        const review = await Review.findOne({
+            where: {
+                userId: req.user.id
+            },
+            attributes: [
+                [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]
+            ],
+            raw: true
+        })
+    // console.log(review)
+        const image = await Image.findOne({
+            where: {userId: req.user.id}
+        })
+        // console.log(image)
+    // const review = await Spot.findOne({
+    //     where: {
+    //         ownerId: id
+    //     },
+    //     include: {
+    //         model: Review,
+    //         // attributes:[]
+    //     },
+        // attributes: [
+        //     [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"]
+        // ],
+        // raw: true
+    // })
+    // console.log(review)
+    
+    let arr = []
+    for (let spot of loggedInSpots){
+        // console.log(spot.toJSON())
+        let spotJSON = spot.toJSON()
+        spotJSON.avgRating = review.avgStarRating
+        spotJSON.previewImage = image.dataValues.url
+        arr.push(spotJSON)
+    }
+    res.json(arr)
 })
 
 //GET SPOT BY ID

@@ -134,7 +134,7 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
         err.errors = [`Booking with ID ${req.params.bookingId} is in the past`]
         return next(err)
     }
-    bookingDie.destroy()
+    bookingDie.destroy() //add await if necessary
     res.json({
         "message": "Successfully deleted",
         "statusCode": 200
