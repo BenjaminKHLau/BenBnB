@@ -33,7 +33,14 @@ router.get('/current', restoreUser, requireAuth, async(req,res,next) => {
             attributes: ["id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "description", "price"]
         },
     })
-    res.json(allBookings)
+    let arr = []
+    for(let booking of allBookings){
+        // console.log(booking)
+        let book = booking.toJSON()
+        book.Spot.previewImage = "hello"
+        arr.push(book)
+    }
+    res.json(arr)
 })
 
 
