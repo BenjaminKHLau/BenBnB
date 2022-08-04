@@ -33,11 +33,18 @@ router.get('/current', restoreUser, requireAuth, async(req,res,next) => {
             attributes: ["id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "description", "price"]
         },
     })
+    const image = await Image.findOne({
+        where: {
+            userId: req.user.id
+        }
+    })
+    // console.log(image)
+    // console.log(allBookings[0].dataValues)
     let arr = []
     for(let booking of allBookings){
         // console.log(booking)
         let book = booking.toJSON()
-        book.Spot.previewImage = "hello"
+        book.Spot.previewImage = image.dataValues.url
         arr.push(book)
     }
     res.json(arr)
