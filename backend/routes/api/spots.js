@@ -192,6 +192,12 @@ router.post('/:spotId/bookings', validateBooking, requireAuth, async (req, res, 
         // })
     }
 
+    if(findSpot.ownerId === req.user.id){
+        const err = new Error("You cannot create a booking for your own spot")
+        err.status = 403
+        err.errors = ["You cannot create a booking for your own spot"]
+        return next(err)
+    }
     const newBooking = await Booking.create({
         spotId,
         startDate, 
@@ -375,7 +381,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
         console.log(review)
         let spotJSON = spot.toJSON()
         if(!review.avgStarRating){
-            spotJSON.avgRating = "This place has not been reviewed yet"
+            spotJSON.avgRating = "This spot has not been reviewed yet"
         } else {
             spotJSON.avgRating = Number(review.avgStarRating).toFixed(1)
         }
@@ -442,7 +448,7 @@ router.get('/:spotId', async (req, res, next) => {
     let idSpotsJSON = idSpots.toJSON()
     idSpotsJSON.numReviews = counter.numReviews
     if(!counter.avgStarRating){
-        idSpotsJSON.avgStarRating = "This place does not have any ratings"
+        idSpotsJSON.avgStarRating = "This spot does not have any ratings"
     } else {
         idSpotsJSON.avgStarRating = Number(counter.avgStarRating).toFixed(1)
     }

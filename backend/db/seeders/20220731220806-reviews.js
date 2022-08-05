@@ -31,7 +31,67 @@ const reviews = [
     spotId: 4,
     review: 'I was robbed at gunpoint while taking pictures of Central Park',
     stars: 1
-  }
+  },
+  {
+    userId: 3,
+    spotId: 1,
+    review: 'Aliens were sleeping on my bed',
+    stars: 2
+  },
+  {
+    userId: 2,
+    spotId: 2,
+    review: 'The cars outside are making too much noise',
+    stars: 1
+  },
+  {
+    userId: 1,
+    spotId: 3,
+    review: 'Pigeons pooped on my head',
+    stars: 3
+  },
+  {
+    userId: 4,
+    spotId: 4,
+    review: 'The food gave me an allergy attack',
+    stars: 1
+  },
+  {
+    userId: 5,
+    spotId: 5,
+    review: 'The park smelled like horse poop everywhere',
+    stars: 2
+  },
+  {
+    userId: 2,
+    spotId: 1,
+    review: 'The toilets have poop stains on the seat',
+    stars: 3
+  },
+  {
+    userId: 4,
+    spotId: 2,
+    review: 'The cars outside are making too much noise',
+    stars: 3
+  },
+  {
+    userId: 3,
+    spotId: 4,
+    review: 'The room had a strong odor',
+    stars: 2
+  },
+  {
+    userId: 4,
+    spotId: 5,
+    review: 'I found bedbugs everywhere',
+    stars: 1
+  },
+  {
+    userId: 1,
+    spotId: 5,
+    review: 'Customer service was exceptionally bad',
+    stars: 2
+  },
 ]
 
 module.exports = {
