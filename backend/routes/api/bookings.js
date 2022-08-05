@@ -123,7 +123,7 @@ router.delete('/:bookingId', requireAuth, async(req, res, next) => {
     if(bookingDie.userId !== req.user.id){
         const err = new Error("This is not your booking")
         err.status = 403
-        err.errors = [`Spot with ID ${req.params.spotId} does not exist`]
+        err.errors = [`Booking with ID ${req.params.bookingId} does not exist`]
         return next(err)
     }
 
