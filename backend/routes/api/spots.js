@@ -378,7 +378,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res, next) => {
             ],
             raw: true
         })
-        console.log(review)
+        // console.log(review)
         let spotJSON = spot.toJSON()
         if(!review.avgStarRating){
             spotJSON.avgRating = "This spot has not been reviewed yet"
