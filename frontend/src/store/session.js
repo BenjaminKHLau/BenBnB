@@ -63,6 +63,17 @@ export const login = (user) => async (dispatch) => {
   return response;
 };
 
+// frontend/src/store/session.js
+// ...
+export const logout = () => async (dispatch) => {
+  const response = await csrfFetch('/api/session', {
+    method: 'DELETE',
+  });
+  dispatch(removeUser());
+  return response;
+};
+// ...
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
