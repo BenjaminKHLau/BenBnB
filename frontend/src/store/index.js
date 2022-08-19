@@ -5,9 +5,18 @@ import thunk from 'redux-thunk';
 
 // frontend/src/store/index.js
 // ...
-const rootReducer = combineReducers({
-});
+// const rootReducer = combineReducers({
+// });
 
+
+// frontend/src/store/index.js
+// ...
+import sessionReducer from './session';
+
+const rootReducer = combineReducers({
+  session: sessionReducer,
+});
+// ...
 
 // frontend/src/store/index.js
 // ...
@@ -32,3 +41,15 @@ const configureStore = (preloadedState) => {
   };
   
   export default configureStore;
+
+
+  //
+  /*
+  TEST STUFF
+
+  window.store.dispatch(window.sessionActions.login({
+    credential: 'Demo-lition',
+    password: 'password'
+  }));
+
+  */

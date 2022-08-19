@@ -12,6 +12,7 @@ import configureStore from './store';
 // frontend/src/index.js
 // ...
 import { restoreCSRF, csrfFetch } from './store/csrf';
+import * as sessionActions from './store/session';
 const store = configureStore();
 // frontend/src/index.js
 // ... other imports
@@ -23,6 +24,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   window.csrfFetch = csrfFetch;
   window.store = store;
+  window.sessionActions = sessionActions;
 }
 
 
