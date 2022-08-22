@@ -6,10 +6,12 @@ import * as sessionActions from '../../store/session';
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false)
   
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
+    // setIsLoaded(true)
   };
   
   useEffect(() => {
@@ -17,6 +19,8 @@ function ProfileButton({ user }) {
 
     const closeMenu = () => {
       setShowMenu(false);
+
+      // setIsLoaded(false)
     };
 
     document.addEventListener('click', closeMenu);

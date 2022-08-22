@@ -12,10 +12,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
 
-  if (sessionUser) return (
-    // history.push('/')
-    <Redirect to="/" />
-  );
+  if (sessionUser) <Redirect to="/" />
 
   const handleSubmit = (e) => {
     e.preventDefault();

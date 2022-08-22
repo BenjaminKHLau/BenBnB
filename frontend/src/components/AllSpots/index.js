@@ -15,8 +15,10 @@ function GetAllSpots(){
 
 
     return (
+        <div>
         <div className="get-all-spots">Get All Spots</div>
-
+        {/* <Redirect exact path="/"></Redirect> */}
+        </div>
     )
 }
 

@@ -8,7 +8,7 @@ import Navigation from "./components/Navigation";
 import GetAllSpots from "./components/AllSpots";
 import GetAllReviewsComponent from "./components/Reviews";
 // import LoginFormPage from "./components/LoginFormModal";
-
+import CreateSpotFormComponent from "./components/CreateNewSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,10 +30,12 @@ function App() {
           </Route>
           <Route path="/spots">
             <GetAllSpots />
+            <CreateSpotFormComponent />
           </Route>
           <Route path="/reviews">
             <GetAllReviewsComponent />
           </Route>
+
         </Switch>
       )}
     </>

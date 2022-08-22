@@ -63,6 +63,22 @@ export const getAllSpotsThunk = () => async dispatch => {
     return data
 }
 
+export const createNewSpotThunk = (spotBody) => async dispatch => {
+    const response = await csrfFetch(`/api/spots`, {
+        method: "POST", 
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(spotBody)
+    })
+    if( response.ok ){
+        const data = await response.json()
+        dispatch(createNewSpot(data))
+        return data
+    }
+    // return response
+    console.log("RESPONSESDFIJSODFKM",response)
+}
 
 
 // REDUCER
@@ -78,6 +94,11 @@ const spotsReducer = (state = initialState, action) => {
                 newState[spot.id] = spot // assign id of each spot to the spot obj
             })
             // console.log(action)
+            return newState
+        }
+        case CREATE_NEW_SPOT: {
+            //TODO: not done
+            console.log(action)
             return newState
         }
     default:

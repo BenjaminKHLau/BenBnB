@@ -5,36 +5,6 @@ const { User } = require('../../db/models');
 const router = express.Router();
 
 
-// backend/routes/api/session.js
-// ...
-
-// // Log in
-// router.post(
-//     '/',
-//     async (req, res, next) => {
-//       const { credential, password } = req.body;
-  
-//       const user = await User.login({ credential, password });
-  
-//       if (!user) {
-//         const err = new Error('Login failed');
-//         err.status = 401;
-//         err.title = 'Login failed';
-//         err.errors = ['The provided credentials were invalid.'];
-//         return next(err);
-//       }
-  
-//       await setTokenCookie(res, user);
-  
-//       return res.json({
-//         user
-//       });
-//     }
-//   );
-
-  // backend/routes/api/session.js
-// ...
-
 // Log out
 router.delete(
     '/',
@@ -44,16 +14,8 @@ router.delete(
     }
   );
   
-  // ...
-
-  // backend/routes/api/session.js
-// ...
-
 // Restore session user
-router.get(
-    '/',
-    restoreUser,
-    (req, res) => {
+router.get('/', restoreUser, (req, res) => {
       const { user } = req;
       if (user) {
         return res.json({
@@ -63,17 +25,11 @@ router.get(
     }
   );
   
-  // ...
 
-  // backend/routes/api/session.js
-// ...
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-// ...
 
 
-// backend/routes/api/session.js
-// ...
 
 const validateLogin = [
     check('credential')
