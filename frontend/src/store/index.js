@@ -2,24 +2,16 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-
-// frontend/src/store/index.js
-// ...
-// const rootReducer = combineReducers({
-// });
-
-
-// frontend/src/store/index.js
-// ...
+//REDUCERS
 import sessionReducer from './session';
+import spotsReducer from './spots';
 
-const rootReducer = combineReducers({
+// State Stuff Here for Use Selector
+const rootReducer = combineReducers({ 
+  //bananable
   session: sessionReducer,
+  spots: spotsReducer,
 });
-// ...
-
-// frontend/src/store/index.js
-// ...
 
 let enhancer;
 
@@ -33,9 +25,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 
-// frontend/src/store/index.js
-// ...
-
 const configureStore = (preloadedState) => {
     return createStore(rootReducer, preloadedState, enhancer);
   };
@@ -43,7 +32,7 @@ const configureStore = (preloadedState) => {
   export default configureStore;
 
 
-  //
+
   /*
   TEST STUFF
 

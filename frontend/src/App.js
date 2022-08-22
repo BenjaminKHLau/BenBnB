@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import GetAllSpots from "./components/AllSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/spots">
+            <GetAllSpots />
+          </Route>
+          {/* <Route path="/reviews">
+            <Reviews />
+          </Route> */}
         </Switch>
       )}
     </>
