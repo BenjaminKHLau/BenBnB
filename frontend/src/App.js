@@ -33,12 +33,16 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path="/spots">
-            <GetAllSpots />
             <CreateSpotFormComponent />
           </Route>
           <Route exact path="/reviews">
             <GetAllReviewsComponent />
           </Route>
+          <Route exact path="/">
+            <GetAllSpots />
+          </Route>
+          <Route><h1>Page Not Found</h1><h2>Nothing to see here</h2></Route>
+
 
         </Switch>
       )}

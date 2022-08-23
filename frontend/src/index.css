@@ -1,1 +1,14 @@
 /* TODO Add site wide styles */
+.active {
+    display: flex;
+    justify-content: start;
+}
+.spot-form {
+    display: inline-flex;
+    /* justify-self: center; */
+    flex-direction: column;
+    text-align: left;
+    /* float: right; */
+    margin: auto;
+    padding: 30px;
+}

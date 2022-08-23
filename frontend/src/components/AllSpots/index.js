@@ -8,19 +8,23 @@ function GetAllSpots(){
     const dispatch = useDispatch()
     const allSpots = useSelector(state => state.spots)
     const normalSpots = Object.values(allSpots)
-    // console.log('all spots', allSpots)
+    console.log('all spots', normalSpots)
 
     useEffect(() => {
         dispatch(getAllSpotsThunk())
     }, [dispatch])
 
-    // if(!allSpots){return null}
+    if(!allSpots){return null}
 
     return (
         <div>
             <ul>
                 {normalSpots.map(spot => (
-                    <li key={spot?.id }>{spot?.name}</li>
+                <div className="splishy-splash">
+                    <img src={spot?.previewImage} className="splash-spot-images"></img>
+                    <li key={spot?.id}>{spot?.name}</li>
+                    <p>Price: ${spot?.price}/night</p>
+                </div>
                 ))}
             </ul>
         </div>

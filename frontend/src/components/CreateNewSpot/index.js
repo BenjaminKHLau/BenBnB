@@ -68,7 +68,8 @@ function CreateSpotFormComponent(){
             {showErrors}
           </ul>
           
-          
+          <div className="form-css">
+
           <label>
             Name
             <input
@@ -76,7 +77,7 @@ function CreateSpotFormComponent(){
               name="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-            />
+              />
           </label>
 
         
@@ -87,7 +88,7 @@ function CreateSpotFormComponent(){
               name="address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-            />
+              />
           </label>
 
         
@@ -98,7 +99,7 @@ function CreateSpotFormComponent(){
               name="city"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-            />
+              />
           </label>
 
         
@@ -109,7 +110,7 @@ function CreateSpotFormComponent(){
               name="state"
               value={state}
               onChange={(e) => setState(e.target.value)}
-            />
+              />
           </label>
 
         
@@ -120,7 +121,7 @@ function CreateSpotFormComponent(){
               name="country"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
-            />
+              />
           </label>
 
         
@@ -131,7 +132,7 @@ function CreateSpotFormComponent(){
               name="latitude"
               value={lat}
               onChange={(e) => setLat(e.target.value)}
-            />
+              />
           </label>
 
         
@@ -143,7 +144,7 @@ function CreateSpotFormComponent(){
               name="longitude"
               value={lng}
               onChange={(e) => setLng(e.target.value)}
-            />
+              />
           </label>
 
           <label>
@@ -153,7 +154,7 @@ function CreateSpotFormComponent(){
               name="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-            />
+              />
           </label>
 
           <label>
@@ -163,14 +164,15 @@ function CreateSpotFormComponent(){
               name="price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-            />
+              />
           </label>
           <button
             type="submit"
             disabled={errors.length > 0}
-          >
+            >
             Create Spot
           </button>
+            </div>
         </form>
       );
 }

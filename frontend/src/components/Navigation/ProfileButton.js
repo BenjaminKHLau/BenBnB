@@ -1,6 +1,7 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
@@ -35,8 +36,8 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+      <button onClick={openMenu} className="profile-button-nav">
+        <div className="fas fa-user-circle" />
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
@@ -47,6 +48,10 @@ function ProfileButton({ user }) {
           </li>
         </ul>
       )}
+      <button className="create-spot-button">
+      <Link to="/spots">Create a Spot!</Link>
+
+      </button>
     </>
   );
 }

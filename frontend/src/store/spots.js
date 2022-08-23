@@ -89,6 +89,14 @@ export const createNewSpotThunk = (spotBody) => async dispatch => {
     return response
 }
 
+export const deleteSpotThunk = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`,{
+        method: "DELETE"
+    })
+    if(response.ok){
+        dispatch(deleteSpot(spotId))
+    }
+}
 
 // REDUCER UPDATES STATE
 const initialState = { spots: {}, spotById: {} };
@@ -103,19 +111,28 @@ const spotsReducer = (state = initialState, action) => {
                 newState[spot.id] = spot // assign id of each spot to the spot obj
             })
             // console.log(action)
+            console.log("newState",newState)
             return newState
         }
         case CREATE_NEW_SPOT: {
             //TODO: not done
-            console.log(action)
+            newState = { ...state }
+            console.log("create action reducer",action)
+            newState[action.payload.id] = action.payload
+            console.log("new state new spot",newState)
             return newState
         }
         case GET_SPOT_BY_ID: {
             newState = { ...state}
-            console.log("before",newState)
+            // console.log("before",newState)
             newState[action.spot.id] = action.spot
-            console.log("after",newState)
-            console.log("GET SPOT BY ID REDUCER",action.spot)
+            // console.log("after",newState)
+            // console.log("GET SPOT BY ID REDUCER",action.spot)
+            return newState
+        }
+        case DELETE_SPOT: {
+            newState = {...state}
+            delete newState[action.spot.id]
             return newState
         }
     default:
