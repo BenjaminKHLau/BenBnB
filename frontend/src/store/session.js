@@ -24,10 +24,10 @@ export const restoreUser = () => async dispatch => {
     const data = await response.json();
     // console.log("DATA FOR SESSION", data)
     
-    if(response.ok){
-      dispatch(setUser(data.user));
+    // if(response.ok){
+      dispatch(setUser(data));
       return response
-    }
+    // }
     // return response;
   };
   // ...
@@ -86,14 +86,16 @@ const initialState = { user: null };
 const sessionReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case SET_USER:
+    case SET_USER: {
       newState = Object.assign({}, state);
       newState.user = action.payload;
       return newState;
-    case REMOVE_USER:
+    }
+    case REMOVE_USER: {
       newState = Object.assign({}, state);
       newState.user = null;
       return newState;
+    }
     default:
       return state;
   }
