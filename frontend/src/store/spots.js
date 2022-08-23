@@ -19,7 +19,7 @@ const createNewSpot = (payload) => {
 }
 
 const getAllSpots = (payload /* data.Spots */) => {
-    console.log("payload", payload)
+    // console.log("payload", payload)
    return { // ACTION
     type: GET_ALL_SPOTS,
     payload //array
@@ -27,24 +27,25 @@ const getAllSpots = (payload /* data.Spots */) => {
 }
 
 
-const updateSpot = (payload) => {
+const updateSpot = (spot) => {
    return { 
     type: UPDATE_SPOT,
-    payload 
+    spot 
    }
 }
 
-const deleteSpot = (payload) => {
+const deleteSpot = (spot) => {
    return { 
     type: DELETE_SPOT,
-    payload 
+    spot 
    }
 }
 
-const getSpotById = (payload) => {
+const getSpotById = (spot) => {
+    console.log("GET SPOT BY ID ACTION CREATOR", spot)
    return { 
     type: GET_SPOT_BY_ID,
-    payload 
+    spot 
    }
 }
 
@@ -63,6 +64,14 @@ export const getAllSpotsThunk = () => async dispatch => {
     return data
 }
 
+export const getSpotByIdThunk = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}`)
+    const data = await response.json();
+    console.log("GET SPOT BY ID THUNK",data)
+    dispatch(getSpotById(data))
+    return data
+}
+
 export const createNewSpotThunk = (spotBody) => async dispatch => {
     const response = await csrfFetch(`/api/spots`, {
         method: "POST", 
@@ -76,13 +85,13 @@ export const createNewSpotThunk = (spotBody) => async dispatch => {
         dispatch(createNewSpot(data))
         return data
     }
-    // return response
-    console.log("RESPONSESDFIJSODFKM",response)
+    // console.log("RESPONSESDFIJSODFKM",response)
+    return response
 }
 
 
-// REDUCER
-const initialState = { spots: null };
+// REDUCER UPDATES STATE
+const initialState = { spots: {}, spotById: {} };
 
 
 const spotsReducer = (state = initialState, action) => {
@@ -99,6 +108,14 @@ const spotsReducer = (state = initialState, action) => {
         case CREATE_NEW_SPOT: {
             //TODO: not done
             console.log(action)
+            return newState
+        }
+        case GET_SPOT_BY_ID: {
+            newState = { ...state}
+            console.log("before",newState)
+            newState[action.spot.id] = action.spot
+            console.log("after",newState)
+            console.log("GET SPOT BY ID REDUCER",action.spot)
             return newState
         }
     default:

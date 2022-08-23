@@ -24,10 +24,10 @@ export const restoreUser = () => async dispatch => {
     const data = await response.json();
     // console.log("DATA FOR SESSION", data)
     
-    // if(response.ok){
+    if(response.ok){
       dispatch(setUser(data.user));
       return response
-    // }
+    }
     // return response;
   };
   // ...

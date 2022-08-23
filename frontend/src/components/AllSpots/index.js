@@ -7,17 +7,22 @@ import { getAllSpotsThunk } from "../../store/spots";
 function GetAllSpots(){
     const dispatch = useDispatch()
     const allSpots = useSelector(state => state.spots)
-    console.log('all spots', allSpots)
+    const normalSpots = Object.values(allSpots)
+    // console.log('all spots', allSpots)
 
     useEffect(() => {
         dispatch(getAllSpotsThunk())
     }, [dispatch])
 
+    // if(!allSpots){return null}
 
     return (
         <div>
-        <div className="get-all-spots">Get All Spots</div>
-        {/* <Redirect exact path="/"></Redirect> */}
+            <ul>
+                {normalSpots.map(spot => (
+                    <li key={spot?.id }>{spot?.name}</li>
+                ))}
+            </ul>
         </div>
     )
 }

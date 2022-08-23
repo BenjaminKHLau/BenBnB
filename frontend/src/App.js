@@ -9,6 +9,7 @@ import GetAllSpots from "./components/AllSpots";
 import GetAllReviewsComponent from "./components/Reviews";
 // import LoginFormPage from "./components/LoginFormModal";
 import CreateSpotFormComponent from "./components/CreateNewSpot";
+import GetSpotByIdComponent from "./components/GetSpotById"
 
 function App() {
   const dispatch = useDispatch();
@@ -22,17 +23,20 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/spots/:spotId">
+            <GetSpotByIdComponent />
+          </Route>
           {/* <Route path="/login">
             <LoginFormPage />
           </Route> */}
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/spots">
+          <Route exact path="/spots">
             <GetAllSpots />
             <CreateSpotFormComponent />
           </Route>
-          <Route path="/reviews">
+          <Route exact path="/reviews">
             <GetAllReviewsComponent />
           </Route>
 
