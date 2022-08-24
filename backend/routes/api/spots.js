@@ -70,7 +70,7 @@ const validateQuery = [
     .withMessage('Page must be greater than or equal to 0'),
     check('size')
     .optional()
-    .isInt({min:0, max:20})
+    .isInt({min:0, max:200}) //changed from 20 to 200 to test 8/24/2022
     // .default({Number: 20})
     .withMessage('Size must be greater than or equal to 0 with a maximum of 20'),
     check('minLat')
@@ -530,7 +530,7 @@ router.get('/', validateQuery, async (req, res, next) => {
     size = parseInt(size);
   
     if (Number.isNaN(page)) page = 1;
-    if (Number.isNaN(size)) size = 20;
+    if (Number.isNaN(size)) size = 200; //changed from 20 to 200 to test 8/24/2022
     pagination.limit = size
     pagination.offset = size * (page - 1)
 
