@@ -66,7 +66,7 @@ export const getAllReviewsThunk = () => async dispatch => {
 
 
 // REDUCER
-const initialState = { spots: null };
+const initialState = { spots: {} };
 
 
 const reviewsReducer = (state = initialState, action) => {

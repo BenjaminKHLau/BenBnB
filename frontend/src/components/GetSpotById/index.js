@@ -19,7 +19,7 @@ function GetSpotByIdComponent(){
     const session = useSelector(state => state.session)
     let currentUser = session.user
     let user;
-    if(currentUser){user = currentUser.user?.id}
+    if(currentUser){user = currentUser.id}
     console.log("CURRENT USER ID", currentUser)
     // console.log('spot ID', spotId)
     console.log('the spot', theSpot)
@@ -30,6 +30,7 @@ function GetSpotByIdComponent(){
         isOwner = theSpot?.ownerId === user
     }
 
+    console.log("OWNER?", isOwner)
 
     
     useEffect(() => {
@@ -59,7 +60,7 @@ function GetSpotByIdComponent(){
               <h1>
                 {spot?.name}
                 </h1> 
-                {spot?.Images && <img src={spot?.Images[0]?.url}></img>}
+                {spot?.Images && <img src={spot?.Images[0]?.url || "https://hgtvhome.sndimg.com/content/dam/images/hgtv/unsized/2017/9/29/CI_TTMK_Charing-Cross-Road-1.jpg" }></img>}
                 <p>Price: ${spot?.price}/night</p>
                 <p>City: {spot?.city}</p>
                 <p>Country: {spot?.country}</p>

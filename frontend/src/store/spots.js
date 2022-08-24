@@ -43,7 +43,7 @@ const deleteSpot = (spot) => {
 }
 
 const getSpotById = (spot) => {
-    console.log("GET SPOT BY ID ACTION CREATOR", spot)
+    // console.log("GET SPOT BY ID ACTION CREATOR", spot)
    return { 
     type: GET_SPOT_BY_ID,
     spot 
@@ -65,7 +65,7 @@ export const getAllSpotsThunk = () => async dispatch => {
         method: "GET"
     })
     const data = await response.json();
-    console.log("data", data)
+    // console.log("data", data)
     dispatch(getAllSpots(data.allSpots))
 
     return data
@@ -74,7 +74,7 @@ export const getAllSpotsThunk = () => async dispatch => {
 export const getSpotByIdThunk = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`)
     const data = await response.json();
-    console.log("GET SPOT BY ID THUNK",data)
+    // console.log("GET SPOT BY ID THUNK",data)
     dispatch(getSpotById(data))
     return data
 }
@@ -97,7 +97,7 @@ export const createNewSpotThunk = (spotBody) => async dispatch => {
 }
 
 export const updateSpotThunk = (spot, spotId) => async dispatch => {
-    console.log("UPDATE SPOT THUNK",spot)
+    // console.log("UPDATE SPOT THUNK",spot)
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: "PUT", 
         headers: {
@@ -107,7 +107,7 @@ export const updateSpotThunk = (spot, spotId) => async dispatch => {
     })
     if( response.ok ){
         const data = await response.json()
-        console.log("UPDATE SPOT THUNK DATA", data)
+        // console.log("UPDATE SPOT THUNK DATA", data)
         dispatch(updateSpot(data))
         // return data
     }
@@ -137,15 +137,15 @@ const spotsReducer = (state = initialState, action) => {
                 newState[spot.id] = spot // assign id of each spot to the spot obj
             })
             // console.log(action)
-            console.log("newState",newState)
+            // console.log("newState",newState)
             return newState
         }
         case CREATE_NEW_SPOT: {
             //TODO: not done
             newState = { ...state }
-            console.log("create action reducer",action)
+            // console.log("create action reducer",action)
             newState[action.payload.id] = action.payload
-            console.log("new state new spot",newState)
+            // console.log("new state new spot",newState)
             return newState
         }
         case GET_SPOT_BY_ID: {

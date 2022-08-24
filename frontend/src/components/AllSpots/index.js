@@ -20,9 +20,9 @@ function GetAllSpots(){
         <div>
             <ul>
                 {normalSpots.map(spot => (
-                <div className="splishy-splash">
+                <div className="splash-spot-container">
 
-                    <img src={spot?.previewImage} className="splash-spot-images"></img>
+                    <img src={spot?.previewImage || "https://hgtvhome.sndimg.com/content/dam/images/hgtv/unsized/2017/9/29/CI_TTMK_Charing-Cross-Road-1.jpg"} className="splash-spot-images"></img>
                     <li key={spot?.id}>
                    <NavLink to={`/spots/${spot.id}`}>
                         {spot?.name}
