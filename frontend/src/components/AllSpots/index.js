@@ -30,11 +30,17 @@ function GetAllSpots(){
                     </div>
 
                     {/* <div key={spot?.id}> */}
+
+                    <div className="align-text-star-div">
                     <div className="individual-spot-info">
-                        {spot?.name} {"| "} 
+                        {/* {spot?.name} {"| "}  */}
                         {spot?.city} {"| "}
                         {spot?.state}
                         </div>
+                        <div className="star-rating-home">
+                            <img src="https://img.freepik.com/free-vector/start_53876-25533.jpg?w=1480&t=st=1661381445~exp=1661382045~hmac=6734002d945e88c679e73d02b65c3877373dc194b59e278846d601e206773cca" className="star-rating-home-img">
+                                </img> {spot?.avgRating}</div>
+                    </div>
                    <p>${spot?.price} night</p>
                    </NavLink>
                    {/* <div className="just-the-price"> */}

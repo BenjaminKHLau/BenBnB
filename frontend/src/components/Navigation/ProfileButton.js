@@ -36,7 +36,7 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
+    <div className="NavBar2">
       <button onClick={openMenu} className="profile-button-nav">
         <div className="fas fa-user-circle" />
       </button>
@@ -47,13 +47,10 @@ function ProfileButton({ user }) {
           <li>
             <button onClick={logout}>Log Out</button>
           </li>
+          <CreateSpotModal />
         </ul>
       )}
-      {/* <button className="create-spot-button"> */}
-      {/* <Link to="/spots">Create a Spot!</Link> */}
-      {/* </button> */}
-        <CreateSpotModal />
-    </>
+    </div>
   );
 }
 

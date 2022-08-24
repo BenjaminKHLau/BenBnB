@@ -26,12 +26,20 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div className='NavBar'>
+      <div className='navlink'>
+
+        <NavLink exact to="/">
+           <i class="fa-solid fa-dragon fa-2xl"></i>
+           <div className='benbnb-logo'>BenBnB</div>
+        </NavLink>
+      </div>
+        <div className='aaa'>
+            {isLoaded && sessionLinks}
+        </div>
+
+
+    </div>
   );
 }
 
