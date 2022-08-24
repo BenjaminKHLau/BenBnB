@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect, NavLink } from "react-router-dom";
 import { getAllSpotsThunk } from "../../store/spots";
 
 
@@ -21,8 +21,14 @@ function GetAllSpots(){
             <ul>
                 {normalSpots.map(spot => (
                 <div className="splishy-splash">
+
                     <img src={spot?.previewImage} className="splash-spot-images"></img>
-                    <li key={spot?.id}>{spot?.name}</li>
+                    <li key={spot?.id}>
+                   <NavLink to={`/spots/${spot.id}`}>
+                        {spot?.name}
+                   </NavLink>
+                        </li>
+
                     <p>Price: ${spot?.price}/night</p>
                 </div>
                 ))}

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import * as sessionActions from '../../store/session';
+import CreateSpotModal from "../CreateNewSpot/NewSpotModal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -48,10 +49,10 @@ function ProfileButton({ user }) {
           </li>
         </ul>
       )}
-      <button className="create-spot-button">
-      <Link to="/spots">Create a Spot!</Link>
-
-      </button>
+      {/* <button className="create-spot-button"> */}
+      {/* <Link to="/spots">Create a Spot!</Link> */}
+      {/* </button> */}
+        <CreateSpotModal />
     </>
   );
 }

@@ -10,6 +10,7 @@ import GetAllReviewsComponent from "./components/Reviews";
 // import LoginFormPage from "./components/LoginFormModal";
 import CreateSpotFormComponent from "./components/CreateNewSpot";
 import GetSpotByIdComponent from "./components/GetSpotById"
+import EditSpotFormComponent from "./components/EditSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,9 +33,9 @@ function App() {
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/spots">
+          {/* <Route exact path="/spots">
             <CreateSpotFormComponent />
-          </Route>
+          </Route> */}
           <Route exact path="/reviews">
             <GetAllReviewsComponent />
           </Route>
