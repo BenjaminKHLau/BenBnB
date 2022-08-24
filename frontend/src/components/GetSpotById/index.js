@@ -13,17 +13,21 @@ function GetSpotByIdComponent(){
     const dispatch = useDispatch()
     const allSpots = useSelector(state => state.spots)
     const theSpot = allSpots[spotId]
+    
     // const normalSpots = Object.values(allSpots)
     // console.log('all spots', allSpots)
-    const currentUser = useSelector(state => state.session.user.id)
+    const session = useSelector(state => state.session)
+    let currentUser = session.user
+    let user;
+    if(currentUser){user = currentUser.user?.id}
     console.log("CURRENT USER ID", currentUser)
     // console.log('spot ID', spotId)
     console.log('the spot', theSpot)
     // console.log('the spot name', theSpot.spots[spotId].name)
 
     let isOwner = false
-    if (theSpot.ownerId && currentUser ){
-        isOwner = theSpot.ownerId === currentUser
+    if (theSpot?.ownerId && currentUser ){
+        isOwner = theSpot?.ownerId === user
     }
 
 
@@ -40,7 +44,7 @@ function GetSpotByIdComponent(){
         // )
         history.push("/")
     }
-    if(!theSpot){return null}
+    // if(!theSpot){return null}
     let spot = theSpot
     return (
         <div className="big-spot-container">
@@ -53,7 +57,7 @@ function GetSpotByIdComponent(){
                 }
 
               <h1>
-                {spot.name}
+                {spot?.name}
                 </h1> 
                 {spot?.Images && <img src={spot?.Images[0]?.url}></img>}
                 <p>Price: ${spot?.price}/night</p>

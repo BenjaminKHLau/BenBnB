@@ -14,7 +14,7 @@ function GetAllSpots(){
         dispatch(getAllSpotsThunk())
     }, [dispatch])
 
-    if(!allSpots){return null}
+    // if(!allSpots){return null}
 
     return (
         <div>
