@@ -40,6 +40,7 @@ function ProfileButton({ user }) {
       <button onClick={openMenu} className="profile-button-nav">
         <div className="fas fa-user-circle" />
       </button>
+      <CreateSpotModal />
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>
@@ -47,7 +48,6 @@ function ProfileButton({ user }) {
           <li>
             <button onClick={logout}>Log Out</button>
           </li>
-          <CreateSpotModal />
         </ul>
       )}
     </div>
