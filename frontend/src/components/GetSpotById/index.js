@@ -15,11 +15,19 @@ function GetSpotByIdComponent(){
     const theSpot = allSpots[spotId]
     // const normalSpots = Object.values(allSpots)
     // console.log('all spots', allSpots)
-
+    const currentUser = useSelector(state => state.session.user.id)
+    console.log("CURRENT USER ID", currentUser)
     // console.log('spot ID', spotId)
-    // console.log('the spot', theSpot)
+    console.log('the spot', theSpot)
     // console.log('the spot name', theSpot.spots[spotId].name)
 
+    let isOwner = false
+    if (theSpot.ownerId && currentUser ){
+        isOwner = theSpot.ownerId === currentUser
+    }
+
+
+    
     useEffect(() => {
         dispatch(getSpotByIdThunk(spotId))
     }, [dispatch])
@@ -36,10 +44,16 @@ function GetSpotByIdComponent(){
     let spot = theSpot
     return (
         <div className="big-spot-container">
-                <EditFormModal spotId={spotId}/>
+               {isOwner && (
+                <div className="owner-option-buttons">
+                    <EditFormModal spotId={spotId}/>
+                    <button onClick={e=> deleteButton(e)}>Delete</button>
+                </div>
+                   )
+                }
+
               <h1>
                 {spot.name}
-                <button onClick={e=> deleteButton(e)}>Delete</button>
                 </h1> 
                 {spot?.Images && <img src={spot?.Images[0]?.url}></img>}
                 <p>Price: ${spot?.price}/night</p>
