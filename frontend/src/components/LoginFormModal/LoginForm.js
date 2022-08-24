@@ -24,6 +24,11 @@ function LoginFormPage() {
       });
   }
 
+  const demoLogin = (e) => {
+    e.preventDefault()
+    return dispatch(sessionActions.login({ credential: "demo@user.io", password: "password" }))
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <ul>
@@ -49,7 +54,8 @@ function LoginFormPage() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button type="submit" className="login-buttons">Log In</button>
+      <button onClick={demoLogin} className="login-buttons">Demo User</button>
     </form>
   );
 }
