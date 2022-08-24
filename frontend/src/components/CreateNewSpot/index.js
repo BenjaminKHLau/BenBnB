@@ -12,11 +12,11 @@ function CreateSpotFormComponent(){
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
     const [country, setCountry] = useState("")
-    const [lat, setLat] = useState(0)
-    const [lng, setLng] = useState(0)
+    const [lat, setLat] = useState("")
+    const [lng, setLng] = useState("")
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
-    const [price, setPrice] = useState(0)
+    const [price, setPrice] = useState("")
     const [errors, setErrors] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -71,10 +71,11 @@ function CreateSpotFormComponent(){
           <div className="form-css">
 
           <label>
-            Name
+            {/* Name */}
             <input
               type="text"
               name="name"
+              placeholder="Name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               />
@@ -82,10 +83,11 @@ function CreateSpotFormComponent(){
 
         
           <label>
-            Address
+            {/* Address */}
             <input
               type="text"
               name="address"
+              placeholder="Address"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               />
@@ -93,10 +95,11 @@ function CreateSpotFormComponent(){
 
         
           <label>
-            City
+            {/* City */}
             <input
               type="text"
               name="city"
+              placeholder="City"
               value={city}
               onChange={(e) => setCity(e.target.value)}
               />
@@ -104,10 +107,11 @@ function CreateSpotFormComponent(){
 
         
           <label>
-            State
+            {/* State */}
             <input
               type="text"
               name="state"
+              placeholder="State"
               value={state}
               onChange={(e) => setState(e.target.value)}
               />
@@ -115,10 +119,11 @@ function CreateSpotFormComponent(){
 
         
           <label>
-            Country
+            {/* Country */}
             <input
               type="text"
               name="country"
+              placeholder="Country"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
               />
@@ -126,10 +131,11 @@ function CreateSpotFormComponent(){
 
         
           <label>
-            Latitude
+            {/* Latitude */}
             <input
               type="number"
               name="latitude"
+              placeholder="Latitude"
               value={lat}
               onChange={(e) => setLat(e.target.value)}
               />
@@ -138,30 +144,33 @@ function CreateSpotFormComponent(){
         
 
           <label>
-            Longitude
+            {/* Longitude */}
             <input
               type="number"
               name="longitude"
+              placeholder="Longitude"
               value={lng}
               onChange={(e) => setLng(e.target.value)}
               />
           </label>
 
           <label>
-            Description
+            {/* Description */}
             <input
               type="text"
               name="description"
+              placeholder="Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               />
           </label>
 
           <label>
-            Price
+            {/* Price */}
             <input
               type="number"
               name="price"
+              placeholder="Price"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               />
