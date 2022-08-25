@@ -11,6 +11,8 @@ import GetAllReviewsComponent from "./components/Reviews";
 import CreateSpotFormComponent from "./components/CreateNewSpot";
 import GetSpotByIdComponent from "./components/GetSpotById"
 import EditSpotFormComponent from "./components/EditSpot";
+import GetUserSpotsComponent from "./components/GetUserSpots";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +26,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/spots/current">
+            <GetUserSpotsComponent />
+          </Route>
           <Route path="/spots/:spotId">
             <GetSpotByIdComponent />
           </Route>

@@ -27,13 +27,14 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='NavBar'>
-      <div className='navlink'>
 
+      <div className='navlink'>
         <NavLink exact to="/">
            <i class="fa-solid fa-dragon fa-2xl"></i>
            <div className='benbnb-logo'>BenBnB</div>
         </NavLink>
       </div>
+      <div className='welcome'><h1>Welcome to BenBnB</h1></div>
         <div className='aaa'>
             {isLoaded && sessionLinks}
         </div>

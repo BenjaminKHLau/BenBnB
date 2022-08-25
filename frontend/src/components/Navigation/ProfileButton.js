@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 import CreateSpotModal from "../CreateNewSpot/NewSpotModal";
+import './Navigation.css'; //added second
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -37,18 +39,19 @@ function ProfileButton({ user }) {
 
   return (
     <div className="NavBar2">
+      <CreateSpotModal />
       <button onClick={openMenu} className="profile-button-nav">
         <div className="fas fa-user-circle" />
       </button>
-      <CreateSpotModal />
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
+        <div className="profile-dropdown">
+          <Link to="/spots/current">Your Spots</Link>
+          <div>{user.username}</div>
+          <div>{user.email}</div>
+          <div>
             <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+          </div>
+        </div>
       )}
     </div>
   );

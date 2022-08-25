@@ -15,16 +15,40 @@
     font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
   sans-serif;
     font-weight: bolder;
-    align-items: center;
-    align-self: center;
+    /* width: 40px; */
+    /* align-items: center; */
+    /* align-self: center; */
+    align-self: start;
+    /* position: relative; */
+    border: 1px dotted yellow;
 }
 
-.NavBar {
-    display: flex;
-}
 
 .profile-button-nav {
     display: flex;
     justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.NavBar {
+    display: flex;
+    border: 2px dashed green;
+    /* border-bottom: 1px; */
+    /* align-items: center; */
+    justify-content: space-between;
+    /* align-content: center; */
+    align-items: center;
+    margin-left: 3%;
+    margin-right: 3%;
+    
+}
+
+
+
+
+.NavBar2 {
+    display: flex;
+    justify-content: center;
     /* align-items: flex-end; */
+    border: 3px solid green;
 }

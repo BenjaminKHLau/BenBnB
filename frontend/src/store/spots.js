@@ -65,10 +65,23 @@ export const getAllSpotsThunk = () => async dispatch => {
         method: "GET"
     })
     const data = await response.json();
-    // console.log("data", data)
+    console.log("data", data)
     dispatch(getAllSpots(data.allSpots))
 
     return data
+}
+
+export const getCurrentUsersSpotsThunk = () => async dispatch => {
+    const response = await csrfFetch(`/api/spots/current`, {
+        method: "GET"
+    })
+    const data = await response.json();
+    console.log("AAAAAAAAAA",data)
+    dispatch(getUserSpots(data))
+    if(response.ok){
+        return data
+    }
+
 }
 
 export const getSpotByIdThunk = (spotId) => async dispatch => {
@@ -140,8 +153,14 @@ const spotsReducer = (state = initialState, action) => {
             // console.log("newState",newState)
             return newState
         }
+        case GET_USER_SPOTS: {
+            // newState = {}
+            action.user.forEach(spot => {
+                newState[spot.id] = spot // assign id of each spot to the spot obj
+            })
+            return newState
+        }
         case CREATE_NEW_SPOT: {
-            //TODO: not done
             newState = { ...state }
             // console.log("create action reducer",action)
             newState[action.payload.id] = action.payload
