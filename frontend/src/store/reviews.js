@@ -52,11 +52,14 @@ const getReviewById = (payload) => {
 
 
 // Thunk Action Creator
-export const getAllReviewsThunk = () => async dispatch => {
-    // const response = await csrfFetch(`/api/spots`, {
+export const getSpotReviewsThunk = (spot) => async dispatch => {
+    // const response = await csrfFetch(`/api/spots/${spot}/reviews`, {
     //     method: "GET"
     // })
-    // const data = await response.json();
+    // if (response.ok){
+    //     // const data = await response.json();
+
+    // }
     // console.log("data", data)
     // dispatch(getAllSpots(data.allSpots))
 
