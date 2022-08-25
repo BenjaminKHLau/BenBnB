@@ -8,11 +8,11 @@ import { getCurrentUsersSpotsThunk } from "../../store/spots";
 function GetUserSpotsComponent(){
     const dispatch = useDispatch()
     const allSpots = useSelector(state => state.spots)
-    const currentUser = allSpots?.session?.user?.id
+    // const currentUser = allSpots?.session?.user?.id
     // console.log(`CURRENT USER`, currentUser)
     // console.log("ALL SPOTS OF CURRENT USERRRRRRRR",allSpots)
     const normalSpots = Object.values(allSpots)
-    const mySpots = normalSpots[1]
+    // const mySpots = normalSpots[1]
     // console.log(mySpots)
     // console.log('all spots current user ******', normalSpots)
 

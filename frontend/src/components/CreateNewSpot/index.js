@@ -43,12 +43,12 @@ function CreateSpotFormComponent(){
     // }, [dispatch])
 
 
-    function subby(e){
+    async function subby(e){
         e.preventDefault()
         console.log({
             name, address, city, state, lat, lng, country, description, price
           })
-          dispatch(createNewSpotThunk({
+          await dispatch(createNewSpotThunk({
             name, address, city, state, lat, lng, country, description, price
           }))
         history.push("/")

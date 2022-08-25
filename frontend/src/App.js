@@ -12,7 +12,8 @@ import CreateSpotFormComponent from "./components/CreateNewSpot";
 import GetSpotByIdComponent from "./components/GetSpotById"
 import EditSpotFormComponent from "./components/EditSpot";
 import GetUserSpotsComponent from "./components/GetUserSpots";
-
+import CreateReviewFormComponent from "./components/Reviews/NewReview";
+import GetUserReviewsComponent from "./components/Reviews/GetUserReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,8 +34,12 @@ function App() {
           <Route exact path="/spots/current">
            {loggedInUser ? <GetUserSpotsComponent /> : <Redirect to="/"/>}
           </Route>
-          <Route path="/spots/:spotId">
+          <Route exact path="/spots/:spotId">
             <GetSpotByIdComponent />
+            {/* <CreateReviewFormComponent /> */}
+          </Route>
+          <Route exact path="/reviews/current">
+            <GetUserReviewsComponent />
           </Route>
           {/* <Route path="/login">
             <LoginFormPage />
@@ -45,7 +50,7 @@ function App() {
           {/* <Route exact path="/spots">
             <CreateSpotFormComponent />
           </Route> */}
-          <Route exact path="/reviews">
+          <Route exact path="/spots/:spotId/reviews">
             <GetAllReviewsComponent />
           </Route>
           <Route exact path="/">
