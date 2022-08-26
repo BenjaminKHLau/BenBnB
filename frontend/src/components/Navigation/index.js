@@ -35,9 +35,9 @@ function Navigation({ isLoaded }){
         </NavLink>
       </div>
       <div className='welcome'><h1>Welcome to BenBnB</h1></div>
-        <div className='aaa'>
+        {/* <div className='aaa'> */}
             {isLoaded && sessionLinks}
-        </div>
+        {/* </div> */}
 
 
     </div>

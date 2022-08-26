@@ -4,8 +4,6 @@ a {
 }
 .main-container {
     display: block;
-    font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
-  sans-serif;
     /* font-weight: bold; */
     text-decoration: none;
 }

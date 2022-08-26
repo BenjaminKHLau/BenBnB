@@ -26,15 +26,30 @@
 }
 
 
-.profile-button-nav {
+.ProfileButtonjs {
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content: space-around;
+    /* width: 10%; */
+}
+
+.create-spot-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    border-radius: 30px;
+    transition-duration: 150ms;
+    /* height: 15px; */
+}
+
+.create-spot-button:hover {
+    background-color: rgb(244, 244, 244);
 }
 
 .NavBar {
     display: flex;
-    border: 2px dashed green;
+    /* border: 2px dashed green; */
     /* border-bottom: 1px; */
     /* align-items: center; */
     justify-content: space-between;
@@ -45,12 +60,23 @@
     
 }
 
-
-
-
-.NavBar2 {
+.welcome {
     display: flex;
     justify-content: center;
-    /* align-items: flex-end; */
-    border: 3px solid green;
+    align-items: center;
+    border: 1px solid lightgrey;
+    border-radius: 50px;
+    height: 40px;
+    width: 300px;
+    font-size: x-small;
+    box-shadow: 0px 1px 3px lightgray;
+    /* margin: 10px; */
+    transition-duration: 250ms;
+    
 }
+.welcome:hover {
+    box-shadow: 0px 2px 4px rgb(150, 150, 150);
+    transition-duration: 250ms;
+}
+
+

@@ -1,4 +1,8 @@
 /* TODO Add site wide styles */
+body {
+    font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+}
+
 .active {
     display: flex;
     justify-content: start;
