@@ -6,7 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormPage/Modal';
 import './Navigation.css';
-
+import logo from "./BenBnBLogo.png"
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
@@ -30,7 +30,7 @@ function Navigation({ isLoaded }){
 
       <div className='navlink'>
         <NavLink exact to="/">
-           <i class="fa-solid fa-dragon fa-2xl"></i>
+            <img src={logo}/>
            {/* <div className='benbnb-logo'>BenBnB</div> */}
         </NavLink>
       </div>
