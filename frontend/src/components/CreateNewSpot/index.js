@@ -22,11 +22,12 @@ function CreateSpotFormComponent(){
     const [isLoaded, setIsLoaded] = useState(false)
 
 
-    const validImages = ["png" , "jpg" ,"jpeg"]
+    const validImages = ["png" , "jpg" ,"jpeg", "svg", "heic", "gif"]
 
     useEffect(() => {
       let newImg = image.split("/")
       let imgX = newImg[newImg.length - 1].split(".")[1]
+      console.log(imgX)
         let errors = []
         if (name.length === 0) errors.push("Name field is required")
         if (address.length === 0) errors.push("Address is required")
