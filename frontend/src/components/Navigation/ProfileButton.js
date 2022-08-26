@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import CreateSpotModal from "../CreateNewSpot/NewSpotModal";
 import "./Navigation.css"; //added second
+import menupic from "./menu-pic.png"
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -43,13 +44,19 @@ function ProfileButton({ user }) {
       {/* </div> */}
 
       {/* <div className="NavBar2"> */}
-        <button onClick={openMenu} className="profile-button-nav">
-          <div className="fas fa-user-circle" />
-        </button>
+        <div onClick={openMenu} className="profile-button-nav">
+        <img src={menupic} className="menupic">
+          {/* <div className="fas fa-user-circle" /> */}
+        </img>
+        </div>
+
         {showMenu && (
           <div className="profile-dropdown">
             <div className="your-spots-link">
             <Link to="/spots/current">Your Spots</Link>
+            </div>
+            <div className="your-reviews-link">
+            <Link to="/reviews/current">Your Reviews</Link>
             </div>
 
             <div>{user.username}</div>

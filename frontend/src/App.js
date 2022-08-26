@@ -50,9 +50,7 @@ function App() {
           {/* <Route exact path="/spots">
             <CreateSpotFormComponent />
           </Route> */}
-          <Route exact path="/spots/:spotId/reviews">
-            <GetAllReviewsComponent />
-          </Route>
+
           <Route exact path="/">
             <GetAllSpots />
           </Route>

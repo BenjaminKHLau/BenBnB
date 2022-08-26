@@ -6,7 +6,9 @@ import { getSpotReviewsThunk } from "../../store/reviews";
 import { getSpotByIdThunk, deleteSpotThunk } from "../../store/spots"
 import EditSpotFormComponent from "../EditSpot";
 import EditFormModal from "../EditSpot/ModalEditSpot";
+import GetAllReviewsComponent from "../Reviews";
 import ReviewFormModal from "../Reviews/ReviewModal";
+import "./spotId.css"
 
 function GetSpotByIdComponent(){
     const history = useHistory()
@@ -76,6 +78,9 @@ function GetSpotByIdComponent(){
             {!isOwner && (<div className="review-modal">
                 <ReviewFormModal />
             </div>)}
+            <div className="spot-reviews-container">
+                <GetAllReviewsComponent />
+            </div>
         </div>
     )
 }

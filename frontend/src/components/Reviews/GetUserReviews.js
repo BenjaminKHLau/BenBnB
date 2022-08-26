@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
 // import {getSpotReviewsThunk} from "../../store/reviews"
 import { getUserReviewsThunk } from "../../store/reviews";
+import ReviewCard from "./ReviewCard";
 // import { getAllSpotsThunk } from "../../store/spots";
 
 function GetUserReviewsComponent() {
@@ -27,18 +28,7 @@ function GetUserReviewsComponent() {
 
         <div className="review-middle-container">
           {normalReviews.map((review) => (
-            <div key={`review${review.id}`} className="review">
-              {/* <div className="review-author">
-                        {" Review By User ID: "}{review.userId}
-                    </div> */}
-              <div className="review-text">
-                {review.review}
-                <div className="review-stars">
-                  {" STARS: "}
-                  {review.stars}
-                </div>
-              </div>
-            </div>
+            <ReviewCard review={review}/>
           ))}
         </div>
       </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { createNewSpotThunk } from "../../store/spots"
+import { addImageThunk, createNewSpotThunk } from "../../store/spots"
 
 
 function CreateSpotFormComponent(){
@@ -17,11 +17,16 @@ function CreateSpotFormComponent(){
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
+    const [image, setImage] = useState("")
     const [errors, setErrors] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
 
+    const validImages = ["png" , "jpg" ,"jpeg"]
+
     useEffect(() => {
+      let newImg = image.split("/")
+      let imgX = newImg[newImg.length - 1].split(".")[1]
         let errors = []
         if (name.length === 0) errors.push("Name field is required")
         if (address.length === 0) errors.push("Address is required")
@@ -30,8 +35,10 @@ function CreateSpotFormComponent(){
         if (country.length === 0) errors.push("Country is required")
         if (description.length === 0) errors.push("Description is required")
         if (price < 1) errors.push("Do you not want to make money?")
+        if (image.length < 1 ) errors.push("Give me an image NOW")
         setErrors(errors)
-      },[name, address, city, state, country, description, price])
+        if (!validImages.includes(imgX)) errors.push("Your image link sucks")
+      },[name, address, city, state, country, description, price, image])
 
     // useEffect(() => {
     //     dispatch(createNewSpotThunk())
@@ -48,10 +55,12 @@ function CreateSpotFormComponent(){
         console.log({
             name, address, city, state, lat, lng, country, description, price
           })
-          await dispatch(createNewSpotThunk({
+          const newSpot = await dispatch(createNewSpotThunk({
             name, address, city, state, lat, lng, country, description, price
           }))
-        history.push("/")
+          dispatch(addImageThunk({previewImage: true,
+          url: image}, newSpot.id))
+        history.push(`/spots/${newSpot.id}`)
       }
     
       const showErrors = errors.map(error => (
@@ -175,6 +184,17 @@ function CreateSpotFormComponent(){
               onChange={(e) => setPrice(e.target.value)}
               />
           </label>
+
+          <label>
+            <input
+              type="url"
+              name="price"
+              placeholder="Image Url"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+              />
+          </label>
+
           <button
             type="submit"
             disabled={errors.length > 0}

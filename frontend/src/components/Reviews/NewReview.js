@@ -7,7 +7,7 @@ import { createNewReviewThunk } from "../../store/reviews";
 import { getSpotByIdThunk } from "../../store/spots";
 
 
-function CreateReviewFormComponent(){
+function CreateReviewFormComponent({closeModal}){
     const dispatch = useDispatch()
     const history = useHistory()
     const [review, setReview] = useState("")
@@ -34,6 +34,7 @@ function CreateReviewFormComponent(){
             review, stars, spotId
           ))
           await dispatch(getSpotByIdThunk(spotId))
+          closeModal()
         // history.push("/spo")
       }
 

@@ -7,12 +7,16 @@ import CreateReviewFormComponent from './NewReview';
 function ReviewFormModal() {
   const [showModal, setShowModal] = useState(false);
 
+  const closeModal = () => {
+    setShowModal(false)
+  }
+
   return (
     <>
       <button onClick={() => setShowModal(true)}>Create a Review</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateReviewFormComponent />
+          <CreateReviewFormComponent closeModal={closeModal} />
         </Modal>
       )}
     </>
