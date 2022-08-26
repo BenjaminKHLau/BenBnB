@@ -9,7 +9,9 @@
     flex-direction: row;
     align-items: center;
 } */
-
+.BenBnB-pic {
+    height: 47px;
+}
 .benbnb-logo {
     /* display: inline-flex; */
     font-family: Circular, -apple-system, "system-ui", Roboto, Helvetica Neue,
