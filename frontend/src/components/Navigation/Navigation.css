@@ -29,6 +29,7 @@
 .ProfileButtonjs {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     /* width: 10%; */
 }
 
@@ -57,6 +58,7 @@
     align-items: center;
     margin-left: 4%;
     margin-right: 4%;
+    margin-top: 1%;
     padding-bottom: 12px;
     /* margin-bottom: 30px; */
     border-bottom: 1px solid lightgrey;
@@ -83,14 +85,20 @@
 }
 
 .menupic {
-    display: flex;
-    height: 50px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-content: flex-end; */
+    height: 42px;
     /* position: absolute; */
 }
 
 .profile-button-nav {
+    display: inline-flex;
+    /* justify-content: center; */
+    /* align-content: center; */
     /* border: 1px solid red; */
-    height: 50px;
+    /* margin-top: 4px; */
+    height: 42px;
     border-radius: 30px;
     transition-duration: 250ms;
 }
@@ -104,12 +112,60 @@
 .profile-dropdown {
     display: flex;
     flex-direction: column;
-    border: 1px solid orangered;
+    box-sizing: border-box;
+    height: 200px;
+    width: 250px;
+    justify-content: space-around;
+    /* align-content: center; */
+    /* align-items: center; */
+    /* border: 1px solid orangered; */
+    border-radius: 13px;
+    /* padding: 10px; */
+    margin-top: 1%;
     position: absolute;
-    background-color: aqua;
+    background-color: white;
     top: 55px;
     /* right: 45px; */
-    right: 5.3%;
+    right: 4.5%;
+    box-shadow: 0px 2px 4px rgb(150, 150, 150);
     /* flex-wrap: wrap; */
 
+}
+
+.your-reviews-link,
+.your-spots-link {
+    /* position: absolute; */
+    /* left: 30px; */
+    /* text-align: left; */
+    text-indent: 15px;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    height: 40px;
+    font-weight: 450;
+}
+
+.your-username,
+.your-email,
+.logout-button {
+    font-weight: 300;
+    text-indent: 15px;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    height: 40px;
+}
+
+
+.your-reviews-link:hover,
+.your-spots-link:hover {
+background-color: rgb(240, 240, 240);
+border-radius: 13px;
+}
+
+.your-username:hover,
+.your-email:hover,
+.logout-button:hover {
+background-color: rgb(240, 240, 240);
+border-radius: 13px;
 }

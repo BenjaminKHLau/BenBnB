@@ -12,7 +12,7 @@ a {
 
 .middle-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     /* border: 2px solid red; */
     flex-wrap: wrap;
     margin: 3%;
