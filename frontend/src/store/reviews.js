@@ -69,7 +69,7 @@ export const getSpotReviewsThunk = (spotId) => async dispatch => {
 
 }
 
-export const getUserReviewsThunk = (spotId) => async dispatch => {
+export const getUserReviewsThunk = () => async dispatch => {
     const response = await csrfFetch(`/api/reviews/current`)
     if (response.ok) {
         const data = await response.json();
@@ -99,7 +99,7 @@ export const deleteReviewThunk = (reviewId) => async dispatch => {
     })
     if (response.ok){
         dispatch(deleteReview(reviewId))
-        
+        // dispatch(get)
     }
     return response
 }
@@ -129,7 +129,7 @@ const reviewsReducer = (state = initialState, action) => {
         case CREATE_NEW_REVIEW: {
             newState = { ...state }
             newState[action.payload.id] = action.payload
-            console.log("reducer review",newState)
+            // console.log("reducer review",newState)
             return newState
         }
         case DELETE_REVIEW: {

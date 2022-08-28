@@ -13,17 +13,17 @@ function GetUserReviewsComponent() {
   const allReviews = useSelector((state) => state.reviews);
   const normalReviews = Object.values(allReviews);
   // console.log("ALL REVIEWS HERE ISDUJNKFSDIGJN", allReviews)
-  console.log("ALL REVIEWS HERE NORMAL", normalReviews);
+  // console.log("ALL REVIEWS HERE NORMAL", normalReviews);
   useEffect(() => {
-    dispatch(getUserReviewsThunk(spotId));
+    dispatch(getUserReviewsThunk());
   }, [dispatch]);
 
   return (
     <>
       <div className="review-container">
-        <div>
+        {/* <div>
           <Link to={`/spots/${spotId}/reviews/new`}>HELLO</Link>
-        </div>
+        </div> */}
         <div className="get-all-reviews">Reviews</div>
 
         <div className="review-middle-container">
