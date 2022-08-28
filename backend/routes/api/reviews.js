@@ -114,7 +114,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
             attributes: ["id", ["reviewId", "imageableId"], "url"],
           });
           review.dataValues.User = owner.toJSON();
-          review.dataValues.Spot = spot.toJSON();
+          review.dataValues.Spot = spot?.toJSON();
           review.dataValues.Images = images;
         }
     res.json(getCurrentReviews)

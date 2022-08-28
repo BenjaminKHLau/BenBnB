@@ -2,6 +2,7 @@
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 3%;
+    padding: 0px 80px;
     /* border: 1px solid red; */
 }
 
@@ -29,10 +30,11 @@
 }
 
 .previewImage {
-    margin-top: 3%;
-    margin-bottom: 3%;
-    height: 300px;
-    width: 560px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* height: 300px; */
+    /* width: 560px; */
+    height: 25vw;
     border-radius: 13px;
 }
 .star-rating-home {

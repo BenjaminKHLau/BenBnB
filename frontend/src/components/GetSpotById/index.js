@@ -111,7 +111,11 @@ function GetSpotByIdComponent() {
         </div>
       )}
       <div className="spot-reviews-container">
-        <GetAllReviewsComponent />
+        <GetAllReviewsComponent reviews={reviews}/> 
+        {/* NEWLY ADDED REVIEWS PROP */}
+        {/* NEWLY ADDED REVIEWS PROP */}
+        {/* NEWLY ADDED REVIEWS PROP */}
+        {/* NEWLY ADDED REVIEWS PROP */}
       </div>
     </div>
   );

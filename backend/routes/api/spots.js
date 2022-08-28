@@ -403,7 +403,7 @@ router.get("/current", restoreUser, requireAuth, async (req, res, next) => {
     // if (!review.avgStarRating) {
     //   spotJSON.avgRating = "This spot has not been reviewed yet";
     // } else {
-      spotJSON.avgRating = Number(review.avgStarRating).toFixed(1);
+      spotJSON.avgRating = Number(review.avgStarRating).toFixed(2);
     // }
     if(image){
         spotJSON.previewImage = image.dataValues.url;
@@ -472,7 +472,7 @@ router.get("/:spotId", async (req, res, next) => {
   // if (!counter.avgStarRating) {
   //   idSpotsJSON.avgStarRating = "This spot does not have any ratings";
   // } else {
-    idSpotsJSON.avgStarRating = Number(counter.avgStarRating).toFixed(1);
+    idSpotsJSON.avgStarRating = Number(counter.avgStarRating).toFixed(2);
   // }
   // idSpotsJSON.imageableId = id
   res.json(idSpotsJSON);
@@ -577,7 +577,7 @@ router.get("/", validateQuery, async (req, res, next) => {
     });
 
     const avgRating = spotReviewData[0].dataValues.avgStarRating;
-    spot.dataValues.avgRating = Number(avgRating).toFixed(1);
+    spot.dataValues.avgRating = Number(avgRating).toFixed(2);
     const previewImage = await Image.findOne({
       where: {
         [Op.and]: {

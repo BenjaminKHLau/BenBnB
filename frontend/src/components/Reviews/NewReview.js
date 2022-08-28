@@ -20,7 +20,7 @@ function CreateReviewFormComponent({closeModal}){
     useEffect(() => {
         let errors = []
         if (review.length < 1) errors.push("Please enter a review")
-        if (stars < 1) errors.push("Please give a rating between 1 - 5")
+        if (stars < 1 || stars > 5) errors.push("Please give a rating between 1 - 5")
         setErrors(errors)
       },[review, stars])
 

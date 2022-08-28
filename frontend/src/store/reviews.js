@@ -69,7 +69,7 @@ export const getSpotReviewsThunk = (spotId) => async dispatch => {
 
 }
 
-export const getUserReviewsThunk = () => async dispatch => {
+export const getUserReviewsThunk = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/reviews/current`)
     if (response.ok) {
         const data = await response.json();

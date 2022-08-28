@@ -1,9 +1,11 @@
 // frontend/src/components/SignupFormPage/index.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
+
+
 
 function SignupFormPage() {
   const history = useHistory()
@@ -17,7 +19,20 @@ function SignupFormPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  useEffect(() => {
+    let errors = []
+    if (firstName.length < 1) errors.push("First name field is required")
+    if (lastName.length < 1) errors.push("Last name field is required")
+    if (email.length < 1) errors.push("Email field is required")
+    if (!email.includes("@") || !email.includes(".")) errors.push("Please enter a valid email")
+    if (username.length < 1) errors.push("Please enter a username")
+    if (password.length < 1) errors.push("Please enter a password")
+    if (password !== confirmPassword) errors.push("Please confirm your password")
+    setErrors(errors)
+  },[firstName, lastName, email, username, password, confirmPassword])
+  
   if (sessionUser) return <Redirect to="/" />;
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
