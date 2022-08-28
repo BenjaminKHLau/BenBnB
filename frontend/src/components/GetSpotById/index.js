@@ -19,7 +19,7 @@ function GetSpotByIdComponent() {
   const theSpot = allSpots[spotId];
   const reviews = useSelector((state) => Object.values(state.reviews));
 
-  console.log("reviews", reviews);
+//   console.log("reviews", reviews);
   // const normalSpots = Object.values(allSpots)
   // console.log('all spots', allSpots)
   const session = useSelector((state) => state.session);
@@ -45,15 +45,13 @@ function GetSpotByIdComponent() {
     dispatch(getSpotReviewsThunk(spotId));
   }, [dispatch]);
 
-  const deleteButton = (e) => {
+  const deleteButton = async (e) => {
     e.preventDefault();
-    dispatch(deleteSpotThunk(spotId));
-    // return(
-    //     <Redirect to="/"></Redirect>
-    // )
+    await dispatch(deleteSpotThunk(spotId));
+
     history.push("/");
   };
-  // if(!theSpot){return null}
+
   let spot = theSpot;
   return (
     <div className="big-spot-container">

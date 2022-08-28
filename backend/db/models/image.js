@@ -12,13 +12,13 @@ module.exports = (sequelize, DataTypes) => {
       Image.belongsTo(
         models.Spot, {
           foreignKey: 'spotId',
-          onDelete: 'CASCADE'
+          // onDelete: 'CASCADE'
         }
       )
       Image.belongsTo(
         models.Review, {
           foreignKey: 'reviewId',
-          onDelete: 'CASCADE'
+          // onDelete: 'CASCADE'
         }
       )
     }

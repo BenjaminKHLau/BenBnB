@@ -1,7 +1,6 @@
 'use strict';
 // const { User } = require('../models')
 const {Model} = require('sequelize');
-const { Hooks } = require('sequelize/types/hooks');
 module.exports = (sequelize, DataTypes) => {
   class Spot extends Model {
     /**
@@ -15,29 +14,28 @@ module.exports = (sequelize, DataTypes) => {
         models.User, {
           foreignKey: 'ownerId',
           as: "Owner",
-          onDelete: 'CASCADE', //NEWLY ADDED
-          hooks: true
+          // onDelete: 'CASCADE' //NEWLY ADDED
         }
       )
       Spot.hasMany(
         models.Booking, {
           foreignKey: 'spotId',
-          onDelete: "CASCADE",
-          hooks: true
+          // onDelete: "CASCADE",
+          // hooks: true,
         }
        ) 
       Spot.hasMany(
         models.Review, {
           foreignKey: 'spotId',
           onDelete: "CASCADE",
-          hooks: true,
+          hooks:true
         }
       )
       Spot.hasMany(
         models.Image, {
           foreignKey: 'spotId',
-          onDelete: "CASCADE",
-          hooks: true,
+          // onDelete: "CASCADE",
+          // hooks: true,
           // as: "imageableId"
         }
       )
