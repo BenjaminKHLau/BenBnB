@@ -1,6 +1,6 @@
 import "./SpotCardComponent.css"
 import { NavLink } from "react-router-dom";
-
+import yellowstar from "../AllSpots/yellowstar.png"
 function SpotCardComponent({spot}) {
   return (
     <div className="main-container">
@@ -23,13 +23,19 @@ function SpotCardComponent({spot}) {
           </div>
           <div className="star-rating-home">
             <img
-              src="https://img.freepik.com/free-vector/start_53876-25533.jpg?w=1480&t=st=1661381445~exp=1661382045~hmac=6734002d945e88c679e73d02b65c3877373dc194b59e278846d601e206773cca"
+              src={yellowstar}
               className="star-rating-home-img"
             ></img>{" "}
             {spot.avgRating}
           </div>
         </div>
+            <div className="desc-space">{spot.description}</div>
+        <div className="spotcard-price">
+        {/* <div className="spot-price-text">${spot.price}</div> */}
+        <div className="desc-space">Available Soon!</div>
         <p>${spot.price} night</p>
+        </div>
+
       </NavLink>
       {/* <div className="just-the-price"> */}
       {/* </div> */}

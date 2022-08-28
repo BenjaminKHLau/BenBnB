@@ -17,11 +17,16 @@ function Navigation({ isLoaded }){
     );
   } else {
     sessionLinks = (
-      <>
+      <div className="login-signup-container">
+      <div className="login-signup">
         <LoginFormModal />
-        {/* <NavLink to="/signup">Sign Up</NavLink> */}
+      </div>
+
+      <div className="login-signup">
         <SignupFormModal />
-      </>
+      </div>
+
+      </div>
     );
   }
 

@@ -51,9 +51,11 @@ function ProfileButton({ user }) {
 
         {showMenu && (
           <div className="profile-dropdown">
-            {/* <div className="your-spots-link">
-            <Link to="/spots/current">Your Spots</Link>
-            </div> */}
+
+            <div className="your-username">Hello, {user.firstName}!</div>
+            <div className="your-email">Profile: {user.email}</div>
+
+
             <Link to="/spots/current">
             <div className="your-spots-link">
               Your Spots
@@ -66,8 +68,6 @@ function ProfileButton({ user }) {
             </div>
             </Link>
 
-            <div className="your-username">{user.username}</div>
-            <div className="your-email">{user.email}</div>
             {/* <div className="logout-button"><div onClick={logout}>Log Out</div></div> */}
             <div className="logout-button" onClick={logout}>Log Out</div>
           </div>

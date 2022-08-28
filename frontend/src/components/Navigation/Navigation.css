@@ -156,6 +156,9 @@
     height: 40px;
 }
 
+.logout-button {
+    font-weight: 600;
+}
 
 .your-reviews-link:hover,
 .your-spots-link:hover {
@@ -168,4 +171,24 @@ border-radius: 13px;
 .logout-button:hover {
 background-color: rgb(240, 240, 240);
 border-radius: 13px;
+}
+
+.login-signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px red solid; */
+    height: 35px;
+    width: 70px;
+    border-radius: 30px;
+    transition-duration: 250ms;
+}
+.login-signup:hover {
+    background-color: rgb(240, 240, 240);
+    transition-duration: 250ms;
+    font-weight: 600;
+}
+
+.login-signup-container {
+    display: flex;
 }

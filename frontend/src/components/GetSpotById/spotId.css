@@ -1,3 +1,62 @@
-.review-map {
-    border: 2px solid red;
+.big-spot-container {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 3%;
+    /* border: 1px solid red; */
+}
+
+.name-edit-delete-container {
+    display: flex;
+}
+
+.spotid-name {
+    font-size: 20pt;
+}
+
+.name-edit-delete-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.owner-option-buttons {
+    display: flex;
+    /* margin: 10px; */
+}
+
+.edit-delete {
+    /* margin: 10px; */
+    margin-left: 8px;
+}
+
+.previewImage {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    height: 300px;
+    width: 560px;
+    border-radius: 13px;
+}
+.star-rating-home {
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.infobar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    height: 30px;
+}
+
+.location-info {
+    display: flex;
+}
+
+.spacers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 20pt;
 }

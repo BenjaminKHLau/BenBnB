@@ -46,8 +46,8 @@ a {
     justify-content: flex-end;
     
     /* size: 3px; */
-    height: 22px;
-    width: 22px;
+    height: 15px;
+    width: 15px;
 }
 
 .star-rating-home {
@@ -61,4 +61,21 @@ a {
     justify-content: space-between;
     /* border: 2px yellow solid; */
     width: 315px;
+}
+
+.individual-spot-info {
+    font-weight: 450;
+}
+
+.spotcard-price {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+
+}
+
+.desc-space {
+    /* border-radius: 1px red solid; */
+    font-size: 11pt;
+    font-weight: 300;
 }
