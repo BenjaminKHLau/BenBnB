@@ -22,7 +22,7 @@ function CreateReviewFormComponent({closeModal}){
         if (review.length < 1) errors.push("Please enter a review")
         if (stars < 1 || stars > 5) errors.push("Please give a rating between 1 - 5")
         setErrors(errors)
-      },[review, stars, errors])
+      },[review, stars])
 
 
     async function subby(e){
@@ -37,6 +37,12 @@ function CreateReviewFormComponent({closeModal}){
           closeModal()
         // history.push("/spo")
       }
+
+      // async function subby2(e){
+      //   e.preventDefault()
+      //   await dispatch(getSpotByIdThunk(spotId))
+      //   closeModal()
+      // }
 
       const showErrors = errors.map(error => (
         <li className="error-message" key={error}>{error}</li>
@@ -85,6 +91,7 @@ return (
             type="submit"
             disabled={errors.length > 0}
             className="submit-button"
+            // onClick={()=>subby2}
             >
             Create Review
           </button>

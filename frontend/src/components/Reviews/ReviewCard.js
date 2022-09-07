@@ -34,7 +34,7 @@ function ReviewCard({ review }) {
 
   // const date = Date(review?.createdAt)
   // console.log(date.getMonth())
-  console.log((Date(review?.createdAt)).toLocaleString())
+  // console.log((Date(review?.createdAt)).toLocaleString())
   // console.log((Date(review?.createdAt)))
   // console.log(join(date, [{month: 'short'}, {year: 'numeric'}], " "))
 
@@ -44,11 +44,12 @@ function ReviewCard({ review }) {
   // let day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date);
 // console.log(`${day}-${month}-${year}`);
 
-  // console.log("review card review", review);
+  console.log("review card review", review);
+  console.log("review card session", session);
   return (
     <div className="review">
       <div className="review-location">Location: {review?.Spot?.name || spot?.spots[spotId]?.name}</div>
-      <div className="review-author">Review By: {review?.User?.firstName}</div>
+      <div className="review-author">Review By: {review?.User?.firstName ||session?.user?.firstName}</div>
       <div className="review-date">{(Date(review?.createdAt)).toLocaleString().split(" ")[1]} {(Date(review?.createdAt)).toLocaleString().split(" ")[3]}</div>
       <div className="review-text">{review.review}</div>
       <div className="review-stars"><img src={yellowstar} className="star-rating-home-img"/>{review.stars}</div>
