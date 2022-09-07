@@ -13,7 +13,7 @@ function ReviewFormModal() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Create a Review</button>
+      <button className="create-review-button" onClick={() => setShowModal(true)}>Create a Review</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <CreateReviewFormComponent closeModal={closeModal} />

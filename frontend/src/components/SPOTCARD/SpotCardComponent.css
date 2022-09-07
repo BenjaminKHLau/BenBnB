@@ -22,7 +22,7 @@ a {
 .inner-container {
     display: inline-flex;
     /* justify-content: space-between; */
-    height: 400px;
+    height: 420px;
     width: 320px;
     padding: 3px;
     /* border: 5px solid rgb(224, 224, 224); */
@@ -78,4 +78,6 @@ a {
     /* border-radius: 1px red solid; */
     font-size: 11pt;
     font-weight: 300;
+    color: grey;
+    padding-bottom: 5px;
 }

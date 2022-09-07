@@ -24,9 +24,9 @@ function GetUserReviewsComponent() {
         {/* <div>
           <Link to={`/spots/${spotId}/reviews/new`}>HELLO</Link>
         </div> */}
-        <div className="get-all-reviews">Reviews</div>
+        <div className="get-all-reviews">Your Reviews</div>
 
-        <div className="review-middle-container">
+        <div className="review-middle-container2">
           {normalReviews.map((review) => (
             <ReviewCard review={review}/>
           ))}

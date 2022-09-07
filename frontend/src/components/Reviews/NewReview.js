@@ -22,7 +22,7 @@ function CreateReviewFormComponent({closeModal}){
         if (review.length < 1) errors.push("Please enter a review")
         if (stars < 1 || stars > 5) errors.push("Please give a rating between 1 - 5")
         setErrors(errors)
-      },[review, stars])
+      },[review, stars, errors])
 
 
     async function subby(e){
@@ -39,7 +39,7 @@ function CreateReviewFormComponent({closeModal}){
       }
 
       const showErrors = errors.map(error => (
-        <li key={error}>{error}</li>
+        <li className="error-message" key={error}>{error}</li>
       ))
 
 
@@ -49,7 +49,7 @@ return (
           className="spot-form"
           onSubmit={subby}
         >
-          <h2>Create a Review</h2>
+          <h2 className="title">Create a Review</h2>
           <ul className="errors">
             {showErrors}
           </ul>
@@ -57,9 +57,11 @@ return (
           <div className="form-css">
 
           
-          <label>
-            <input
+          <label className="form-stuff">
+            <input className="form-input"
               type="number"
+              min={1}
+              max={5}
               name="stars"
               placeholder="Stars"
               value={stars}
@@ -67,8 +69,8 @@ return (
               />
           </label>
 
-          <label>
-            <input
+          <label className="form-stuff">
+            <input className="form-input"
               type="review"
               name="review"
               placeholder="Write your Review"
@@ -77,12 +79,17 @@ return (
               />
           </label>
 
+        <div className="submit">
+
           <button
             type="submit"
             disabled={errors.length > 0}
+            className="submit-button"
             >
             Create Review
           </button>
+
+              </div>
             </div>
         </form>
     </>

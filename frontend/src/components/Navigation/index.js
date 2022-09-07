@@ -39,7 +39,7 @@ function Navigation({ isLoaded }){
            {/* <div className='benbnb-logo'>BenBnB</div> */}
         </NavLink>
       </div>
-      <div className='welcome'><h1>Welcome to BenBnB</h1></div>
+      <div className='welcome'><div>Welcome to BenBnB</div></div>
         {/* <div className='aaa'> */}
             {isLoaded && sessionLinks}
         {/* </div> */}

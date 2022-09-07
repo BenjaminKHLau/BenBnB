@@ -9,22 +9,21 @@ import SpotCardComponent from "../SPOTCARD";
 function GetUserSpotsComponent(){
     const dispatch = useDispatch()
     const allSpots = useSelector(state => state.spots)
-    // const currentUser = allSpots?.session?.user?.id
-    // console.log(`CURRENT USER`, currentUser)
-    // console.log("ALL SPOTS OF CURRENT USERRRRRRRR",allSpots)
     const normalSpots = Object.values(allSpots)
-    // const mySpots = normalSpots[1]
-    // console.log(mySpots)
-    // console.log('all spots current user ******', normalSpots)
+
+    const [isLoaded, setIsLoaded] = useState(false);
+
 
     useEffect(() => {
-        dispatch(getCurrentUsersSpotsThunk())
+        dispatch(getCurrentUsersSpotsThunk()).then(()=>setIsLoaded(true))
     }, [dispatch])
 
     // if(!allSpots){return null}
     // const spot = allSpots?.spots
-    return (
-        <div className="main-container">
+
+    return isLoaded && (
+        <div className="review-container">
+            <div className="get-all-reviews">Your Spots</div>
 
             <div className="middle-container">
             {normalSpots.map(spot => (

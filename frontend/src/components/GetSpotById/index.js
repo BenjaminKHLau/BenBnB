@@ -18,27 +18,19 @@ function GetSpotByIdComponent() {
   const allSpots = useSelector((state) => state.spots);
   const theSpot = allSpots[spotId];
   const reviews = useSelector((state) => Object.values(state.reviews));
-
-//   console.log("reviews", reviews);
-  // const normalSpots = Object.values(allSpots)
-  // console.log('all spots', allSpots)
   const session = useSelector((state) => state.session);
+
   let currentUser = session.user;
   let user;
   if (currentUser) {
     user = currentUser.id;
   }
-  console.log("CURRENT USER ID", currentUser);
-  // console.log('spot ID', spotId)
-  console.log("the spot", theSpot);
-  // console.log('the spot name', theSpot.spots[spotId].name)
-
   let isOwner = false;
   if (theSpot?.ownerId && currentUser) {
     isOwner = theSpot?.ownerId === user;
   }
 
-  console.log("OWNER?", isOwner);
+  // console.log("OWNER?", isOwner);
 
   useEffect(() => {
     dispatch(getSpotByIdThunk(spotId));
@@ -59,33 +51,31 @@ function GetSpotByIdComponent() {
         <div className="spotid-name">{spot?.name}</div>
       </div>
 
-
-
       <div className="infobar">
         <div className="star-rating-home">
           <img src={yellowstar} className="star-rating-home-img"></img>
           {spot?.avgStarRating}
-        <div className="spacers"> · </div>
-        <div className="num-reviews">{spot?.numReviews} reviews</div>
-        <div className="spacers"> · </div>
+          <div className="spacers"> · </div>
+          <div className="num-reviews">{spot?.numReviews} reviews</div>
+          <div className="spacers"> · </div>
 
-        <div className="location-info">
-          <div>{spot?.city}</div>
-          <div>, {spot?.state}</div>
-          <div>, {spot?.country}</div>
-          {/* <div className="spacers"> · </div> */}
-        </div>
-            </div>
-          <div>
-            {isOwner && (
-                <div className="owner-option-buttons">
-                <EditFormModal spotId={spotId} />
-                <div className="edit-delete" onClick={(e) => deleteButton(e)}>
-                  Delete
-                </div>
-              </div>
-            )}
+          <div className="location-info">
+            <div>{spot?.city}</div>
+            <div>, {spot?.state}</div>
+            <div>, {spot?.country}</div>
+            {/* <div className="spacers"> · </div> */}
           </div>
+        </div>
+        <div>
+          {isOwner && (
+            <div className="owner-option-buttons">
+              <EditFormModal spotId={spotId} />
+              <div className="edit-delete" onClick={(e) => deleteButton(e)}>
+                Delete
+              </div>
+            </div>
+          )}
+        </div>
       </div>
 
       {spot?.Images && (
@@ -97,24 +87,25 @@ function GetSpotByIdComponent() {
           }
         ></img>
       )}
-      <div className="spot-host">Hosted By: {spot?.Owner?.firstName}</div>
       <div className="info-container">
-        <p>Price: ${spot?.price}/night</p>
-        <p>Description: {spot?.description}</p>
-        <p>Average Review: {spot?.avgStarRating}</p>
+        <div className="spot-host-description">
+          <div className="spot-host">Hosted By: {spot?.Owner?.firstName}</div>
+          <div className="spot-description">Description: {spot?.description}</div>
+        </div>
+        <div className="reserve-spot-price">
+          <div className="price">Price: ${spot?.price}</div>  
+          <div className="booking-options">Available Soon!</div>
+        </div>  
       </div>
-      {!isOwner && (
+      <div className="spot-reviews-container">
+      {/* {!isOwner && (
         <div className="review-modal">
           <ReviewFormModal />
         </div>
-      )}
-      <div className="spot-reviews-container">
-        <GetAllReviewsComponent reviews={reviews}/> 
-        {/* NEWLY ADDED REVIEWS PROP */}
-        {/* NEWLY ADDED REVIEWS PROP */}
-        {/* NEWLY ADDED REVIEWS PROP */}
-        {/* NEWLY ADDED REVIEWS PROP */}
+      )} */}
+        <GetAllReviewsComponent reviews={reviews} />
       </div>
+          <div className="location">Where you'll be: {spot?.address}</div>
     </div>
   );
 }

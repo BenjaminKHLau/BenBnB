@@ -170,7 +170,7 @@ const spotsReducer = (state = initialState, action) => {
         }
         case GET_USER_SPOTS: {
             // newState = {}
-            action.user.forEach(spot => {
+            action.user.map(spot => {
                 newState[spot.id] = spot // assign id of each spot to the spot obj
             })
             return newState

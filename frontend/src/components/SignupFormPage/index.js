@@ -49,13 +49,14 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+    <form onSubmit={handleSubmit} className="spot-form">
+      <h2 className="title">Join BenBnB!</h2>
+      <ul className="errors">
+        {errors.map((error, idx) => <li className="error-message" key={idx}>{error}</li>)}
       </ul>
-      <label>
+      <label className="form-stuff">
         {/* First Name */}
-        <input
+        <input className="form-input"
           type="text"
           placeholder="First Name"
           value={firstName}
@@ -63,9 +64,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <label>
+      <label className="form-stuff">
         {/* Last Name */}
-        <input
+        <input className="form-input"
           type="text"
           placeholder="Last Name"
           value={lastName}
@@ -73,9 +74,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <label>
+      <label className="form-stuff">
         {/* Email */}
-        <input
+        <input className="form-input"
           type="text"
           placeholder="Email"
           value={email}
@@ -83,9 +84,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <label>
+      <label className="form-stuff">
         {/* Username */}
-        <input
+        <input className="form-input"
           type="text"
           placeholder="Username"
           value={username}
@@ -93,9 +94,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <label>
+      <label className="form-stuff">
         {/* Password */}
-        <input
+        <input className="form-input"
           type="password"
           placeholder="Password"
           value={password}
@@ -103,9 +104,9 @@ function SignupFormPage() {
           required
         />
       </label>
-      <label>
+      <label className="form-stuff">
         {/* Confirm Password */}
-        <input
+        <input className="form-input"
           type="password"
           placeholder="Confirm Password"
           value={confirmPassword}
@@ -113,7 +114,10 @@ function SignupFormPage() {
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <div className="submit">
+      <button type="submit" className="submit-button">Sign Up</button>
+      </div>
+
     </form>
   );
 }

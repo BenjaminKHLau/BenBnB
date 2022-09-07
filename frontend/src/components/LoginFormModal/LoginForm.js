@@ -1,5 +1,5 @@
 // frontend/src/components/LoginFormPage/index.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
@@ -13,6 +13,13 @@ function LoginFormPage() {
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) <Redirect to="/" />
+
+  useEffect(() => {
+    let errors = []
+    if (credential.length < 1) errors.push("Enter your Username or Email")
+    if (password.length < 1) errors.push("Enter your password")
+    setErrors(errors)
+  },[credential, password])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,32 +37,42 @@ function LoginFormPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-form">
+      <div className='login-container'>
+
+      <div className='welcome-back'>Welcome Back!</div>
       <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        {errors.map((error, idx) => <div className='errors' key={idx}>{error}</div>)}
       </ul>
-      <label>
-        {/* Username or Email */}
-        <input
+      <div className='credentials'>
+
+      <label className='credentials2'>
+        Username or Email
+        <input className='credentials3'
           type="text"
           placeholder="Username or Email"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
-        />
+          />
       </label>
-      <label>
-        {/* Password */}
-        <input
+      <label className='credentials2'>
+        Password
+        <input className='credentials3'
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-        />
+          />
       </label>
+          </div>
+          <div className='buttons'>
       <button type="submit" className="login-buttons">Log In</button>
       <button onClick={demoLogin} className="login-buttons">Demo User</button>
+          </div>
+
+          </div>
     </form>
   );
 }

@@ -59,4 +59,120 @@ a {
     justify-content: space-between;
     /* border: 2px yellow solid; */
     width: 315px;
+    padding-top: 13px;
+    padding-bottom: 4px;
 }
+
+#modal {
+    display: flex;
+    justify-content: center;
+    /* width: 500px; */
+    /* margin: 30px; */
+}
+
+.spot-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid red;
+    border-radius: 30px;
+    /* margin: 30px; */
+    /* height: 70px; */
+    /* padding: 10px; */
+    width: 400px;
+}
+
+
+
+#modal-background {
+    display: flex;
+    /* margin: 1%; */
+}
+
+.form-css {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+.form-stuff {
+    display: flex;
+    justify-content: center;
+    /* width: 500px; */
+}
+
+.form-input {
+    display: flex;
+    width: 400px;
+    /* margin: 2px; */
+    height: 45px;
+    border-radius: 6px;
+    border: 1px solid black;
+    /* border-bottom: 1px solid black;
+    border-top: 1px solid black; */
+    /* padding-left: center; */
+    justify-content: center;
+    /* text-align: center; */
+    text-indent: 25px;
+    font-size: 15pt;
+    font-weight: 550;
+    background-color: rgb(255, 255, 255);
+    transition-duration: 200ms;
+
+
+}
+
+.form-input:hover {
+    transition-duration: 200ms;
+    background-color: rgb(240, 240, 240);
+}
+
+.errors {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* right:10%; */
+    /* align-items: center; */
+    padding-right: 9%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: red;
+
+}
+
+.error-message {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-button {
+    border: none;
+    height: 30px;
+    width: 100px;
+    border-radius: 13px;
+    background-color: pink;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* left: 50%; */
+    font-weight: 650;
+}
+/* .submit-button:hover {
+    background-color: red;
+} */
+
+.submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+

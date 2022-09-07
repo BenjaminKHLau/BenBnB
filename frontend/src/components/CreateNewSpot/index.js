@@ -27,7 +27,7 @@ function CreateSpotFormComponent(){
     useEffect(() => {
       let newImg = image.split("/")
       let imgX = newImg[newImg.length - 1].split(".")[1]
-      console.log(imgX)
+      // console.log(imgX)
         let errors = []
         if (name.length === 0) errors.push("Name field is required")
         if (address.length === 0) errors.push("Address is required")
@@ -65,7 +65,7 @@ function CreateSpotFormComponent(){
       }
     
       const showErrors = errors.map(error => (
-        <li key={error}>{error}</li>
+        <li className="error-message" key={error}>{error}</li>
       ))
       
       return (
@@ -73,16 +73,16 @@ function CreateSpotFormComponent(){
           className="spot-form"
           onSubmit={subby}
         >
-          <h2>Create a Spot</h2>
+          <h2 className="title">Create a Spot</h2>
           <ul className="errors">
             {showErrors}
           </ul>
           
           <div className="form-css">
 
-          <label>
+          <label className="form-stuff">
             {/* Name */}
-            <input
+            <input className="form-input"
               type="text"
               name="name"
               placeholder="Name"
@@ -92,9 +92,10 @@ function CreateSpotFormComponent(){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
+
             {/* Address */}
-            <input
+            <input className="form-input"
               type="text"
               name="address"
               placeholder="Address"
@@ -104,9 +105,10 @@ function CreateSpotFormComponent(){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
+
             {/* City */}
-            <input
+            <input className="form-input"
               type="text"
               name="city"
               placeholder="City"
@@ -116,9 +118,10 @@ function CreateSpotFormComponent(){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
+
             {/* State */}
-            <input
+            <input className="form-input"
               type="text"
               name="state"
               placeholder="State"
@@ -128,9 +131,10 @@ function CreateSpotFormComponent(){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
+
             {/* Country */}
-            <input
+            <input className="form-input"
               type="text"
               name="country"
               placeholder="Country"
@@ -140,9 +144,10 @@ function CreateSpotFormComponent(){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
+
             {/* Latitude */}
-            <input
+            <input className="form-input"
               type="number"
               name="latitude"
               placeholder="Latitude"
@@ -153,9 +158,10 @@ function CreateSpotFormComponent(){
 
         
 
-          <label>
+          <label className="form-stuff">
+
             {/* Longitude */}
-            <input
+            <input className="form-input"
               type="number"
               name="longitude"
               placeholder="Longitude"
@@ -164,9 +170,10 @@ function CreateSpotFormComponent(){
               />
           </label>
 
-          <label>
+          <label className="form-stuff">
+
             {/* Description */}
-            <input
+            <input className="form-input"
               type="text"
               name="description"
               placeholder="Description"
@@ -175,9 +182,10 @@ function CreateSpotFormComponent(){
               />
           </label>
 
-          <label>
+          <label className="form-stuff">
+
             {/* Price */}
-            <input
+            <input className="form-input"
               type="number"
               name="price"
               placeholder="Price"
@@ -186,8 +194,9 @@ function CreateSpotFormComponent(){
               />
           </label>
 
-          <label>
-            <input
+          <label className="form-stuff">
+
+            <input className="form-input"
               type="url"
               name="price"
               placeholder="Image Url"
@@ -196,12 +205,16 @@ function CreateSpotFormComponent(){
               />
           </label>
 
+        <div className="submit">
+
           <button
             type="submit"
             disabled={errors.length > 0}
+            className="submit-button"
             >
             Create Spot
           </button>
+              </div>
             </div>
         </form>
       );

@@ -63,6 +63,66 @@ const spots = [
     price: 50005,
     ownerId: 1
   },
+  {
+    address: '599 Broadway',
+    city: 'New York',
+    state: 'New York',
+    country: 'USA',
+    lat: 40.744700, 
+    lng: 73.943147,
+    name: 'WeWork',
+    description: 'Houston and Broadway corner',
+    price: 3500,
+    ownerId: 2
+  },
+  {
+    address: '505 Park Ave',
+    city: 'New York',
+    state: 'New York',
+    country: 'USA',
+    lat: 40.764500, 
+    lng: 73.973047,
+    name: 'WeWork Park Ave',
+    description: 'Corner building on Park Ave and East 60th St',
+    price: 7000,
+    ownerId: 3
+  },
+  {
+    address: '35 East 21st St',
+    city: 'New York',
+    state: 'New York',
+    country: 'USA',
+    lat: 40.769700, 
+    lng: 73.979147,
+    name: 'WeWork FlatIron',
+    description: 'Between Broadway and Park Ave',
+    price: 4500,
+    ownerId: 4
+  },
+  {
+    address: '1881 Broadway',
+    city: 'New York',
+    state: 'New York',
+    country: 'USA',
+    lat: 40.864700, 
+    lng: 73.073147,
+    name: 'AAA Building',
+    description: 'Upper West Side on West 62nd St',
+    price: 7999,
+    ownerId: 5
+  },
+  {
+    address: '28 West 44th St',
+    city: 'New York',
+    state: 'New York',
+    country: 'USA',
+    lat: 40.774700, 
+    lng: 73.983147,
+    name: 'Club Row Building',
+    description: 'Between Avenue of Americas and 5th Ave',
+    price: 9500,
+    ownerId: 3
+  },
  
   
 ]

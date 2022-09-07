@@ -387,11 +387,11 @@ router.get("/current", restoreUser, requireAuth, async (req, res, next) => {
   for (let spot of loggedInSpots) {
     // console.log(spot.toJSON().id)
     const image = await Image.findOne({
-      where: { userId: req.user.id, spotId: spot.id, previewImage: true },
+      where: { spotId: spot.id, previewImage: true },
     });
-    const review = await Review.findOne({
+    const review = await Review.findAll({
       where: {
-        [Op.and]: [{ userId: req.user.id }, { spotId: spot.toJSON().id }],
+        [Op.and]: [{ spotId: spot.id }],
       },
       attributes: [
         [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
@@ -403,9 +403,10 @@ router.get("/current", restoreUser, requireAuth, async (req, res, next) => {
     // if (!review.avgStarRating) {
     //   spotJSON.avgRating = "This spot has not been reviewed yet";
     // } else {
-      spotJSON.avgRating = Number(review.avgStarRating).toFixed(2);
+      spotJSON.avgRating = Number(review[0].avgStarRating).toFixed(2);
     // }
     if(image){
+      console.log(image)
         spotJSON.previewImage = image.dataValues.url;
     }
     arr.push(spotJSON);

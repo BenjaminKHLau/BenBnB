@@ -2,21 +2,28 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { createNewSpotThunk, updateSpotThunk } from "../../store/spots"
+import { createNewSpotThunk, getCurrentUsersSpotsThunk, getSpotByIdThunk, updateSpotThunk } from "../../store/spots"
 
 
 function EditSpotFormComponent({spotId}){
     const dispatch = useDispatch()
     const history = useHistory()
-    const [address, setAddress] = useState("")
-    const [city, setCity] = useState("")
-    const [state, setState] = useState("")
-    const [country, setCountry] = useState("")
-    const [lat, setLat] = useState("")
-    const [lng, setLng] = useState("")
-    const [name, setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [price, setPrice] = useState("")
+
+    const spots = useSelector(state => state.spots)
+    // console.log("edit spot",spots[spotId])
+    const spot = spots[spotId]
+    console.log(spot)
+
+
+    const [address, setAddress] = useState(spot.address)
+    const [city, setCity] = useState(spot.city)
+    const [state, setState] = useState(spot.state)
+    const [country, setCountry] = useState(spot.country)
+    const [lat, setLat] = useState(spot.lat)
+    const [lng, setLng] = useState(spot.lng)
+    const [name, setName] = useState(spot.name)
+    const [description, setDescription] = useState(spot.description)
+    const [price, setPrice] = useState(spot.price)
     const [errors, setErrors] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -53,11 +60,13 @@ function EditSpotFormComponent({spotId}){
          await dispatch(updateSpotThunk({
             name, address, city, state, lat, lng, country, description, price
           }, spotId))
-        history.push("/")
+        // history.push(`/`)
+        // await dispatch(getCurrentUsersSpotsThunk())
+          await dispatch(getSpotByIdThunk(spotId))
       }
     
       const showErrors = errors.map(error => (
-        <li key={error}>{error}</li>
+        <li className="error-message" key={error}>{error}</li>
       ))
       
       return (
@@ -65,16 +74,16 @@ function EditSpotFormComponent({spotId}){
           className="spot-form"
           onSubmit={subby}
         >
-          <h2>Edit Your Spot</h2>
+          <h2 className="title">Edit Your Spot</h2>
           <ul className="errors">
             {showErrors}
           </ul>
           
           <div className="form-css">
 
-          <label>
+          <label className="form-stuff">
             {/* Name */}
-            <input
+            <input className="form-input"
               type="text"
               name="name"
               value={name}
@@ -84,9 +93,9 @@ function EditSpotFormComponent({spotId}){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
             {/* Address */}
-            <input
+            <input className="form-input"
               type="text"
               name="address"
               value={address}
@@ -96,9 +105,9 @@ function EditSpotFormComponent({spotId}){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
             {/* City */}
-            <input
+            <input className="form-input"
               type="text"
               name="city"
               placeholder="City"
@@ -108,9 +117,9 @@ function EditSpotFormComponent({spotId}){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
             {/* State */}
-            <input
+            <input className="form-input"
               type="text"
               name="state"
               placeholder="State"
@@ -120,9 +129,9 @@ function EditSpotFormComponent({spotId}){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
             {/* Country */}
-            <input
+            <input className="form-input"
               type="text"
               name="country"
               placeholder="Country"
@@ -132,9 +141,9 @@ function EditSpotFormComponent({spotId}){
           </label>
 
         
-          <label>
+          <label className="form-stuff">
             {/* Latitude */}
-            <input
+            <input className="form-input"
               type="number"
               name="latitude"
               placeholder="Latitude"
@@ -145,9 +154,9 @@ function EditSpotFormComponent({spotId}){
 
         
 
-          <label>
+          <label className="form-stuff">
             {/* Longitude */}
-            <input
+            <input className="form-input"
               type="number"
               name="longitude"
               placeholder="Longitude"
@@ -156,9 +165,9 @@ function EditSpotFormComponent({spotId}){
               />
           </label>
 
-          <label>
+          <label className="form-stuff">
             {/* Description */}
-            <input
+            <input className="form-input"
               type="text"
               name="description"
               placeholder="Description"
@@ -167,9 +176,9 @@ function EditSpotFormComponent({spotId}){
               />
           </label>
 
-          <label>
+          <label className="form-stuff">
             {/* Price */}
-            <input
+            <input className="form-input"
               type="number"
               name="price"
               placeholder="Price"
@@ -177,12 +186,17 @@ function EditSpotFormComponent({spotId}){
               onChange={(e) => setPrice(e.target.value)}
               />
           </label>
+
+          <div className="submit">
+
           <button
             type="submit"
             disabled={errors.length > 0}
+            className="submit-button"
             >
             Confirm Spot Changes
           </button>
+              </div>
             </div>
         </form>
       );
