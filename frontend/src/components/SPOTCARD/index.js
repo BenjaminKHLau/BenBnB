@@ -32,7 +32,7 @@ function SpotCardComponent({spot}) {
         <div className="spotcard-price">
         {/* <div className="spot-price-text">${spot.price}</div> */}
         <div className="desc-space">Available Soon!</div>
-        <p>${spot?.price.toLocaleString("en-US")} night</p>
+        <p>${spot?.price} night</p>
         </div>
 
       </NavLink>
