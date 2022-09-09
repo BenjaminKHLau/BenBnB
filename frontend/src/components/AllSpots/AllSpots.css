@@ -165,6 +165,7 @@ a {
     justify-content: center;
     /* left: 50%; */
     font-weight: 650;
+    cursor: pointer;
 }
 /* .submit-button:hover {
     background-color: red;

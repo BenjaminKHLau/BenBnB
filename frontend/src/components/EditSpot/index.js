@@ -24,7 +24,7 @@ function EditSpotFormComponent({spotId}){
     const [name, setName] = useState(spot.name)
     const [description, setDescription] = useState(spot.description)
     const [price, setPrice] = useState(spot.price)
-    const [image, setImage] = useState("")
+    // const [image, setImage] = useState("")
     const [errors, setErrors] = useState([])
     const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -32,8 +32,8 @@ function EditSpotFormComponent({spotId}){
     const validImages = ["png" , "jpg" ,"jpeg", "svg", "heic", "gif"]
 
     useEffect(() => {
-      let newImg = image.split("/")
-      let imgX = newImg[newImg.length - 1].split(".")[1]
+      // let newImg = image.split("/")
+      // let imgX = newImg[newImg.length - 1].split(".")[1]
         let errors = []
         if (name.length === 0) errors.push("Name field is required")
         if (address.length === 0) errors.push("Address is required")
@@ -42,10 +42,10 @@ function EditSpotFormComponent({spotId}){
         if (country.length === 0) errors.push("Country is required")
         if (description.length === 0) errors.push("Description is required")
         if (price < 1) errors.push("Do you not want to make money?")
-        if (image.length < 1 ) errors.push("Give me an image NOW")
-        if (!validImages.includes(imgX)) errors.push("Your image link must be in png, jpg, jpeg, svg, gif")
+        // if (image.length < 1 ) errors.push("Give me an image NOW")
+        // if (!validImages.includes(imgX)) errors.push("Your image link must be in png, jpg, jpeg, svg, gif")
         setErrors(errors)
-      },[name, address, city, state, country, description, price, image])
+      },[name, address, city, state, country, description, price])
 
     // useEffect(() => {
     //     dispatch(createNewSpotThunk())
@@ -192,6 +192,7 @@ function EditSpotFormComponent({spotId}){
               onChange={(e) => setPrice(e.target.value)}
               />
           </label>
+          
 
           <div className="submit">
 
