@@ -210,7 +210,7 @@ border-radius: 13px;
     margin-left: 5%;
     margin-right: 5%;
     padding: 8px;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 .benbnb {
@@ -223,7 +223,26 @@ border-radius: 13px;
 
 hire-me,
 hire-email {
-    border: 1px solid red;
-    background-color: aliceblue;
-    margin: 5px;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    /* background-color: aliceblue; */
+    /* margin: 5px; */
+    justify-content: center;
+}
+
+.footer-img {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    width: 50px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.footer-stuff {
+    display: flex;
+    padding: 1px;
 }
