@@ -35,6 +35,12 @@
     font-weight: 400;
 }
 
+.review-text {
+    max-height: 70px;
+    /* height: 70px; */
+    overflow: scroll;
+}
+
 .review-modal {
     display: flex;
     align-items: center;

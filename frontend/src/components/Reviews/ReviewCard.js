@@ -51,7 +51,12 @@ function ReviewCard({ review }) {
       <div className="review-location">Location: {review?.Spot?.name || spot?.spots[spotId]?.name}</div>
       <div className="review-author">Review By: {review?.User?.firstName ||session?.user?.firstName}</div>
       <div className="review-date">{(Date(review?.createdAt)).toLocaleString().split(" ")[1]} {(Date(review?.createdAt)).toLocaleString().split(" ")[3]}</div>
+      
+      <div className="review-textbox">
       <div className="review-text">{review.review}</div>
+      </div>
+
+      
       <div className="review-stars"><img src={yellowstar} className="star-rating-home-img"/>{review.stars}</div>
 
       {currentUser && currentUser.id === review.userId && (
