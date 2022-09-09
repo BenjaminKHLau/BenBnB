@@ -93,7 +93,16 @@ function GetSpotByIdComponent() {
           <div className="spot-description">Description: {spot?.description}</div>
         </div>
         <div className="reserve-spot-price">
-          <div className="price">Price: ${spot?.price}</div>  
+          <div className="reserve-bar">
+          <div className="price">${spot?.price} night</div>  
+          {/* <div className="spacers"> · </div> */}
+          <div className="box-nav">
+
+          <div className="reviews-rating"><img src={yellowstar} className="star-rating-home-img"></img>{spot?.avgStarRating} </div>
+          <div className="spacers"> · </div>
+          <div className="num-reviews">{spot?.numReviews} reviews</div>
+          </div>
+          </div>
           <div className="booking-options">Available Soon!</div>
         </div>  
       </div>

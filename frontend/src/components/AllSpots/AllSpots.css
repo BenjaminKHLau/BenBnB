@@ -158,7 +158,7 @@ a {
     height: 30px;
     width: 100px;
     border-radius: 13px;
-    background-color: pink;
+    background-color: rgb(255, 0, 0);
     color: white;
     display: flex;
     align-items: center;
@@ -169,6 +169,20 @@ a {
 /* .submit-button:hover {
     background-color: red;
 } */
+
+.noob {
+    border: none;
+    height: 30px;
+    width: 100px;
+    border-radius: 13px;
+    background-color: pink;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* left: 50%; */
+    font-weight: 650;
+}
 
 .submit {
     display: flex;

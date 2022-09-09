@@ -19,7 +19,7 @@ function CreateSpotFormComponent(){
     const [price, setPrice] = useState("")
     const [image, setImage] = useState("")
     const [errors, setErrors] = useState([])
-    const [isLoaded, setIsLoaded] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
 
     const validImages = ["png" , "jpg" ,"jpeg", "svg", "heic", "gif"]
@@ -37,8 +37,8 @@ function CreateSpotFormComponent(){
         if (description.length === 0) errors.push("Description is required")
         if (price < 1) errors.push("Do you not want to make money?")
         if (image.length < 1 ) errors.push("Give me an image NOW")
+        if (!validImages.includes(imgX)) errors.push("Your image link must be in png, jpg, jpeg, svg, gif")
         setErrors(errors)
-        if (!validImages.includes(imgX)) errors.push("Your image link sucks")
       },[name, address, city, state, country, description, price, image])
 
     // useEffect(() => {
@@ -53,9 +53,13 @@ function CreateSpotFormComponent(){
 
     async function subby(e){
         e.preventDefault()
-        console.log({
-            name, address, city, state, lat, lng, country, description, price
-          })
+        setIsSubmitted(true)
+        if (errors.length > 0) {
+          return
+        }
+        // console.log({
+        //     name, address, city, state, lat, lng, country, description, price
+        //   })
           const newSpot = await dispatch(createNewSpotThunk({
             name, address, city, state, lat, lng, country, description, price
           }))
@@ -75,7 +79,7 @@ function CreateSpotFormComponent(){
         >
           <h2 className="title">Create a Spot</h2>
           <ul className="errors">
-            {showErrors}
+            {isSubmitted && showErrors /*ED*/} 
           </ul>
           
           <div className="form-css">
@@ -198,7 +202,7 @@ function CreateSpotFormComponent(){
 
             <input className="form-input"
               type="url"
-              name="price"
+              name="image"
               placeholder="Image Url"
               value={image}
               onChange={(e) => setImage(e.target.value)}
@@ -209,9 +213,8 @@ function CreateSpotFormComponent(){
 
           <button
             type="submit"
-            disabled={errors.length > 0}
-            className="submit-button"
-            >
+            disabled={isSubmitted && errors.length > 0} //ED
+            className={(isSubmitted && errors.length > 0) ? "noob":"submit-button"}>
             Create Spot
           </button>
               </div>

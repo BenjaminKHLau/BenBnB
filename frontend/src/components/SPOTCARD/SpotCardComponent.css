@@ -39,6 +39,11 @@ a {
     width: 320px;
     height: 300px;
     border-radius: 20px;
+    transition-duration: 200ms;
+}
+.splash-spot-images:hover {
+    filter: brightness(90%);
+    transition-duration: 200ms;
 }
 
 .star-rating-home-img {

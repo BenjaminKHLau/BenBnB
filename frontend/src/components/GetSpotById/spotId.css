@@ -36,7 +36,15 @@
     /* width: 560px; */
     height: 25vw;
     border-radius: 13px;
+    transition-duration: 200ms;
 }
+.previewImage:hover {
+    /* opacity: 225%; */
+    /* box-shadow: 0px 0px 10px black; */
+    filter: brightness(90%);
+    transition-duration: 200ms;
+}
+
 .star-rating-home {
     display: flex;
     /* justify-content: space-between; */
@@ -61,4 +69,14 @@
     margin-left: 10px;
     margin-right: 10px;
     font-size: 20pt;
+}
+
+.spot-host {
+    font-size: 19pt;
+    /* opacity: 75%; */
+    color: rgba(0, 0, 0, 0.75);
+}
+
+.spot-description {
+    color: rgba(0, 0, 0, 0.75);
 }

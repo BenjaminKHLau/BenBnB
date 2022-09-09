@@ -41,6 +41,7 @@
     height: 50px;
     border-radius: 30px;
     transition-duration: 150ms;
+    cursor: pointer;
     /* height: 15px; */
 }
 
@@ -89,6 +90,7 @@
     /* display: flex; */
     /* justify-content: center; */
     /* align-content: flex-end; */
+    cursor: pointer;
     height: 42px;
     /* position: absolute; */
 }
@@ -155,10 +157,13 @@
     align-items: center;
     /* border: 1px solid red; */
     height: 40px;
+    max-width: 250px;
+    overflow: scroll;
 }
 
 .logout-button {
     font-weight: 600;
+    cursor: pointer;
 }
 
 .your-reviews-link:hover,
@@ -188,8 +193,37 @@ border-radius: 13px;
     background-color: rgb(240, 240, 240);
     transition-duration: 250ms;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .login-signup-container {
     display: flex;
+}
+
+.Footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+    border-top: 1px solid lightgrey;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 8px;
+    flex-wrap: wrap;
+}
+
+.benbnb {
+    font-size: 14pt;
+    font-weight: 500;
+    /* background-color: lightpink; */
+    /* border-top: 1px solid lightgrey; */
+    padding: 15px;
+}
+
+hire-me,
+hire-email {
+    border: 1px solid red;
+    background-color: aliceblue;
+    margin: 5px;
 }

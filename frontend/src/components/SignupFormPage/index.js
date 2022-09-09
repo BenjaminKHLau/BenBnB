@@ -18,6 +18,8 @@ function SignupFormPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
 
   useEffect(() => {
     let errors = []
@@ -38,6 +40,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
+      setIsSubmitted(true)
       return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
         .catch(async (res) => {
           const data = await res.json();
@@ -52,7 +55,7 @@ function SignupFormPage() {
     <form onSubmit={handleSubmit} className="spot-form">
       <h2 className="title">Join BenBnB!</h2>
       <ul className="errors">
-        {errors.map((error, idx) => <li className="error-message" key={idx}>{error}</li>)}
+        {isSubmitted && errors.map((error, idx) => <li className="error-message" key={idx}>{error}</li>)}
       </ul>
       <label className="form-stuff">
         {/* First Name */}
@@ -114,8 +117,8 @@ function SignupFormPage() {
           required
         />
       </label>
-      <div className="submit">
-      <button type="submit" className="submit-button">Sign Up</button>
+      <div className="buttons">
+      <button type="submit" className="login-buttons">Sign Up</button>
       </div>
 
     </form>

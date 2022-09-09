@@ -11,6 +11,8 @@ function LoginFormPage() {
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false)
+
 
   if (sessionUser) <Redirect to="/" />
 
@@ -23,7 +25,11 @@ function LoginFormPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
+    // setErrors([]);
+    setIsSubmitted(true)
+    if (errors.length > 0) {
+      return
+    }
     return dispatch(sessionActions.login({ credential, password }))
       .catch(async (res) => {
         const data = await res.json();
@@ -40,35 +46,35 @@ function LoginFormPage() {
     <form onSubmit={handleSubmit} className="login-form">
       <div className='login-container'>
 
-      <div className='welcome-back'>Welcome Back!</div>
+      <h2 className='title'>Welcome Back!</h2>
       <ul>
-        {errors.map((error, idx) => <div className='errors' key={idx}>{error}</div>)}
+        {isSubmitted && errors.map((error, idx) => <div className='errors' key={idx}>{error}</div>)}
       </ul>
       <div className='credentials'>
 
       <label className='credentials2'>
-        Username or Email
+        {/* Username or Email */}
         <input className='credentials3'
           type="text"
           placeholder="Username or Email"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
-          required
+          // required
           />
       </label>
       <label className='credentials2'>
-        Password
+        {/* Password */}
         <input className='credentials3'
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
+          // required
           />
       </label>
           </div>
           <div className='buttons'>
-      <button type="submit" className="login-buttons">Log In</button>
+      <button type="submit" className="login-buttons" disabled={isSubmitted && errors.length > 0}>Log In</button>
       <button onClick={demoLogin} className="login-buttons">Demo User</button>
           </div>
 

@@ -35,7 +35,7 @@ function GetAllReviewsComponent() {
   }
 
   const spot = useSelector((state) => state);
-  console.log("reviews spot",theSpot)
+  // console.log("reviews spot",theSpot)
 
   useEffect(() => {
     dispatch(getSpotReviewsThunk(spotId));

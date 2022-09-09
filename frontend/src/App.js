@@ -14,6 +14,7 @@ import EditSpotFormComponent from "./components/EditSpot";
 import GetUserSpotsComponent from "./components/GetUserSpots";
 import CreateReviewFormComponent from "./components/Reviews/NewReview";
 import GetUserReviewsComponent from "./components/Reviews/GetUserReviews";
+import Footer from "./components/Navigation/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ function App() {
 
         </Switch>
       )}
+      <Footer />
     </>
   );
 }

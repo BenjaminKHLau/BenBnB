@@ -100,19 +100,20 @@
 
 .reserve-spot-price {
     display: flex;
-    border: 2px solid rgb(200, 200, 200);
-    height: 200px;
-    width: 180px;
+    border: 1px solid rgb(200, 200, 200);
+    height: 400px;
+    width: 300px;
     /* justify-content: flex-end; */
     flex-direction: column;
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(253, 253, 253);
     /* left: 70%; */
     border-radius: 13px;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
     /* box-shadow: 0px 0px 5px; */
     transition-duration: 200ms;
+    box-shadow: 0px 0px 6px rgb(187, 187, 187);
 }
 
 .reserve-spot-price:hover {
@@ -149,4 +150,17 @@
     display: flex;
     flex-wrap: wrap;
     /* justify-content: space-between; */
+}
+
+.reserve-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-direction: column; */
+}
+
+.box-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

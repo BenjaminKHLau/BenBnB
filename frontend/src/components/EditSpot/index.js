@@ -24,13 +24,16 @@ function EditSpotFormComponent({spotId}){
     const [name, setName] = useState(spot.name)
     const [description, setDescription] = useState(spot.description)
     const [price, setPrice] = useState(spot.price)
+    const [image, setImage] = useState("")
     const [errors, setErrors] = useState([])
-    const [isLoaded, setIsLoaded] = useState(false)
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     
-
+    const validImages = ["png" , "jpg" ,"jpeg", "svg", "heic", "gif"]
 
     useEffect(() => {
+      let newImg = image.split("/")
+      let imgX = newImg[newImg.length - 1].split(".")[1]
         let errors = []
         if (name.length === 0) errors.push("Name field is required")
         if (address.length === 0) errors.push("Address is required")
@@ -39,8 +42,10 @@ function EditSpotFormComponent({spotId}){
         if (country.length === 0) errors.push("Country is required")
         if (description.length === 0) errors.push("Description is required")
         if (price < 1) errors.push("Do you not want to make money?")
+        if (image.length < 1 ) errors.push("Give me an image NOW")
+        if (!validImages.includes(imgX)) errors.push("Your image link must be in png, jpg, jpeg, svg, gif")
         setErrors(errors)
-      },[name, address, city, state, country, description, price])
+      },[name, address, city, state, country, description, price, image])
 
     // useEffect(() => {
     //     dispatch(createNewSpotThunk())
@@ -54,9 +59,10 @@ function EditSpotFormComponent({spotId}){
 
     async function subby(e){
         e.preventDefault()
-        console.log({
-            name, address, city, state, lat, lng, country, description, price
-          })
+        setIsSubmitted(true)
+        // console.log({
+        //     name, address, city, state, lat, lng, country, description, price
+        //   })
          await dispatch(updateSpotThunk({
             name, address, city, state, lat, lng, country, description, price
           }, spotId))
@@ -76,7 +82,7 @@ function EditSpotFormComponent({spotId}){
         >
           <h2 className="title">Edit Your Spot</h2>
           <ul className="errors">
-            {showErrors}
+            {isSubmitted && showErrors}
           </ul>
           
           <div className="form-css">
@@ -191,8 +197,8 @@ function EditSpotFormComponent({spotId}){
 
           <button
             type="submit"
-            disabled={errors.length > 0}
-            className="submit-button"
+            disabled={isSubmitted && errors.length > 0}
+            className={(isSubmitted && errors.length > 0) ? "noob":"submit-button"}
             >
             Confirm Spot Changes
           </button>
