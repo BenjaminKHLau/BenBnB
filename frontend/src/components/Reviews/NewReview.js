@@ -14,22 +14,34 @@ function CreateReviewFormComponent({closeModal}){
     const [stars, setStars] = useState("")
     const [errors, setErrors] = useState([])
     const { spotId } = useParams()
+    const sessionUser = useSelector(state => state.session.user);
+    const reviews = useSelector(state => Object.values(state.reviews));
+    const allReviews = reviews.map(review => review.userId === sessionUser.id)
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
-    console.log("use Params REVIEWS COMP",useParams())
+    console.log("new Review state",reviews.map(review => review.userId === sessionUser.id))
+    console.log("all Reviews", allReviews.includes(true))
+
+    // console.log("use Params REVIEWS COMP",useParams())
 
     useEffect(() => {
         let errors = []
-        if (review.length < 1) errors.push("Please enter a review")
-        if (stars < 1 || stars > 5) errors.push("Please give a rating between 1 - 5")
+        if (allReviews.includes(true)) errors.push("You have already reviewed this spot!")
+        else if (stars < 1 || stars > 5) errors.push("Please give a rating between 1 - 5")
+        else if (review.length < 1) errors.push("Please enter a review")
         setErrors(errors)
       },[review, stars])
 
 
     async function subby(e){
         e.preventDefault()
-        console.log({
-            review, stars, spotId
-          })
+        setIsSubmitted(true)
+        if(errors.length > 0){
+          return;
+        }
+        // console.log({
+        //     review, stars, spotId
+        //   })
           await dispatch(createNewReviewThunk(
             review, stars, spotId
           ))
@@ -57,7 +69,7 @@ return (
         >
           <h2 className="title">Create a Review</h2>
           <ul className="errors">
-            {showErrors}
+            {isSubmitted && showErrors}
           </ul>
           
           <div className="form-css">
@@ -89,8 +101,8 @@ return (
 
           <button
             type="submit"
-            disabled={errors.length > 0}
-            className="submit-button"
+            disabled={isSubmitted && errors.length > 0}
+            className={isSubmitted && errors.length > 0 ? "noob":"submit-button"}
             // onClick={()=>subby2}
             >
             Create Review
