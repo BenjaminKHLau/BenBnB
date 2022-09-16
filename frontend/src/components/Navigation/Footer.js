@@ -13,7 +13,7 @@ function Footer() {
                 <img src={linkedin} className="footer-img"/>
                 {/* Hire Me! Click for my LinkedIn! */}
             </a>
-            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer">
                 <img src={kiwi} className="footer-img" />
             </a>
             <a href="mailto:benjaminkhlau@gmail.com" className="hire-email">
