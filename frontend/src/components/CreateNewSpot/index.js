@@ -84,7 +84,7 @@ function CreateSpotFormComponent() {
   return (
     <form className="spot-form" onSubmit={subby}>
       <h2 className="title">Create a Spot</h2>
-      <ul className="errors">{isSubmitted && showErrors /*ED*/}</ul>
+      <ul className="errors">{isSubmitted && showErrors}</ul>
 
       <div className="form-css">
         <label className="form-stuff">
@@ -209,7 +209,7 @@ function CreateSpotFormComponent() {
         <div className="submit">
           <button
             type="submit"
-            disabled={isSubmitted && errors.length > 0} //ED
+            disabled={isSubmitted && errors.length > 0}
             className={
               isSubmitted && errors.length > 0 ? "noob" : "submit-button"
             }
