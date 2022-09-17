@@ -240,6 +240,7 @@ hire-email {
     justify-content: center;
     margin-left: 15px;
     margin-right: 15px;
+    border-radius: 30px;
 }
 
 .footer-stuff {
