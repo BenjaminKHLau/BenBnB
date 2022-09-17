@@ -54,7 +54,7 @@ const getUserReviews = (payload) => {
 
 // Thunk Action Creator
 export const getSpotReviewsThunk = (spotId) => async dispatch => {
-    console.log("spot review thunk",spotId)
+    // console.log("spot review thunk",spotId)
 
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: "GET"

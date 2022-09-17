@@ -22,7 +22,7 @@ function App() {
   
 
   const loggedInUser = useSelector(state => state.session.user)
-  console.log("check logged in user app.js",loggedInUser)
+  // console.log("check logged in user app.js",loggedInUser)
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);

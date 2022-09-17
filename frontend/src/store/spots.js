@@ -65,7 +65,7 @@ export const getAllSpotsThunk = () => async dispatch => {
         method: "GET"
     })
     const data = await response.json();
-    console.log("data", data)
+    // console.log("data", data)
     dispatch(getAllSpots(data.allSpots))
 
     return data

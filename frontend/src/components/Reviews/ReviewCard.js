@@ -44,8 +44,8 @@ function ReviewCard({ review }) {
   // let day = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date);
 // console.log(`${day}-${month}-${year}`);
 
-  console.log("review card review", review);
-  console.log("review card session", session);
+  // console.log("review card review", review);
+  // console.log("review card session", session);
   return (
     <div className="review">
       <div className="review-location">Location: {review?.Spot?.name || spot?.spots[spotId]?.name}</div>
