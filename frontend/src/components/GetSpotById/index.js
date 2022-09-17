@@ -10,6 +10,7 @@ import GetAllReviewsComponent from "../Reviews";
 import ReviewFormModal from "../Reviews/ReviewModal";
 import "./spotId.css";
 import yellowstar from "../AllSpots/yellowstar.png";
+import sorrykiwi from "../SPOTCARD/sorrykiwi.jpg"
 
 function GetSpotByIdComponent() {
   const history = useHistory();
@@ -83,8 +84,12 @@ function GetSpotByIdComponent() {
           className="previewImage"
           src={
             spot?.Images[0]?.url ||
-            "https://hgtvhome.sndimg.com/content/dam/images/hgtv/unsized/2017/9/29/CI_TTMK_Charing-Cross-Road-1.jpg"
+            sorrykiwi
           }
+          onError={e => {
+            e.target.src=sorrykiwi
+            // e.onError=null
+          }}
         ></img>
       )}
       <div className="info-container">

@@ -1,15 +1,18 @@
 import "./SpotCardComponent.css"
 import { NavLink } from "react-router-dom";
 import yellowstar from "../AllSpots/yellowstar.png"
+import sorrykiwi from "./sorrykiwi.jpg"
 function SpotCardComponent({spot}) {
   return (
     <div className="main-container">
       <NavLink to={`/spots/${spot.id}`}>
         <div className="just-the-image">
-          <img src={spot?.previewImage 
-              ||
-              "https://hgtvhome.sndimg.com/content/dam/images/hgtv/unsized/2017/9/29/CI_TTMK_Charing-Cross-Road-1.jpg"
-            }
+          <img src={spot?.previewImage || sorrykiwi}
+            alt="if your image link doesn't work, please wait for default to load"
+            onError={e => {
+              e.target.src=sorrykiwi
+              // e.onerror=null
+            }}
             className="splash-spot-images"
           ></img>
         </div>
