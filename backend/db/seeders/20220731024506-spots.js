@@ -13,7 +13,7 @@ const spots = [
     name: 'Grand Army Plaza',
     description: 'Right by Central Park',
     price: 5000,
-    ownerId: 1
+    ownerId: 3
   },
   {
     address: '404 New York Ave',
@@ -25,7 +25,7 @@ const spots = [
     name: 'Grand Army Plaza 2',
     description: 'Right by Central Park 2',
     price: 50000,
-    ownerId: 1
+    ownerId: 2
   },
   {
     address: '6969 New York Ave',
@@ -37,7 +37,7 @@ const spots = [
     name: 'Grand Army Plaza 3',
     description: 'Right by Central Park 3',
     price: 50,
-    ownerId: 1
+    ownerId: 5
   },
   {
     address: '3 New York Ave',
@@ -49,7 +49,7 @@ const spots = [
     name: 'Grand Army Plaza 4',
     description: 'Right by Central Park 4',
     price: 5,
-    ownerId: 1
+    ownerId: 3
   },
   {
     address: '888 New York Ave',
@@ -61,7 +61,7 @@ const spots = [
     name: 'Grand Army Plaza 5',
     description: 'Right by Central Park 5',
     price: 50005,
-    ownerId: 1
+    ownerId: 2
   },
   {
     address: '599 Broadway',

@@ -9,7 +9,7 @@ const reviews = [
     stars: 5
   },
   {
-    userId: 1,
+    userId: 5,
     spotId: 2,
     review: 'The park benches had a homeless guy sleeping',
     stars: 1
@@ -34,31 +34,31 @@ const reviews = [
   },
   {
     userId: 3,
-    spotId: 1,
+    spotId: 6,
     review: 'Aliens were sleeping on my bed',
     stars: 2
   },
   {
     userId: 2,
-    spotId: 2,
+    spotId: 7,
     review: 'The cars outside are making too much noise',
     stars: 1
   },
   {
     userId: 1,
-    spotId: 3,
+    spotId: 8,
     review: 'Pigeons pooped on my head',
     stars: 3
   },
   {
     userId: 4,
-    spotId: 4,
+    spotId: 9,
     review: 'The food gave me an allergy attack',
     stars: 1
   },
   {
     userId: 5,
-    spotId: 5,
+    spotId: 10,
     review: 'The park smelled like horse poop everywhere',
     stars: 2
   },
@@ -88,7 +88,7 @@ const reviews = [
   },
   {
     userId: 1,
-    spotId: 5,
+    spotId: 10,
     review: 'Customer service was exceptionally bad',
     stars: 2
   },
