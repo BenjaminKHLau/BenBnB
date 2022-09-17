@@ -55,7 +55,7 @@ function GetAllReviewsComponent() {
         <div className="reviews-title">{theSpot?.numReviews} Reviews</div>
         </div>
 
-        {!isOwner && (
+        {!isOwner && user && (
           <div className="review-modal">
             <ReviewFormModal />
           </div>

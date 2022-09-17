@@ -74,7 +74,7 @@ a {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     border-radius: 30px;
     /* margin: 30px; */
     /* height: 70px; */
