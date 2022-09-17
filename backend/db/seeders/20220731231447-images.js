@@ -71,6 +71,13 @@ const images = [
     previewImage: true,
     url: "https://www.planetware.com/photos-large/USNY/new-york-city-central-park-ice-skating.jpg",
   },
+  {
+    userId: 5,
+    spotId: 11,
+    reviewId: 11,
+    previewImage: true,
+    url: "https://a0.muscache.com/pictures/39a64e4b-f091-483c-9708-fa122ab5894c.jpg",
+  },
 ];
 
 module.exports = {

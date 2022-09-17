@@ -123,6 +123,18 @@ const spots = [
     price: 9500,
     ownerId: 3
   },
+  {
+    address: '620 Avenue of the Americas',
+    city: 'New York',
+    state: 'New York',
+    country: 'USA',
+    lat: 40.774595, 
+    lng: 73.233147,
+    name: 'WeWork Corporate HQ',
+    description: 'Corner of 6th ave and West 18th St',
+    price: 1500,
+    ownerId: 1
+  },
  
   
 ]

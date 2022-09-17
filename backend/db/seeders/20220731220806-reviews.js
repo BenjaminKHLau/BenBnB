@@ -92,6 +92,12 @@ const reviews = [
     review: 'Customer service was exceptionally bad',
     stars: 2
   },
+  {
+    userId: 2,
+    spotId: 11,
+    review: 'They had kombucha on tap',
+    stars: 5
+  },
 ]
 
 module.exports = {
