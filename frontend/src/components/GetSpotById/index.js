@@ -86,6 +86,7 @@ function GetSpotByIdComponent() {
             spot?.Images[0]?.url ||
             sorrykiwi
           }
+          alt="if your image link doesn't work, please wait for default to load"
           onError={e => {
             e.target.src=sorrykiwi
             // e.onError=null
