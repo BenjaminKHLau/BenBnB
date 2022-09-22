@@ -23,11 +23,11 @@ function SignupFormPage() {
 
   useEffect(() => {
     let errors = []
-    if (firstName.length < 1) errors.push("First name field is required")
-    if (lastName.length < 1) errors.push("Last name field is required")
-    if (email.length < 1) errors.push("Email field is required")
+    if (firstName.length < 2 || firstName.length > 30) errors.push("Provide First name between 2-30 characters")
+    if (lastName.length < 2 || lastName.length > 30) errors.push("Provide Last name between 2-30 characters")
+    if (email.length < 3) errors.push("Provide email greater than 3 characters long")
     if (!email.includes("@") || !email.includes(".")) errors.push("Please enter a valid email")
-    if (username.length < 1) errors.push("Please enter a username")
+    if (username.length < 3 || username.length > 30) errors.push("Enter a username between 3-30 characters")
     if (password.length < 1) errors.push("Please enter a password")
     if (password !== confirmPassword) errors.push("Please confirm your password")
     setErrors(errors)
@@ -44,7 +44,8 @@ function SignupFormPage() {
       return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
         .catch(async (res) => {
           const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
+          console.log("handle submit errors", data.errors)
+          if (data && data.errors) setErrors(errors);
         });
     }
     // history.push("/")
@@ -64,7 +65,7 @@ function SignupFormPage() {
           placeholder="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          required
+          // required
         />
       </label>
       <label className="form-stuff">
@@ -74,7 +75,7 @@ function SignupFormPage() {
           placeholder="Last Name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
-          required
+          // required
         />
       </label>
       <label className="form-stuff">
@@ -84,7 +85,7 @@ function SignupFormPage() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
+          // required
         />
       </label>
       <label className="form-stuff">
@@ -94,7 +95,7 @@ function SignupFormPage() {
           placeholder="Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          required
+          // required
         />
       </label>
       <label className="form-stuff">
@@ -104,7 +105,7 @@ function SignupFormPage() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required
+          // required
         />
       </label>
       <label className="form-stuff">
@@ -114,7 +115,7 @@ function SignupFormPage() {
           placeholder="Confirm Password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          required
+          // required
         />
       </label>
       <div className="buttons">

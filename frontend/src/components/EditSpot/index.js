@@ -12,7 +12,7 @@ function EditSpotFormComponent({spotId}){
     const spots = useSelector(state => state.spots)
     // console.log("edit spot",spots[spotId])
     const spot = spots[spotId]
-    console.log(spot)
+    // console.log(spot)
 
 
     const [address, setAddress] = useState(spot.address)

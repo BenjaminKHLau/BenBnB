@@ -76,7 +76,7 @@ export const getCurrentUsersSpotsThunk = () => async dispatch => {
         method: "GET"
     })
     const data = await response.json();
-    console.log("AAAAAAAAAA",data)
+    // console.log("user spots thunk",data)
     dispatch(getUserSpots(data))
     if(response.ok){
         return data

@@ -11,6 +11,7 @@ import ReviewFormModal from "../Reviews/ReviewModal";
 import "./spotId.css";
 import yellowstar from "../AllSpots/yellowstar.png";
 import sorrykiwi from "../SPOTCARD/sorrykiwi.jpg"
+import sorrykiwi2 from "./sorrykiwi2.png"
 
 function GetSpotByIdComponent() {
   const history = useHistory();
@@ -88,7 +89,7 @@ function GetSpotByIdComponent() {
           }
           alt="if your image link doesn't work, please wait for default to load"
           onError={e => {
-            e.target.src=sorrykiwi
+            e.target.src=sorrykiwi2
             // e.onError=null
           }}
         ></img>

@@ -19,8 +19,8 @@ function CreateReviewFormComponent({closeModal}){
     const allReviews = reviews.map(review => review.userId === sessionUser.id)
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    console.log("new Review state",reviews.map(review => review.userId === sessionUser.id))
-    console.log("all Reviews", allReviews.includes(true))
+    // console.log("new Review state",reviews.map(review => review.userId === sessionUser.id))
+    // console.log("all Reviews", allReviews.includes(true))
 
     // console.log("use Params REVIEWS COMP",useParams())
 

@@ -1,7 +1,7 @@
 .big-spot-container {
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 3%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 1%;
     padding: 0px 80px;
     /* border: 1px solid red; */
 }
@@ -33,8 +33,8 @@
     margin-top: 20px;
     margin-bottom: 20px;
     /* height: 300px; */
-    /* width: 560px; */
-    height: 25vw;
+    width: 100%;
+    height: 30vw;
     border-radius: 13px;
     transition-duration: 200ms;
 }

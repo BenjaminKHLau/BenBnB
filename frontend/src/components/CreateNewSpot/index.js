@@ -33,7 +33,7 @@ function CreateSpotFormComponent() {
     if (state.length === 0) errors.push("State is required");
     if (country.length === 0) errors.push("Country is required");
     if (description.length === 0) errors.push("Description is required");
-    if (price < 1) errors.push("Do you not want to make money?");
+    if (price < 1) errors.push("Please enter a price. Do you not want to make money?");
     if (image.length < 1) errors.push("Give me an image NOW");
     if (!validImages.includes(imgX))
       errors.push("Your image link must be in png, jpg, jpeg, svg, gif");
