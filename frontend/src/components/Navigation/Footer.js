@@ -20,10 +20,10 @@ function Footer() {
             <a href="https://github.com/BenjaminKHLau" target="_blank" rel="noopener noreferrer">
                 <img src={github} className="footer-img" />
             </a>
-            <a href="mailto:benjaminkhlau@gmail.com" className="hire-email">
-                <img src={mail} className="footer-img" />
+            {/* <a href="mailto:benjaminkhlau@gmail.com" className="hire-email"> */}
+                {/* <img src={mail} className="footer-img" /> */}
                 {/* Contact me at BenjaminKHLau@gmail.com */}
-                </a>
+                {/* </a> */}
             </div>
 
             <div className="benbnb">© BenBnB is an AirBnB clone by Benjamin Lau</div>

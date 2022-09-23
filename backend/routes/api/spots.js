@@ -22,8 +22,12 @@ const validateSpot = [
   check("address")
     .exists({ checkFalsy: true })
     .withMessage("Street address is required"),
-  check("city").exists({ checkFalsy: true }).withMessage("City is required"),
-  check("state").exists({ checkFalsy: true }).withMessage("State is required"),
+  check("city")
+    .exists({ checkFalsy: true })
+    .withMessage("City is required"),
+  check("state")
+    .exists({ checkFalsy: true })
+    .withMessage("State is required"),
   check("country")
     .exists({ checkFalsy: true })
     .withMessage("Country is required"),
@@ -50,7 +54,9 @@ const validateReview = [
   check("review")
     .exists({ checkFalsy: true })
     .withMessage("Review is required"),
-  check("stars").exists({ checkFalsy: true }).withMessage("Rating is required"),
+  check("stars")
+    .exists({ checkFalsy: true })
+    .withMessage("Rating is required"),
   handleValidationErrors,
 ];
 

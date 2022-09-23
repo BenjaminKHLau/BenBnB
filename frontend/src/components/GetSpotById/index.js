@@ -111,6 +111,13 @@ function GetSpotByIdComponent() {
           </div>
           </div>
           <div className="booking-options">Available Soon!</div>
+          <div className="RESERVEDSTUFF">Check-in / Check-out Placeholder</div>
+          <div className="RESERVEDSTUFF">Reserve Booking Placeholder</div>
+          <div className="RESERVEDSTUFF">Cleaning Fee: $100</div>
+          <div className="RESERVEDSTUFF">Service Fee: $50</div>
+          <div className="RESERVEDSTUFF">Tax: 10%</div>
+          <div className="RESERVEDSTUFFTOTAL">Total: ${((spot?.price * 1.1)+ 50 + 100).toFixed(2)}</div>
+
         </div>  
       </div>
       <div className="spot-reviews-container">

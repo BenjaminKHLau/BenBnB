@@ -80,3 +80,19 @@
 .spot-description {
     color: rgba(0, 0, 0, 0.75);
 }
+
+.booking-options {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.RESERVEDSTUFF {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.RESERVEDSTUFFTOTAL {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}

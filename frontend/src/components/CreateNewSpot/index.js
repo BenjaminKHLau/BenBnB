@@ -27,16 +27,16 @@ function CreateSpotFormComponent() {
     let imgX = newImg[newImg.length - 1].split(".")[1];
     // console.log(imgX)
     let errors = [];
-    if (name.length === 0) errors.push("Name field is required");
+    if (name.length === 0) errors.push("Name is required");
     if (address.length === 0) errors.push("Address is required");
     if (city.length === 0) errors.push("City is required");
     if (state.length === 0) errors.push("State is required");
     if (country.length === 0) errors.push("Country is required");
-    if (description.length === 0) errors.push("Description is required");
+    if (description.length === 0) errors.push("Describe your spot");
     if (price < 1) errors.push("Please enter a price. Do you not want to make money?");
-    if (image.length < 1) errors.push("Give me an image NOW");
+    if (image.length < 1) errors.push("Provide an image link!");
     if (!validImages.includes(imgX))
-      errors.push("Your image link must be in png, jpg, jpeg, svg, gif");
+      errors.push("Your image link must end in png, jpg, jpeg, svg, gif");
     setErrors(errors);
   }, [name, address, city, state, country, description, price, image]);
 
