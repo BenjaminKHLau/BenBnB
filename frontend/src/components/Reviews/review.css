@@ -110,7 +110,7 @@
     display: flex;
     border: 1px solid rgb(200, 200, 200);
     height: 400px;
-    width: 400px;
+    width: 420px;
     /* justify-content: flex-end; */
     flex-direction: column;
     background-color: rgb(253, 253, 253);
