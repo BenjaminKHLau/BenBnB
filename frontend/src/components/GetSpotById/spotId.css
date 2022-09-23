@@ -87,12 +87,75 @@
 }
 
 .RESERVEDSTUFF {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .RESERVEDSTUFFTOTAL {
-    margin-top: 20px;
+    margin-top: 12px;
     margin-bottom: 20px;
     font-weight: 600;
+}
+
+.benbnbword {
+    margin-top: 20px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    height: 40px;
+}
+
+.protections {
+    font-weight: 300;
+    margin-bottom: 50px;
+}
+
+.spot-random-info {
+    border-bottom: 1px solid lightgrey;
+}
+
+.cancellations {
+    display: flex;
+    margin-top: 20px;
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: 600;
+    /* margin-bottom: 20px; */
+    /* align-items: center; */
+    /* align-content: center; */
+}
+
+.calendar {
+    height: 23px;
+    margin-right: 15px;
+}
+
+.offers {
+    font-size: 18pt;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.offers-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.offer-stuff {
+    display: flex;
+    height: 30px;
+    width: 45%;
+    font-weight: 300;
+    margin-right: 15px;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.offer-image {
+    width: 30px;
+    margin-right: 15px;
+    /* padding-top: 5px; */
 }

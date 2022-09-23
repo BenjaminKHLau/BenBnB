@@ -12,6 +12,18 @@ import "./spotId.css";
 import yellowstar from "../AllSpots/yellowstar.png";
 import sorrykiwi from "../SPOTCARD/sorrykiwi.jpg"
 import sorrykiwi2 from "./sorrykiwi2.png"
+import benbnbword from './benbnbword.png'
+import guarantee from './guarantee.png'
+import calendaricon from './calendar-icon.png'
+import cooking from './cooking.png'
+import wifi from './wifi.png'
+import parking from './parking.png'
+import pool from './pool.png'
+import pets from './pets.png'
+import AC from './AC.png'
+import washer from './washer.png'
+import dryer from './dryer.png'
+import tv from './tv.png'
 
 function GetSpotByIdComponent() {
   const history = useHistory();
@@ -111,8 +123,36 @@ function GetSpotByIdComponent() {
       )}
       <div className="info-container">
         <div className="spot-host-description">
-          <div className="spot-host">Hosted By: {spot?.Owner?.firstName}</div>
-          <div className="spot-description">Description: {spot?.description}</div>
+          <div className="host-description">
+            <div className="spot-host">Hosted By: {spot?.Owner?.firstName}</div>
+            <div className="spot-description">Description: {spot?.description}</div>
+          </div>
+          <div className="cancellations"><img src={calendaricon} className="calendar"/> Free cancellation for 48 hours</div>
+
+          <div className="spot-random-info">
+            <div className="bnbtee">
+              <img src={benbnbword} className="benbnbword"/> 
+              <img src={guarantee} className="benbnbword"/> 
+            </div>
+            <div className="protections">Every booking is protected by BenBnB Guarantee. You will be protected from Host cancellation fees, inaccurate listings, and other issues like checking in!</div>
+          </div>
+
+          <div className="amenities">
+            <div className="offers">What this place offers</div>
+            <div className="offers-container">
+              <div className="offer-stuff"><img src={cooking} className="offer-image"/> Kitchen</div>
+              <div className="offer-stuff"><img src={wifi} className="offer-image"/> Wifi</div>
+              <div className="offer-stuff"><img src={parking} className="offer-image"/> Free Parking on Premises</div>
+              <div className="offer-stuff"><img src={pool} className="offer-image"/> Pool</div>
+              <div className="offer-stuff"><img src={pets} className="offer-image"/> Pets Allowed</div>
+              <div className="offer-stuff"><img src={tv} className="offer-image"/> Apple TV</div>
+              <div className="offer-stuff"><img src={AC} className="offer-image"/> Central Air Conditioning</div>
+              <div className="offer-stuff"><img src={AC} className="offer-image"/> Central Heating</div>
+              <div className="offer-stuff"><img src={washer} className="offer-image"/> Washer</div>
+              <div className="offer-stuff"><img src={dryer} className="offer-image"/> Dryer</div>
+            </div>
+          </div>
+
         </div>
         <div className="reserve-spot-price">
           <div className="reserve-bar">
