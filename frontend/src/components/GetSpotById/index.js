@@ -45,8 +45,23 @@ function GetSpotByIdComponent() {
 
     history.push("/");
   };
-
   let spot = theSpot;
+
+  let cleaningFee;
+  let serviceFee;
+  if ((spot?.price * .15) > 100) {
+    cleaningFee = (spot?.price * .15)
+  } else {
+    cleaningFee = 100;
+  }
+
+  if ((spot?.price * .085) > 75) {
+    serviceFee = (spot?.price * .085)
+  } else {
+    serviceFee = 75;
+  }
+
+  // console.log(cleaningFee)
   return (
     <div className="big-spot-container">
       <div className="name-edit-delete-container">
@@ -113,10 +128,10 @@ function GetSpotByIdComponent() {
           <div className="booking-options">Available Soon!</div>
           <div className="RESERVEDSTUFF">Check-in / Check-out Placeholder</div>
           <div className="RESERVEDSTUFF">Reserve Booking Placeholder</div>
-          <div className="RESERVEDSTUFF">Cleaning Fee: $100</div>
-          <div className="RESERVEDSTUFF">Service Fee: $50</div>
+          <div className="RESERVEDSTUFF">Cleaning Fee: ${cleaningFee.toFixed(2)}</div>
+          <div className="RESERVEDSTUFF">Service Fee: ${serviceFee.toFixed(2)}</div>
           <div className="RESERVEDSTUFF">Tax: 10%</div>
-          <div className="RESERVEDSTUFFTOTAL">Total: ${((spot?.price * 1.1)+ 50 + 100).toFixed(2)}</div>
+          <div className="RESERVEDSTUFFTOTAL">Total: ${((spot?.price * 1.1) + cleaningFee + serviceFee).toFixed(2)}</div>
 
         </div>  
       </div>
