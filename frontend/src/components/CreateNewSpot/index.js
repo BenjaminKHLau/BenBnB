@@ -198,7 +198,7 @@ function CreateSpotFormComponent() {
         <label className="form-stuff">
           <input
             className="form-input"
-            type="url"
+            type="text"
             name="image"
             placeholder="Image Url"
             value={image}
