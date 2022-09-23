@@ -53,7 +53,7 @@
 .login-buttons {
     display: flex;
     border: none;
-    background-color: red;
+    background-color: #d6005b;
     color: white;
     justify-content: center;
     /* margin-left: 15px; */

@@ -3,12 +3,12 @@
     justify-content: center;
     /* text-indent: 10px; */
     
-    border: 1px solid red;
+    /* border: 1px solid red; */
     border-radius: 10px;
     font-weight: 400;
     width: 80px;
     height: 20px;
-    background-color: red;
+    background-color: #d6005b;
     color: white;
     cursor: pointer;
 }
@@ -94,7 +94,7 @@
     display: flex;
     align-items: center;
     height: 25px;
-    background-color: orangered;
+    background-color: #d6005b;
     color: white;
     border-radius: 7px;
     cursor: pointer;
@@ -130,7 +130,7 @@
 }
 
 .edit-delete {
-    background-color: orangered;
+    background-color: #d6005b;
     /* height: 25px; */
     padding: 5px;
     border-radius: 13px;
