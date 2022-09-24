@@ -39,7 +39,7 @@
 .review-text {
     max-height: 70px;
     /* height: 70px; */
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .review-modal {

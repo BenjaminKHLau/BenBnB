@@ -35,7 +35,7 @@ function SpotCardComponent({spot}) {
         <div className="spotcard-price">
         {/* <div className="spot-price-text">${spot.price}</div> */}
         <div className="desc-space">Available Soon!</div>
-        <p>${spot?.price} night</p>
+        <div className="spotcard-money">${spot?.price} night</div>
         </div>
 
       </NavLink>

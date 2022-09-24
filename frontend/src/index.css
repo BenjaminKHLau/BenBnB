@@ -2,6 +2,7 @@
 body {
     /* font-family: Graphik Meetup,-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif; */
     font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    /* background-image: url('./simplebg.png'); */
 }
 
 .active {

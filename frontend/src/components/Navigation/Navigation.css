@@ -159,7 +159,7 @@
     /* border: 1px solid red; */
     height: 40px;
     max-width: 250px;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 .logout-button {
