@@ -73,6 +73,7 @@ return (
           </ul>
           
           <div className="form-css">
+          <div className="form-box">
 
           
           <label className="form-stuff">
@@ -96,6 +97,7 @@ return (
               onChange={(e) => setReview(e.target.value)}
               />
           </label>
+          </div>
 
         <div className="submit">
 

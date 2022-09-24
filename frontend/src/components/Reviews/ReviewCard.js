@@ -5,6 +5,8 @@ import { getSpotByIdThunk } from "../../store/spots";
 import ReviewFormModal from "./ReviewModal";
 import "./review.css"
 import yellowstar from "../AllSpots/yellowstar.png"
+import kiwiportrait from './kiwiportrait.png'
+
 function ReviewCard({ review }) {
   const dispatch = useDispatch();
   const { spotId } = useParams();
@@ -48,8 +50,15 @@ function ReviewCard({ review }) {
   // console.log("review card session", session);
   return (
     <div className="review">
-      <div className="review-location">Location: {review?.Spot?.name || spot?.spots[spotId]?.name}</div>
-      <div className="review-author">Review By: {review?.User?.firstName ||session?.user?.firstName}</div>
+      <div className="kiwibox">
+
+      <div className="kiwiport"><img src={kiwiportrait} className="kiwiport" /></div>
+      <div className="review-loc-rev">
+        <div className="review-location">Location: {review?.Spot?.name || spot?.spots[spotId]?.name}</div>
+        <div className="review-author">Review By: {review?.User?.firstName ||session?.user?.firstName}</div>
+      </div>
+      </div>
+
       <div className="review-date">{(Date(review?.createdAt)).toLocaleString().split(" ")[1]} {(Date(review?.createdAt)).toLocaleString().split(" ")[3]}</div>
       
       <div className="review-textbox">

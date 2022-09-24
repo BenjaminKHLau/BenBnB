@@ -20,13 +20,13 @@
     /* background-color: rgb(244, 244, 244); */
     border-radius: 13px;
     /* text-indent: 15px; */
-    margin: 5px;
+    /* margin: 5px; */
     margin-top: 5px;
     margin-bottom: 10px;
     /* height: 100px; */
-    padding: 10px;
+    /* padding: 10px; */
     font-weight: 200;
-    width: 45%;
+    width: 50%;
 }
 .review:hover {
     background-color: rgb(244, 244, 244);
@@ -172,4 +172,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.kiwiport {
+    width: 40px;
+    border-radius: 30px;
+    margin-right: 10px;
+
+}
+
+.kiwibox {
+    display: flex;
 }
