@@ -86,6 +86,8 @@ function EditSpotFormComponent({spotId}){
           </ul>
           
           <div className="form-css">
+            <div className="form-box">
+
 
           <label className="form-stuff">
             {/* Name */}
@@ -192,6 +194,7 @@ function EditSpotFormComponent({spotId}){
               onChange={(e) => setPrice(e.target.value)}
               />
           </label>
+            </div>
           
 
           <div className="submit">

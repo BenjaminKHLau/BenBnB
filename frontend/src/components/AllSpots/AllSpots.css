@@ -100,6 +100,7 @@ a {
     display: flex;
     justify-content: center;
     /* width: 500px; */
+    /* font-weight: 300; */
 }
 
 .form-input {
@@ -107,8 +108,9 @@ a {
     width: 400px;
     /* margin: 2px; */
     height: 45px;
-    border-radius: 6px;
-    border: 1px solid black;
+    /* border-radius: 6px; */
+    /* border: 1px solid black; */
+    border: 1px solid lightgrey;
     /* border-bottom: 1px solid black;
     border-top: 1px solid black; */
     /* padding-left: center; */
@@ -116,10 +118,13 @@ a {
     /* text-align: center; */
     text-indent: 25px;
     font-size: 15pt;
-    font-weight: 550;
-    background-color: rgb(255, 255, 255);
+    font-weight: 300;
+    /* background-color: rgb(255, 255, 255); */
+    background-color: transparent;
     transition-duration: 200ms;
-
+    /* z-index: 2; */
+    /* overflow: hidden; */
+    /* position: absolute; */
 
 }
 
@@ -127,6 +132,13 @@ a {
     transition-duration: 200ms;
     background-color: rgb(240, 240, 240);
 }
+
+.form-input:focus {
+    top: 6px;
+    font-size: 12pt;
+
+}
+
 
 .errors {
     display: flex;
@@ -151,6 +163,8 @@ a {
 .title {
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 15px;
 }
 
 .submit-button {
@@ -191,3 +205,11 @@ a {
     margin-top: 15px;
 }
 
+.form-box {
+    border: 1px solid lightgrey;
+    border-radius: 15px;
+    background-color: transparent;
+    /* z-index: 1; */
+    overflow: hidden;
+
+}

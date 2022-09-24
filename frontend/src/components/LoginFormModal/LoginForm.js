@@ -51,10 +51,11 @@ function LoginFormPage() {
         {isSubmitted && errors.map((error, idx) => <div className='errors' key={idx}>{error}</div>)}
       </ul>
       <div className='credentials'>
+      <div className='form-box'>
 
-      <label className='credentials2'>
+      <label className='form-stuff'>
         {/* Username or Email */}
-        <input className='credentials3'
+        <input className='form-input'
           type="text"
           placeholder="Username or Email"
           value={credential}
@@ -62,9 +63,9 @@ function LoginFormPage() {
           // required
           />
       </label>
-      <label className='credentials2'>
+      <label className='form-stuff'>
         {/* Password */}
-        <input className='credentials3'
+        <input className='form-input'
           type="password"
           placeholder="Password"
           value={password}
@@ -72,6 +73,7 @@ function LoginFormPage() {
           // required
           />
       </label>
+          </div>
           </div>
           <div className='buttons'>
       <button type="submit" className="login-buttons" disabled={isSubmitted && errors.length > 0}>Log In</button>
