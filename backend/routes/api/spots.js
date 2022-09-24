@@ -32,13 +32,15 @@ const validateSpot = [
     .exists({ checkFalsy: true })
     .withMessage("Country is required"),
   check("lat")
-    .exists({ checkFalsy: true })
-    .withMessage("Latitude is not valid"),
+    // .exists({ checkFalsy: true })
+    .isFloat({min: -90, max: 90})
+    .withMessage("Latitude must be between -90 and 90"),
   check("lng")
-    .exists({ checkFalsy: true })
-    .withMessage("Longitude is not valid"),
+    // .exists({ checkFalsy: true })
+    .isFloat({min: -180, max: 180})
+    .withMessage("Longitude must be between -180 and 180"),
   check("name")
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
     .isLength({ max: 50 })
     .withMessage("Name must be less than 50 characters"),
   check("description")

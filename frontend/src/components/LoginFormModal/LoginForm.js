@@ -65,7 +65,7 @@ function LoginFormPage() {
       </label>
       <label className='form-stuff'>
         {/* Password */}
-        <input className='form-input'
+        <input className='form-input2'
           type="password"
           placeholder="Password"
           value={password}

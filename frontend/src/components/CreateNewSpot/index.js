@@ -26,6 +26,9 @@ function CreateSpotFormComponent() {
     let newImg = image.split("/");
     let imgX = newImg[newImg.length - 1].split(".")[1];
     // console.log(imgX)
+    // let imgTest = image.split(".")
+    // let imgg = imgTest[imgTest.length - 1]
+    // console.log(imgg)
     let errors = [];
     if (name.length === 0) errors.push("Name is required");
     if (address.length === 0) errors.push("Address is required");
@@ -34,11 +37,14 @@ function CreateSpotFormComponent() {
     if (country.length === 0) errors.push("Country is required");
     if (description.length === 0) errors.push("Describe your spot");
     if (price < 1) errors.push("Enter a price. Do you not want to make money?");
+    if (lat.length < 1) errors.push("Enter latitude");
+    if (lng.length < 1) errors.push("Enter longitude");
     if (image.length < 1) errors.push("Provide an image link!");
     if (!validImages.includes(imgX))
       errors.push("Your image link must end in png, jpg, jpeg, svg, gif");
+    // if (!validImages.includes(imgg)) errors.push("Your image link must end in png, jpg, jpeg, svg, gif");
     setErrors(errors);
-  }, [name, address, city, state, country, description, price, image]);
+  }, [name, address, city, state, country, description, price, image]) ;
 
   // useEffect(() => {
   //     dispatch(createNewSpotThunk())
@@ -76,9 +82,9 @@ function CreateSpotFormComponent() {
   }
 
   const showErrors = errors.map((error) => (
-    <li className="error-message" key={error}>
+    <div className="error-message" key={error}>
       {error}
-    </li>
+    </div>
   ));
 
   return (
@@ -198,7 +204,7 @@ function CreateSpotFormComponent() {
 
         <label className="form-stuff">
           <input
-            className="form-input"
+            className="form-input2"
             type="text"
             name="image"
             placeholder="Image Url"

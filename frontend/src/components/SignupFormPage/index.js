@@ -114,7 +114,7 @@ function SignupFormPage() {
       </label>
       <label className="form-stuff">
         {/* Confirm Password */}
-        <input className="form-input"
+        <input className="form-input2"
           type="password"
           placeholder="Confirm Password"
           value={confirmPassword}

@@ -186,7 +186,7 @@ function EditSpotFormComponent({spotId}){
 
           <label className="form-stuff">
             {/* Price */}
-            <input className="form-input"
+            <input className="form-input2"
               type="number"
               name="price"
               placeholder="Price"

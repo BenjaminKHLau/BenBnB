@@ -11,27 +11,34 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const validateSignup = [
   check('firstName')
-    .exists({ checkFalsy: true })
-    .withMessage('First name cannot be empty.'),
+    .isAlpha()
+    .withMessage('First name cannot be empty and only contain letters'),
+    // .exists({ checkFalsy: true })
+    // .withMessage('First name cannot be empty.'),
   check('lastName')
-    .exists({ checkFalsy: true })
-    .withMessage('Last name cannot be empty.'),
+    .isAlpha()
+    .withMessage('Last name cannot be empty and only contain letters'),
+    // .exists({ checkFalsy: true })
+    // .withMessage('Last name cannot be empty.'),
   check('email')
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
     .isEmail()
     .withMessage('Please provide a valid email.'),
   check('username')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
+    // .exists({ checkFalsy: true })
+    .isAlphanumeric()
+    .withMessage('Username must be alphanumeric')
+    .isLength({ min: 3 })
+    .withMessage('Please provide a username with at least 3 characters.'),
   check('username')
     .not()
     .isEmail()
     .withMessage('Username cannot be an email.'),
   check('password')
-    .exists({ checkFalsy: true })
+    // .exists({ checkFalsy: true })
+    // .withMessage('Provide a password')
     .isLength({ min: 6 })
-    .withMessage('Password must be 6 characters or more.'),
+    .withMessage('Provide Password with 6 or more characters.'),
   handleValidationErrors
 ];
 
