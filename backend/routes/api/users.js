@@ -11,11 +11,15 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const validateSignup = [
   check('firstName')
+    .isLength({min: 2, max: 30})
+    .withMessage('Provide First name between 2 - 30 letters')
     .isAlpha()
     .withMessage('First name cannot be empty and only contain letters'),
     // .exists({ checkFalsy: true })
     // .withMessage('First name cannot be empty.'),
-  check('lastName')
+    check('lastName')
+    .isLength({min: 2, max: 30})
+    .withMessage('Provide Last name between 2 - 30 letters')
     .isAlpha()
     .withMessage('Last name cannot be empty and only contain letters'),
     // .exists({ checkFalsy: true })

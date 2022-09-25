@@ -23,8 +23,8 @@ function SignupFormPage() {
 
   useEffect(() => {
     let errors = []
-    if (firstName.length < 2 || firstName.length > 30) errors.push("Provide First name between 2-30 characters")
-    if (lastName.length < 2 || lastName.length > 30) errors.push("Provide Last name between 2-30 characters")
+    if (firstName.length < 2 || firstName.length > 30) errors.push("Provide First name between 2 - 30 letters")
+    if (lastName.length < 2 || lastName.length > 30) errors.push("Provide Last name between 2 - 30 letters")
     if (email.length < 3) errors.push("Provide email greater than 3 characters long")
     if (!email.includes("@") || !email.includes(".")) errors.push("Please enter a valid email")
     if (username.length < 3 || username.length > 30) errors.push("Enter a username between 3-30 characters")

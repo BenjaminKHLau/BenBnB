@@ -136,9 +136,25 @@
     z-index: 1;
 
 }
+.your-username,
+.your-email {
+
+    font-weight: 300;
+    text-indent: 15px;
+    display: flex;
+    align-items: center;
+    /* align-content: center; */
+    white-space: nowrap;
+    /* justify-content: center; */
+    /* border: 1px solid red; */
+    height: 40px;
+    max-width: 250px;
+    overflow: hidden;
+}
 
 .your-reviews-link,
-.your-spots-link {
+.your-spots-link,
+.logout-button  {
     /* position: absolute; */
     /* left: 30px; */
     /* text-align: left; */
@@ -150,18 +166,6 @@
     font-weight: 450;
 }
 
-.your-username,
-.your-email,
-.logout-button {
-    font-weight: 300;
-    text-indent: 15px;
-    display: flex;
-    align-items: center;
-    /* border: 1px solid red; */
-    height: 40px;
-    max-width: 250px;
-    overflow: hidden;
-}
 
 .logout-button {
     font-weight: 600;
