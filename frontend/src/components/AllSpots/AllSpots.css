@@ -8,14 +8,14 @@ a {
     text-decoration: none;
 }
 
-.middle-container {
-    display: flex;
-    justify-content: space-evenly;
+/* .middle-container { */
+    /* display: flex; */
+    /* justify-content: space-evenly; */
     /* border: 2px solid red; */
-    flex-wrap: wrap;
-    margin: 3%;
-    gap: 1%;
-}
+    /* flex-wrap: wrap; */
+    /* margin: 3%; */
+    /* gap: 1%; */
+/* } */
 
 .inner-container {
     display: inline-flex;
