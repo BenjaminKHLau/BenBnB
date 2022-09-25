@@ -63,7 +63,10 @@
     padding-bottom: 12px;
     /* margin-bottom: 30px; */
     border-bottom: 1px solid lightgrey;
-    
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
 }
 
 .welcome {

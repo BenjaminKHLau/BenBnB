@@ -29,7 +29,7 @@ function GetAllSpots(){
                     //take from here
                 ))}
                 </div>
-                <embed src={payphone} loop={true} autostart="true" width="2" height="0" />
+                {/* <embed src={payphone} loop={true} autostart="true" width="2" height="0" /> */}
         </div>
     )
 }
