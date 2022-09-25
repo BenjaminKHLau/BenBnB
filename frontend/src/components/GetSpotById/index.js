@@ -111,8 +111,9 @@ function GetSpotByIdComponent() {
         <img
           className="previewImage"
           src={
-            spot?.Images[0]?.url ||
-            sorrykiwi
+            spot?.Images[0]?.url
+            //  ||
+            // sorrykiwi
           }
           alt="if your image link doesn't work, please wait for default to load"
           onError={e => {
