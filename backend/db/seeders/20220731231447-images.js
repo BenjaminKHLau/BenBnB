@@ -55,7 +55,7 @@ const images = [
     spotId: 8,
     reviewId: 8,
     previewImage: true,
-    url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-49477035/original/2979ec87-04b0-461c-96e3-e6ea9928fc2d.jpeg",
+    url: "https://a0.muscache.com/im/pictures/miso/Hosting-588281970571626708/original/c98636ec-fe04-4e4b-ba53-adb9ee1fc020.jpeg?im_w=1200",
   },
   {
     userId: 4,
