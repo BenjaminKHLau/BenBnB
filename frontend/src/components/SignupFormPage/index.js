@@ -44,7 +44,7 @@ function SignupFormPage() {
       return dispatch(sessionActions.signup({ firstName, lastName, email, username, password }))
         .catch(async (res) => {
           const data = await res.json();
-          console.log("handle submit errors", data)
+          // console.log("handle submit errors", data)
           // if (data.message === 'User already exists') setErrors([data.message])
           // if (data.errors.includes('Password must be 6 characters or more.')) setErrors([data.errors])
           if (data && data.errors) setErrors(data.errors);
