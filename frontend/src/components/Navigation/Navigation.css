@@ -15,7 +15,7 @@
 }
 .BenBnB-pic:hover {
     transition-duration: 1000ms;
-    transform: rotate(1turn);
+    /* transform: rotate(1turn); */
 }
 .benbnb-logo {
     /* display: inline-flex; */
