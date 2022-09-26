@@ -45,7 +45,7 @@ const reviews = [
     stars: 1
   },
   {
-    userId: 1,
+    userId: 2,
     spotId: 8,
     review: 'Pigeons pooped on my head',
     stars: 3

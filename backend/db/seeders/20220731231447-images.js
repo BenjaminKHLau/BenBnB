@@ -51,7 +51,7 @@ const images = [
     url: "https://a0.muscache.com/im/pictures/prohost-api/Hosting-49477035/original/ecd0424b-274e-4ae0-966f-60706c54bc44.jpeg",
   },
   {
-    userId: 3,
+    userId: 2,
     spotId: 8,
     reviewId: 8,
     previewImage: true,
