@@ -11,6 +11,11 @@
 } */
 .BenBnB-pic {
     height: 47px;
+    transition-duration: 1000ms;
+}
+.BenBnB-pic:hover {
+    transition-duration: 1000ms;
+    transform: rotate(1turn);
 }
 .benbnb-logo {
     /* display: inline-flex; */
@@ -63,10 +68,10 @@
     padding-bottom: 12px;
     /* margin-bottom: 30px; */
     border-bottom: 1px solid lightgrey;
-    position: sticky;
-    top: 0;
-    background-color: white;
-    z-index: 1;
+    /* position: sticky; */
+    /* top: 0; */
+    /* background-color: white; */
+    /* z-index: 1; */
 }
 
 .welcome {
