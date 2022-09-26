@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { addImageThunk, createNewSpotThunk } from "../../store/spots";
+import { addImageThunk, createNewSpotThunk, getSpotByIdThunk } from "../../store/spots";
+import { getSpotReviewsThunk } from "../../store/reviews"
+
 
 function CreateSpotFormComponent() {
   const dispatch = useDispatch();
@@ -80,6 +82,8 @@ function CreateSpotFormComponent() {
       })
     );
     dispatch(addImageThunk({ previewImage: true, url: image }, newSpot.id));
+    dispatch(getSpotByIdThunk(newSpot.id))
+    dispatch(getSpotReviewsThunk(newSpot.id))
     history.push(`/spots/${newSpot.id}`);
   }
 
