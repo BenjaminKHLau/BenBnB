@@ -47,3 +47,27 @@ Live Link: https://benbnb.herokuapp.com/
 ## Upcoming Features
 * Bookings
 * Add Extra Images to Spots and Reviews
+
+## How to set up to run on your machine locally
+* Clone/download the repo
+
+* Open two terminals, in one <code>cd</code> into the backend and the other <code>cd</code> into the frontend
+
+* In the backend run <code>npm install</code> and run <code>npm start</code>
+
+* In the frontend run <code>npm install</code> and run <code>npm start</code>
+
+### Environment
+  ```
+  PORT=8000
+  DB_FILE=db/dev.db
+  JWT_SECRET=«generate_strong_secret_here»
+  JWT_EXPIRES_IN=604800
+  ```
+
+### Database Setup
+Run these commands in the Backend folder to seed data locally.
+  ```
+   npx dotenv sequelize db:migrate
+   npx dotenv sequelize db:seed:all
+  ```
