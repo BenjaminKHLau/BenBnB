@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
   }
   
   #modal-background {
@@ -17,6 +18,7 @@
     left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
   }
   
   #modal-content {
@@ -24,4 +26,5 @@
     background-color:white;
     border-radius: 30px;
     box-shadow: 0px 2px 5px 2px black;
+    z-index: 2;
   }
