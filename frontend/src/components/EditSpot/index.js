@@ -101,6 +101,7 @@ function EditSpotFormComponent({spotId}){
               value={name}
               placeholder="Name"
               onChange={(e) => setName(e.target.value)}
+              required
               />
           </label>
 
