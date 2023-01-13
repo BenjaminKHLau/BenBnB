@@ -1,5 +1,10 @@
 "use strict";
 
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
+
 const images = [
   {
     userId: 1,
@@ -82,6 +87,7 @@ const images = [
 
 module.exports = {
   async up(queryInterface, Sequelize) {
+    options.tableName = 'Images';
     /**
      * Add seed commands here.
      *
@@ -91,16 +97,17 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert("Images", images);
+    await queryInterface.bulkInsert(options, images);
   },
 
   async down(queryInterface, Sequelize) {
+    options.tableName = 'Images';
     /**
      * Add commands to revert seed here.
      *
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete("Images", images);
+    await queryInterface.bulkDelete(options, images);
   },
 };

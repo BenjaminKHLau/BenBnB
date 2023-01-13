@@ -1,5 +1,8 @@
 "use strict";
-
+let options = {};
+if (process.env.NODE_ENV === 'production') {
+  options.schema = process.env.SCHEMA;  // define your schema in options object
+}
 // const { Spot } = require("../models");
 
 const spots = [
@@ -142,6 +145,7 @@ const spots = [
 
 module.exports = {
   async up(queryInterface, Sequelize) {
+    options.tableName = 'Spots';
     /**
      * Add seed commands here.
      *
@@ -151,15 +155,16 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    await queryInterface.bulkInsert('Spots', spots);
+    await queryInterface.bulkInsert(options, spots);
   },
 
   async down(queryInterface, Sequelize) {
+    options.tableName = 'Spots';
     /**
      * Add commands to revert seed here.
      *
      * Example:
      */
-    await queryInterface.bulkDelete('Spots', spots, {});
+    await queryInterface.bulkDelete(options, spots, {});
   },
 };
