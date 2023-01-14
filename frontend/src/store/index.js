@@ -6,14 +6,15 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import spotsReducer from './spots';
 import reviewsReducer from './reviews';
-
+import bookingsReducer from './bookings';
 
 // State Stuff Here for Use Selector
 const rootReducer = combineReducers({ 
   //bananable
   session: sessionReducer,
   spots: spotsReducer,
-  reviews: reviewsReducer
+  reviews: reviewsReducer,
+  bookings: bookingsReducer
 });
 
 let enhancer;
