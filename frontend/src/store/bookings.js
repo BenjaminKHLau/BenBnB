@@ -43,7 +43,7 @@ export const createNewBookingThunk = (booking, spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
         method: "POST",
         headers: {
-            "Content-Type:": "application/json"
+            "Content-Type": "application/json"
         },
         body: JSON.stringify(booking)
     })
@@ -56,7 +56,7 @@ export const createNewBookingThunk = (booking, spotId) => async dispatch => {
 }
 
 export const getAllBookingsThunk = (bookings) => async dispatch => {
-    const response = await csrfFetch(`/api/bookings`)
+    const response = await csrfFetch(`/api/spots/${bookings}/bookings`)
     if (response.ok){
         const data = await response.json()
         dispatch(getAllBookings(data))
@@ -72,7 +72,8 @@ const bookingsReducer = (state = initialState, action) => {
     let newState = {};
     switch(action.type){
         case GET_ALL_BOOKINGS: {
-            action.payload.forEach(booking => {
+            // console.log("get all bookings reducer action payload ", action.payload)
+            action.payload.Bookings.forEach(booking => {
                 newState[booking.id] = booking
             })
             return newState

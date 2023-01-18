@@ -4,6 +4,7 @@ import { Redirect, useParams, useHistory } from "react-router-dom";
 import { getSpotReviewsThunk } from "../../store/reviews";
 // import { getAllSpotsThunk } from "../../store/spots";
 import { getSpotByIdThunk, deleteSpotThunk } from "../../store/spots";
+import CreateBookingModal from "../Bookings/CreateBookingModal";
 import EditSpotFormComponent from "../EditSpot";
 import EditFormModal from "../EditSpot/ModalEditSpot";
 import GetAllReviewsComponent from "../Reviews";
@@ -166,7 +167,8 @@ function GetSpotByIdComponent() {
           <div className="num-reviews">{spot?.numReviews} reviews</div>
           </div>
           </div>
-          <div className="booking-options">Available Soon!</div>
+          {/* <div className="booking-options">Available Soon!</div> */}
+          <CreateBookingModal />
           <div className="RESERVEDSTUFF">Check-in / Check-out Placeholder</div>
           <div className="RESERVEDSTUFF">Reserve Booking Placeholder</div>
           <div className="RESERVEDSTUFF">Cleaning Fee: ${cleaningFee.toFixed(2)}</div>

@@ -112,4 +112,9 @@ app.use((err, _req, res, _next) => {
 });
 
 
+// AWS
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+
 module.exports = app;
