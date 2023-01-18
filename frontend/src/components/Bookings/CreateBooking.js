@@ -34,7 +34,7 @@ function CreateBookingFormComponent(){
 
     useEffect(() => {
         setIsLoaded(true)
-        dispatch(getAllBookingsThunk(spotId))
+        // dispatch(getAllBookingsThunk(spotId))
         let errors = []
 
         if (today > startDate) errors.push("You cannot book something in the past")
@@ -84,7 +84,7 @@ function CreateBookingFormComponent(){
                 // required pattern="\d{4}-\d{2}-\d{2}"
                 name="startDate"
                 value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                onChange={(e) => setStartDate(e.target.value.slice(0, 10))}
              />
         </label>
 
@@ -96,7 +96,7 @@ function CreateBookingFormComponent(){
                 // required pattern="\d{4}-\d{2}-\d{2}"
                 name="endDate"
                 value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
+                onChange={(e) => setEndDate(e.target.value.slice(0, 10))}
              />
         </label>
         <div className="submit">

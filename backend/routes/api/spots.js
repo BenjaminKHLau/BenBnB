@@ -143,7 +143,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     res.json(allBookings);
   } else {
     const noobBookings = await Booking.findAll({
-      attributes: ["spotId", "startDate", "endDate"],
+      attributes: ["spotId", "startDate", "endDate", "userId"],
 
       where: {
         spotId: spotId,
@@ -225,12 +225,14 @@ router.post(
       err.errors = ["You cannot create a booking for your own spot"];
       return next(err);
     }
+    // console.log( " ~~~~~~~~~~~~~~~~~~ /n/n/n/n/n/n", startDate)
     const newBooking = await Booking.create({
       spotId,
-      startDate,
-      endDate,
+      startDate: startDate.slice(0,10),
+      endDate: endDate.slice(0,10),
       userId: req.user.id,
     });
+
     //if spot ownerId !== req.user.id THEN create a booking
     res.json(newBooking);
     // let createdAt = newBooking.createdAt.toISOString();

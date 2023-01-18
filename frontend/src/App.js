@@ -17,6 +17,7 @@ import GetUserReviewsComponent from "./components/Reviews/GetUserReviews";
 import Footer from "./components/Navigation/Footer";
 //BOOKINGS
 import CreateBookingFormComponent from "./components/Bookings/CreateBooking";
+import GetUserBookingsComponent from "./components/Bookings/UserBookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,10 @@ function App() {
           </Route>
           <Route exact path="/reviews/current">
             <GetUserReviewsComponent />
+          </Route>
+          <Route exact path="/bookings/current">
+            <h1>Building in progress</h1>
+            <GetUserBookingsComponent />
           </Route>
           {/* <Route path="/login">
             <LoginFormPage />

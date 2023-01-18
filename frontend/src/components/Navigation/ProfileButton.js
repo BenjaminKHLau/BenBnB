@@ -70,6 +70,12 @@ function ProfileButton({ user }) {
             </div>
             </Link>
 
+            <Link to="/bookings/current">
+            <div className="your-reviews-link">
+              Your Bookings
+            </div>
+            </Link>
+
             {/* <div className="logout-button"><div onClick={logout}>Log Out</div></div> */}
             <div className="logout-button" onClick={logout}>Log Out</div>
           </div>
