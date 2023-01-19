@@ -40,7 +40,7 @@ function App() {
           </Route>
           <Route exact path="/spots/:spotId">
             <GetSpotByIdComponent />
-            <CreateBookingFormComponent />
+            {/* <CreateBookingFormComponent /> */}
             {/* <CreateReviewFormComponent /> */}
           </Route>
           <Route exact path="/reviews/current">

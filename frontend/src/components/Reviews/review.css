@@ -109,7 +109,7 @@
 .reserve-spot-price {
     display: flex;
     border: 1px solid rgb(200, 200, 200);
-    height: 400px;
+    min-height: 550px;
     width: 420px;
     /* justify-content: flex-end; */
     flex-direction: column;

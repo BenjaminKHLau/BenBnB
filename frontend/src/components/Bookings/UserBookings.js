@@ -23,14 +23,14 @@ function GetUserBookingsComponent() {
     // console.log(past)
 
 
-	// console.log("component userbookings: ", userBookingsObj)
+	console.log("component userbookings: ", userBookingsObj)
 	// console.log("component userbookings arr: ", bookingsArr);
 
 	useEffect(() => {
 		dispatch(getUserBookingsThunk())
 			.then(() => dispatch(getAllSpotsThunk()))
 			.then(() => setIsLoaded(true));
-	}, []);
+	}, [dispatch]);
 
 
 	return (
@@ -38,8 +38,8 @@ function GetUserBookingsComponent() {
 			<div className="bookings-master">
 				{/* TEST */}
 				{bookingsArr.map((booking) => (
-					<Link to={`/spots/${booking.spotId}`}>
-						<div className="bookings-container">
+                    <div className="bookings-outer-map">
+                            <Link to={`/spots/${booking.spotId}`} className="bookings-container">
 							<img
 								src={spotsObj[booking.spotId].previewImage}
 								alt="lol"
@@ -58,12 +58,12 @@ function GetUserBookingsComponent() {
 							<div className="booking-stuff2">
 								Booked: {booking.createdAt.slice(0, 10)}
 							</div>
+                            </Link>
                             {today < new Date(booking.startDate) && (<button className="edit-delete"
                             onClick={() => dispatch(deleteUserBookingThunk(booking.id))}>
                                 Delete
                 </button>)}
 						</div>
-					</Link>
 				))}
 			</div>
 		)

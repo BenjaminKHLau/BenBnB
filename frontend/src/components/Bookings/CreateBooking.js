@@ -22,7 +22,7 @@ function CreateBookingFormComponent(){
 
     const today = new Date().toISOString().slice(0,10)
     // console.log(today)
-    console.log("bookings state ",bookingsState)
+    // console.log("bookings state ",bookingsState)
     // .split(0, 10)
     
     
@@ -61,6 +61,9 @@ function CreateBookingFormComponent(){
         // console.log("handling submit", JSON.stringify(newBooking))
         // console.log("handling submit", newBooking)
         // return newBooking
+        if (newBooking){
+          history.push(`/bookings/current`)
+        }
 
     }
 

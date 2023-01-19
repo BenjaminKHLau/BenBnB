@@ -84,7 +84,7 @@ export const getUserBookingsThunk = () => async dispatch => {
 }
 
 export const deleteUserBookingThunk = (bookingId) => async dispatch => {
-    console.log("DELETE BOOKING THUNK BOOKING ID:", bookingId)
+    // console.log("DELETE BOOKING THUNK BOOKING ID:", bookingId)
     const response = await csrfFetch(`/api/bookings/${bookingId}`, {
         method: "DELETE"
     })
@@ -101,9 +101,8 @@ const bookingsReducer = (state = initialState, action) => {
     let newState = {};
     switch(action.type){
         case GET_ALL_BOOKINGS: {
-            // console.log("get all bookings reducer action payload ", action.payload)
+            newState = { ...state }
             action.payload.Bookings.forEach(booking => {
-                console.log("booking reducer payload foreach:", booking)
                 newState[booking.id] = booking
             })
             return newState
@@ -115,10 +114,10 @@ const bookingsReducer = (state = initialState, action) => {
         }
         case GET_USER_BOOKINGS: {
             newState = { ...state }
-            // console.log("get user bookings action ",action.payload)
             action.payload.forEach(booking => {
                 newState[booking.id] = booking
             })
+            console.log("STATE IN GET USER BOOKINGS: ", newState)
             return newState
         }
         case DELETE_BOOKING: {

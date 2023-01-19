@@ -25,6 +25,9 @@ import AC from './AC.png'
 import washer from './washer.png'
 import dryer from './dryer.png'
 import tv from './tv.png'
+import CreateBookingFormComponent from "../Bookings/CreateBooking";
+import SpotBookings from "../Bookings/SpotBookings";
+import { getAllBookingsThunk } from "../../store/bookings";
 
 function GetSpotByIdComponent() {
   const history = useHistory();
@@ -50,6 +53,7 @@ function GetSpotByIdComponent() {
   useEffect(() => {
     dispatch(getSpotByIdThunk(spotId));
     dispatch(getSpotReviewsThunk(spotId));
+    dispatch(getAllBookingsThunk(spotId));
   }, [dispatch]);
 
   const deleteButton = async (e) => {
@@ -168,9 +172,10 @@ function GetSpotByIdComponent() {
           </div>
           </div>
           {/* <div className="booking-options">Available Soon!</div> */}
-          <CreateBookingModal />
-          <div className="RESERVEDSTUFF">Check-in / Check-out Placeholder</div>
-          <div className="RESERVEDSTUFF">Reserve Booking Placeholder</div>
+          {/* <CreateBookingModal /> */}
+          <CreateBookingFormComponent />
+          {/* <div className="RESERVEDSTUFF">Check-in / Check-out Placeholder</div> */}
+          {/* <div className="RESERVEDSTUFF">Reserve Booking Placeholder</div> */}
           <div className="RESERVEDSTUFF">Cleaning Fee: ${cleaningFee.toFixed(2)}</div>
           <div className="RESERVEDSTUFF">Service Fee: ${serviceFee.toFixed(2)}</div>
           <div className="RESERVEDSTUFF">Tax: 10%</div>
@@ -187,6 +192,10 @@ function GetSpotByIdComponent() {
         <GetAllReviewsComponent reviews={reviews} />
       </div>
           <div className="location">Where you'll be: {spot?.address}</div>
+          <div className="SpotBookings">
+            
+            <SpotBookings spotId={spotId}/>
+          </div>
     </div>
   );
 }
