@@ -5,6 +5,7 @@ const CREATE_NEW_BOOKING = "bookings/CREATE"
 const GET_ALL_BOOKINGS = "bookings/READ"
 const UPDATE_BOOKING = "bookings/UPDATE"
 const DELETE_BOOKING = "bookings/DELETE"
+const GET_USER_BOOKINGS = "bookings/USER"
 
 // Action Creator
 const createNewBooking = payload => {
@@ -31,6 +32,13 @@ const updateBooking = payload => {
 const deleteBooking = payload => {
     return {
         type: DELETE_BOOKING,
+        payload
+    }
+}
+
+const userBookings = payload => {
+    return {
+        type: GET_USER_BOOKINGS,
         payload
     }
 }
@@ -65,6 +73,27 @@ export const getAllBookingsThunk = (bookings) => async dispatch => {
     return response
 }
 
+export const getUserBookingsThunk = () => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/current`)
+    if (response.ok){
+        const data = await response.json()
+        dispatch(userBookings(data))
+        return data
+    }
+    return response
+}
+
+export const deleteUserBookingThunk = (bookingId) => async dispatch => {
+    console.log("DELETE BOOKING THUNK BOOKING ID:", bookingId)
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: "DELETE"
+    })
+    if(response.ok){
+        dispatch(deleteBooking(bookingId))
+    }
+    return response
+}
+
 // REDUCER
 const initialState = {};
 
@@ -72,7 +101,7 @@ const bookingsReducer = (state = initialState, action) => {
     let newState = {};
     switch(action.type){
         case GET_ALL_BOOKINGS: {
-            console.log("get all bookings reducer action payload ", action.payload)
+            // console.log("get all bookings reducer action payload ", action.payload)
             action.payload.Bookings.forEach(booking => {
                 console.log("booking reducer payload foreach:", booking)
                 newState[booking.id] = booking
@@ -82,6 +111,20 @@ const bookingsReducer = (state = initialState, action) => {
         case CREATE_NEW_BOOKING: {
             newState = { ...state }
             newState[action.payload.id] = action.payload
+            return newState
+        }
+        case GET_USER_BOOKINGS: {
+            newState = { ...state }
+            // console.log("get user bookings action ",action.payload)
+            action.payload.forEach(booking => {
+                newState[booking.id] = booking
+            })
+            return newState
+        }
+        case DELETE_BOOKING: {
+            newState = { ...state }
+            console.log("DELETE BOOKING ACTION PAYLOAD", action.payload)
+            delete newState[action.payload]
             return newState
         }
         default: return state;
