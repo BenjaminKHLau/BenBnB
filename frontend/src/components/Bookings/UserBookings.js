@@ -30,7 +30,7 @@ function GetUserBookingsComponent() {
 		dispatch(getUserBookingsThunk())
 			.then(() => dispatch(getAllSpotsThunk()))
 			.then(() => setIsLoaded(true));
-	}, [dispatch]);
+	}, []);
 
 
 	return (

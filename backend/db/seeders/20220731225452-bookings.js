@@ -12,34 +12,34 @@ const bookings = [
     startDate: new Date("2023-01-01"),
     endDate: new Date("2023-01-07"),
   },
-  {
-    id: 2,
-    userId: 2,
-    spotId: 2,
-    startDate: new Date("2022-10-04"),
-    endDate: new Date("2022-10-06"),
-  },
-  {
-    id: 3,
-    userId: 3,
-    spotId: 3,
-    startDate: new Date("2022-09-11"),
-    endDate: new Date("2022-09-15"),
-  },
-  {
-    id: 4,
-    userId: 4,
-    spotId: 4,
-    startDate: new Date("2022-03-14"),
-    endDate: new Date("2022-03-20"),
-  },
-  {
-    id: 5,
-    userId: 5,
-    spotId: 5,
-    startDate: new Date("2022-04-20"),
-    endDate: new Date("2022-04-22"),
-  },
+  // {
+  //   id: 2,
+  //   userId: 2,
+  //   spotId: 2,
+  //   startDate: new Date("2022-10-04"),
+  //   endDate: new Date("2022-10-06"),
+  // },
+  // {
+  //   id: 3,
+  //   userId: 3,
+  //   spotId: 3,
+  //   startDate: new Date("2022-09-11"),
+  //   endDate: new Date("2022-09-15"),
+  // },
+  // {
+  //   id: 4,
+  //   userId: 4,
+  //   spotId: 4,
+  //   startDate: new Date("2022-03-14"),
+  //   endDate: new Date("2022-03-20"),
+  // },
+  // {
+  //   id: 5,
+  //   userId: 5,
+  //   spotId: 5,
+  //   startDate: new Date("2022-04-20"),
+  //   endDate: new Date("2022-04-22"),
+  // },
 ];
 
 module.exports = {
