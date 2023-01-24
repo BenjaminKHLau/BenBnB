@@ -37,6 +37,9 @@ function GetUserBookingsComponent() {
 		isLoaded && (
 			<div className="bookings-master">
 				{/* TEST */}
+				<div className="get-all-reviews">Your Bookings</div>
+				<div className="middle-container">
+
 				{bookingsArr.map((booking) => (
                     <div className="bookings-outer-map">
                             <Link to={`/spots/${booking.spotId}`} className="bookings-container">
@@ -65,6 +68,7 @@ function GetUserBookingsComponent() {
                 </button>)}
 						</div>
 				))}
+				</div>
 			</div>
 		)
 	);

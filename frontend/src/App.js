@@ -47,7 +47,7 @@ function App() {
             <GetUserReviewsComponent />
           </Route>
           <Route exact path="/bookings/current">
-            <h1>Building in progress</h1>
+            {/* <h1>Building in progress</h1> */}
             <GetUserBookingsComponent />
           </Route>
           {/* <Route path="/login">

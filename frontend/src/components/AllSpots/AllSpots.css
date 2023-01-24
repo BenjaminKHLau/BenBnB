@@ -198,14 +198,40 @@ a {
     font-weight: 650;
     cursor: pointer;
 }
-/* .submit-button:hover {
-    background-color: red;
-} */
 
 .noob {
     border: none;
     height: 30px;
     width: 380px;
+    border-radius: 13px;
+    background-color: pink;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* left: 50%; */
+    font-weight: 650;
+}
+
+.submit-button2 {
+    border: none;
+    height: 30px;
+    width: 350px;
+    border-radius: 13px;
+    background-color: #d6005b;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* left: 50%; */
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.noob2 {
+    border: none;
+    height: 30px;
+    width: 350x;
     border-radius: 13px;
     background-color: pink;
     color: white;

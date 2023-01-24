@@ -174,6 +174,7 @@ function GetSpotByIdComponent() {
           {/* <div className="booking-options">Available Soon!</div> */}
           {/* <CreateBookingModal /> */}
           <CreateBookingFormComponent />
+        {<SpotBookings spotId={spotId}/>}
           {/* <div className="RESERVEDSTUFF">Check-in / Check-out Placeholder</div> */}
           {/* <div className="RESERVEDSTUFF">Reserve Booking Placeholder</div> */}
           <div className="RESERVEDSTUFF">Cleaning Fee: ${cleaningFee.toFixed(2)}</div>
@@ -194,7 +195,6 @@ function GetSpotByIdComponent() {
           <div className="location">Where you'll be: {spot?.address}</div>
           <div className="SpotBookings">
             
-            <SpotBookings spotId={spotId}/>
           </div>
     </div>
   );

@@ -10,7 +10,8 @@ function SpotBookings({spotId}){
     const bookings = useSelector(state => state.bookings)
     const bookingsArr = Object.values(bookings)
     // console.log("SpotBookings component: ",bookingsArr)
-    const filtered = bookingsArr.filter(booking => booking.spotId === +spotId)
+    let filtered = bookingsArr.filter(booking => booking.spotId === +spotId)
+    if(filtered.length > 10) filtered = filtered.slice(0, 10)
     console.log("filtered bookings",filtered)
 
 

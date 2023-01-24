@@ -66,14 +66,14 @@ const validateReview = [
 const validateBooking = [
   check("startDate")
     .exists({ checkFalsy: true })
-    .isDate()
+    // .isDate()
     .notEmpty()
     .withMessage(
       "startDate cannot be empty. Cannot be greater than endDate. Format is YYYY-MM-DD"
     ),
   check("endDate")
     .exists({ checkFalsy: true })
-    .isDate()
+    // .isDate()
     .notEmpty()
     .withMessage("endDate cannot be empty. Format is YYYY-MM-DD"),
   handleValidationErrors,
