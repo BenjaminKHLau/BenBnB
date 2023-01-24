@@ -29,8 +29,13 @@ app.use(morgan('dev'));
 // Add the cookie-parser middleware for parsing cookies and the 
 // express.json middleware for parsing JSON bodies of 
 // requests with Content-Type of "application/json".
+
+
+// AWS
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 app.use(cookieParser());
-app.use(express.json()); 
+// app.use(express.json()); 
 
 // Security Middleware
 if (!isProduction) {
@@ -112,9 +117,6 @@ app.use((err, _req, res, _next) => {
 });
 
 
-// AWS
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 
 module.exports = app;

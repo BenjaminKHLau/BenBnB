@@ -25,13 +25,17 @@ function CreateSpotFormComponent() {
   const validImages = ["png", "jpg", "jpeg", "svg", "heic", "gif"];
 
   useEffect(() => {
-    let newImg = image.split("/");
-    let imgX = newImg[newImg.length - 1].split(".")[1];
+    // let newImg = image.split("/");
+    // let imgX = newImg[newImg.length - 1].split(".")[1];
     // console.log(imgX)
     // let imgTest = image.split(".")
     // let imgg = imgTest[imgTest.length - 1]
     // console.log(imgg)
+    
     let errors = [];
+    if (image && image.size > 5 * 1024 * 1024) {
+      errors.push("Image must be less than 5MB");
+    }
     if (name.length === 0) errors.push("Name is required");
     if (address.length === 0) errors.push("Address is required");
     if (city.length === 0) errors.push("City is required");
@@ -43,9 +47,9 @@ function CreateSpotFormComponent() {
     if (lat < -90 || lat > 90) errors.push("Enter latitude between -90 and 90");
     if (lng.length < 1) errors.push("Enter longitude between -180 and 180");
     if (lng < -180 || lng > 180) errors.push("Enter longitude between -180 and 180");
-    if (image.length < 1) errors.push("Provide an image link!");
-    if (!validImages.includes(imgX))
-      errors.push("Your image link must end in png, jpg, jpeg, svg, gif");
+    // if (image.length < 1) errors.push("Provide an image link!");
+    // if (!validImages.includes(imgX))
+      // errors.push("Your image link must end in png, jpg, jpeg, svg, gif");
     // if (!validImages.includes(imgg)) errors.push("Your image link must end in png, jpg, jpeg, svg, gif");
     setErrors(errors);
   }, [name, address, city, state, country, description, price, lat, lng, image]) ;
@@ -81,6 +85,7 @@ function CreateSpotFormComponent() {
         price,
       })
     );
+    console.log("add image submit", image)
     dispatch(addImageThunk({ previewImage: true, url: image }, newSpot.id));
     dispatch(getSpotByIdThunk(newSpot.id))
     dispatch(getSpotReviewsThunk(newSpot.id))
@@ -92,6 +97,11 @@ function CreateSpotFormComponent() {
       {error}
     </div>
   ));
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
+  };
 
   return (
     <form className="spot-form" onSubmit={subby}>
@@ -208,7 +218,7 @@ function CreateSpotFormComponent() {
           />
         </label>
 
-        <label className="form-stuff">
+        {/* <label className="form-stuff">
           <input
             className="form-input2"
             type="text"
@@ -216,6 +226,17 @@ function CreateSpotFormComponent() {
             placeholder="Image Url"
             value={image}
             onChange={(e) => setImage(e.target.value)}
+          />
+        </label> */}
+        <label className="form-stuff">
+          Image
+          <input
+            className="form-input2"
+            type="file"
+            name="image"
+            placeholder="Image"
+            // value={image}
+            onChange={updateFile}
           />
         </label>
         </div> 

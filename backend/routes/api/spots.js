@@ -18,6 +18,9 @@ const { Op } = require("sequelize");
 const image = require("../../db/models/image");
 const router = express.Router();
 
+// AWS 
+const { singleMulterUpload, singlePublicFileUpload } = require("../../awsS3.js")
+
 const validateSpot = [
   check("address")
     .exists({ checkFalsy: true })
@@ -254,6 +257,7 @@ router.post(
 //POST IMAGE TO SPOT BASED ON SPOT ID
 router.post(
   "/:spotId/images",
+  singleMulterUpload("image"),
   restoreUser,
   requireAuth,
   async (req, res, next) => {
@@ -271,8 +275,10 @@ router.post(
       //   })
     }
 
+    const picUrl = await singlePublicFileUpload(req.file)
     const newImage = await Image.create({
-      url: req.body.url,
+      url: picUrl,
+      // req.body.url, //changed to AWS
       spotId: req.params.spotId,
       userId: req.user.id,
       // reviewId:

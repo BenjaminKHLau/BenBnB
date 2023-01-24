@@ -109,13 +109,17 @@ export const createNewSpotThunk = (spotBody) => async dispatch => {
     return response
 }
 
-export const addImageThunk = (imageUrl, spotId) => async dispatch => {
+export const addImageThunk = (image, spotId) => async dispatch => {
+    const formData = new FormData()
+    formData.append("image", image.url)
+    console.log("form data in add image thunk", formData)
     const response = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            // "Content-Type": "application/json"
+            "Content-Type": "multipart/form-data"
         },
-        body: JSON.stringify(imageUrl)
+        body: formData
     })
     if(response.ok) {
         // const data = await response.json()
